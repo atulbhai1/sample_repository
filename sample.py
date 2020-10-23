@@ -1,4 +1,3 @@
-print('hello')
 from tkinter.filedialog import *
 import mysql.connector
 import random
