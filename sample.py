@@ -120,9 +120,21 @@ class file_related_programs:
         mycursor.execute('select * from people')
         for i in mycursor:
             print(i)
-a1 = num_programs
+class product_creation_programs():
+    def create_a_product_basic(self):
+        print('Follow the instructions bellow to create products.')
+        x = input('Do you want to start? yes/no')
+        while x == 'yes':
+            num_of_prods = int(input('How many products to you want to create today?(please enter a numerical value)'))
+            for i in range(num_of_prods):
+                prod_name = input('What is the name of your product you want to create?')
+                prod_price = float(input('What is the price of you product you are creating?'))
+                print('You created a product called', prod_name, 'which costs', prod_price, 'dollars.')
+            x = input('Do you want to continue? yes/no')
+a1 = num_programs()
 b1 = word_programs()
 c1 = file_related_programs()
+d1 = product_creation_programs()
 x = input('Hello how are you doing? good/bad')
 if x == 'good':
     print(' That is good!')
@@ -131,7 +143,7 @@ elif x == 'bad':
 y = input('Do you want to start? Y/N')
 while y.upper() == "Y":
     x = input(
-        'What do you want to do quiz/calculate/print/skip count/random number generator/years to seconds/fibonacci sequence/factorial finder/create a file/square number sequence/see users')
+        'What do you want to do quiz/calculate/print/skip count/random number generator/years to seconds/fibonacci sequence/factorial finder/create a file/square number sequence/see users/create products simple')
     if x == 'quiz':
         a1.quiz()
     elif x == 'calculate':
@@ -154,6 +166,8 @@ while y.upper() == "Y":
         a1.square_num_sequence()
     elif x == 'see users':
         c1.user_viewer()
+    elif x == 'create products simple':
+        d1.create_a_product_basic()
     else:
         print('Invalid input!Next time type in something else.')
     y = input('Wish to continue? Y/N')
