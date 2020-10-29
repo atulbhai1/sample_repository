@@ -131,10 +131,66 @@ class product_creation_programs():
                 prod_price = float(input('What is the price of you product you are creating?'))
                 print('You created a product called', prod_name, 'which costs', prod_price, 'dollars.')
             x = input('Do you want to continue? yes/no')
+class chatbots():
+    def talk_to_santa(self):
+        import time
+
+        print('Calling Santa\'s workshop...')
+        time.sleep(5)
+
+        def santa1():
+            print('Hello,I am doing something now please go away now bye!')
+            x = input(
+                'Oh wait a second can you help me come up with special gifts for very good people? are you in? yes or no?')
+            if x == 'yes':
+                print('Great!')
+                gift = input('So first there is this boy in Sweden,what should I get him?')
+                print('Ok,I will get him a' + gift)
+                gift = input('Next,there is this girl in Israel,what should I get her?')
+                print('Ok,I will get her a' + gift)
+                gift = input(
+                    'Last of all,there is this boy in Canada who happens to love tamales,what should I get him?')
+                print('Ok,I will get him a' + gift)
+            else:
+                print('Ok then,bye!')
+            North_pole_operator()
+
+        def Mrs_Santa():
+            print('Oh,Hello there!')
+            print('I hope you are doing well.')
+            gift = input('What do you want for Christmas?')
+            print('Ok I will make sure you get a' + gift + 'this Christmas!')
+            print('It was nice meeting you but now I have to go.Bye!')
+            North_pole_operator()
+
+        def Elf():
+            print('Sorry we are to busy to talk now!Bye!')
+            North_pole_operator()
+
+        def North_pole_operator():
+            yes_no = input('Do you want to continue your call to the North Pole? yes or no?')
+            if yes_no == 'yes':
+                to_call = input('Hello who do you want to talk to? Santa,Mrs.Santa or the Elves')
+                time.sleep(2)
+                if to_call == 'Santa':
+                    santa1()
+                elif to_call == 'Mrs.Santa':
+                    Mrs_Santa()
+                elif to_call == 'Elves' or to_call == 'the Elves':
+                    Elf()
+                else:
+                    print('Unknown Error Call Failed')
+            else:
+                pass
+
+        North_pole_operator()
+
+
 a1 = num_programs()
 b1 = word_programs()
 c1 = file_related_programs()
 d1 = product_creation_programs()
+e1 = chatbots()
 x = input('Hello how are you doing? good/bad')
 if x == 'good':
     print(' That is good!')
@@ -143,7 +199,7 @@ elif x == 'bad':
 y = input('Do you want to start? Y/N')
 while y.upper() == "Y":
     x = input(
-        'What do you want to do quiz/calculate/print/skip count/random number generator/years to seconds/fibonacci sequence/factorial finder/create a file/square number sequence/see users/create products simple')
+        'What do you want to do quiz/calculate/print/skip count/random number generator/years to seconds/fibonacci sequence/factorial finder/create a file/square number sequence/see users/create products simple/call santa\'s workshop')
     if x == 'quiz':
         a1.quiz()
     elif x == 'calculate':
@@ -168,6 +224,8 @@ while y.upper() == "Y":
         c1.user_viewer()
     elif x == 'create products simple':
         d1.create_a_product_basic()
+    elif x == 'call santa\'s workshop':
+        e1.talk_to_santa()
     else:
         print('Invalid input!Next time type in something else.')
     y = input('Wish to continue? Y/N')
