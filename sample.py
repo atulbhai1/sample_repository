@@ -1,6 +1,9 @@
 from tkinter.filedialog import *
 import mysql.connector
 import random
+from numpy import *
+
+
 class num_programs:
     def quiz(self):
         print('Ready to quiz yourself!')
@@ -24,10 +27,10 @@ class num_programs:
                     ret = True
                     ret1 = True
                     while (ret):
-                        a = random.randint(0, 1000)  # generating a rndom number
-                        if (ret1):
-                            b = random.randint(0, 1000)
-                        if (a > b):
+                        f77 = random.randint(0, 1000)  # generating a rndom number
+                        if ret1:
+                            u88 = random.randint(0, 1000)
+                        if (f77 > u88):
                             ret = False
                             ret1 = False
                     ans1 = int(input("what is the answer of the equation: " + str(a) + "-" + str(b) + "=? "))
@@ -55,6 +58,18 @@ class num_programs:
     def calculate(self):
         x = eval(input('enter a equation you want to solve!'))
         print(x)
+
+    def skip_count(self):
+        def skip_count(self):
+            print('follow the instructions below to make a sequence that will skip count by the number you enter')
+            a = int(input('starting number?'))
+            b = int(input('ending number?'))
+            c = int(input('What number should you skip count by? '))
+            arr = arange(a, b, c)
+            if b - a > c:
+                print(arr)
+            else:
+                print('Please enter a smaller number to skip count by next time.')
 
     def square_num_sequence(self):
         x = int(input('What is the largest possible square number that you want to see?'))
@@ -98,6 +113,8 @@ class num_programs:
         x = float(input("Enter age in years: "))
         g = x * 365 * 24 * 3600
         print("Your age in seconds is: ", g)
+
+
 class word_programs():
     def print1(self):
         print('follow the instructions below to print words or numbers and how many times you want to see it!')
@@ -105,6 +122,8 @@ class word_programs():
         y = int(input('type down the number of times you want to print it'))
         for i in range(y):
             print(x)
+
+
 class file_related_programs:
     def file_maker(self):
         x = input('Enter the text you want to save in the file')
@@ -114,12 +133,15 @@ class file_related_programs:
             print(f)
         except:
             print('Unknown error occurred')
+
     def user_viewer(self):
         mydb = mysql.connector.connect(host='localhost', user='root', passwd='atulbhai2', database='Atul_test')
         mycursor = mydb.cursor()
         mycursor.execute('select * from people')
         for i in mycursor:
             print(i)
+
+
 class product_creation_programs():
     def create_a_product_basic(self):
         print('Follow the instructions bellow to create products.')
@@ -131,6 +153,8 @@ class product_creation_programs():
                 prod_price = float(input('What is the price of you product you are creating?'))
                 print('You created a product called', prod_name, 'which costs', prod_price, 'dollars.')
             x = input('Do you want to continue? yes/no')
+
+
 class chatbots():
     def talk_to_santa(self):
         import time
@@ -199,7 +223,7 @@ elif x == 'bad':
 y = input('Do you want to start? Y/N')
 while y.upper() == "Y":
     x = input(
-        'What do you want to do quiz/calculate/print/skip count/random number generator/years to seconds/fibonacci sequence/factorial finder/create a file/square number sequence/see users/create products simple/call santa\'s workshop')
+        'What do you want to do quiz/calculate/print/skip count/random number generator/years to seconds/fibonacci sequence/factorial finder/create a file/square number sequence/see users/create products simple/call santa\'s workshop/skip count')
     if x == 'quiz':
         a1.quiz()
     elif x == 'calculate':
@@ -226,6 +250,9 @@ while y.upper() == "Y":
         d1.create_a_product_basic()
     elif x == 'call santa\'s workshop':
         e1.talk_to_santa()
+    elif x == 'skip count':
+        a1.skip_count()
     else:
         print('Invalid input!Next time type in something else.')
     y = input('Wish to continue? Y/N')
+
