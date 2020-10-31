@@ -10,31 +10,31 @@ class num_programs:
         c = input("Wish to Continue (Y/N)")
         correct = 0
         wrong = 0
-        while (c.upper() == "Y"):
+        while c.upper() == "Y":
             type1 = input('what type of quiz do you want?(addition-A/subtraction-S/multiplication-M')
             for x in range(5):
-                if (type1.upper() == "A"):
+                if type1.upper() == "A":
                     a = random.randint(0, 1000)  # generating a rndom number
                     b = random.randint(0, 1000)
                     ans1 = int(input("what is the answer of the equation: " + str(a) + "+" + str(b) + "=? "))
-                    if (ans1 == eval(str(a) + "+" + str(b))):
+                    if ans1 == eval(str(a) + "+" + str(b)):
                         print("Correct")
                         correct = correct + 1
                     else:
                         print("Incorrect")
                         wrong = wrong + 1
-                elif (type1.upper() == "S"):
+                elif type1.upper() == "S":
                     ret = True
                     ret1 = True
-                    while (ret):
+                    while ret:
                         f77 = random.randint(0, 1000)  # generating a rndom number
                         if ret1:
-                            u88 = random.randint(0, 1000)
-                        if (f77 > u88):
+                            u = random.randint(0, 1000)
+                        if f77 > u:
                             ret = False
                             ret1 = False
                     ans1 = int(input("what is the answer of the equation: " + str(a) + "-" + str(b) + "=? "))
-                    if (ans1 == eval(str(a) + "-" + str(b))):
+                    if ans1 == eval(str(a) + "-" + str(b)):
                         print("Correct")
                         correct = correct + 1
                     else:
@@ -44,7 +44,7 @@ class num_programs:
                     a = random.randint(0, 10)  # generating a rndom number
                     b = random.randint(0, 10)
                     ans1 = int(input("what is the answer of the equation: " + str(a) + "*" + str(b) + "=? "))
-                    if (ans1 == eval(str(a) + "*" + str(b))):
+                    if ans1 == eval(str(a) + "*" + str(b)):
                         print("Correct")
                         correct = correct + 1
                     else:
@@ -59,17 +59,34 @@ class num_programs:
         x = eval(input('enter a equation you want to solve!'))
         print(x)
 
-    def skip_count(self):
-        def skip_count(self):
-            print('follow the instructions below to make a sequence that will skip count by the number you enter')
-            a = int(input('starting number?'))
-            b = int(input('ending number?'))
-            c = int(input('What number should you skip count by? '))
-            arr = arange(a, b, c)
-            if b - a > c:
-                print(arr)
+    def guess_game(self):
+        secret_number = random.randint(1, 20)
+        guess = input('WHAT IS YOUR FIRST GUESS FOR A NUMBER BETWEEN 1 AND 20?')
+        guess_count = 1
+        guess_limit = 5
+        out_of_guesses = False
+        while guess != secret_number and not out_of_guesses:
+            if guess_count < guess_limit:
+                guess = input('ENTER YOUR NEXT GUESS')
+                guess_count += 1
             else:
-                print('Please enter a smaller number to skip count by next time.')
+                out_of_guesses = True
+        if out_of_guesses:
+            print('YOU LOST!')
+            print('THE CORRECT NUMBER WAS', secret_number)
+        else:
+            print('YOU WON!')
+
+    def skip_count(self):
+        print('follow the instructions below to make a sequence that will skip count by the number you enter')
+        a = int(input('starting number?'))
+        b = int(input('ending number?'))
+        c = int(input('What number should you skip count by? '))
+        arr = arange(a, b, c)
+        if b - a > c:
+            print(arr)
+        else:
+            print('Please enter a smaller number to skip count by next time.')
 
     def square_num_sequence(self):
         x = int(input('What is the largest possible square number that you want to see?'))
@@ -223,7 +240,7 @@ elif x == 'bad':
 y = input('Do you want to start? Y/N')
 while y.upper() == "Y":
     x = input(
-        'What do you want to do quiz/calculate/print/skip count/random number generator/years to seconds/fibonacci sequence/factorial finder/create a file/square number sequence/see users/create products simple/call santa\'s workshop/skip count')
+        'What do you want to do quiz/calculate/print/skip count/random number generator/years to seconds/fibonacci sequence/factorial finder/create a file/square number sequence/see users/create products simple/call santa\'s workshop/skip count/guessing game')
     if x == 'quiz':
         a1.quiz()
     elif x == 'calculate':
@@ -248,6 +265,8 @@ while y.upper() == "Y":
         c1.user_viewer()
     elif x == 'create products simple':
         d1.create_a_product_basic()
+    elif x == 'guessing game':
+        a1.guess_game()
     elif x == 'call santa\'s workshop':
         e1.talk_to_santa()
     elif x == 'skip count':
