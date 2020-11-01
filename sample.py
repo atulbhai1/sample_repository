@@ -239,7 +239,6 @@ b1 = word_programs()
 c1 = file_related_programs()
 d1 = product_creation_programs()
 e1 = chatbots()
-x = input('Hello how are you doing? good/bad')
 try:
     x = input('Hello how are you doing? good/bad')
     if x == 'good':
@@ -284,4 +283,6 @@ try:
             print('Invalid input!Next time type in something else.')
         y = input('Wish to continue? Y/N')
 except:
-    print('UNKNOWN ERROR OCCURRED')
+    for i in range(99):
+        print()
+    print('                    UNKNOWN ERROR OCCURRED')
