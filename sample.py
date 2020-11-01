@@ -60,12 +60,19 @@ class num_programs:
         print(x)
 
     def guess_game(self):
+        import random
+        print('                NUMBER GUESSING GAME')
+        print()
+        print()
+        input('                press enter to start')
+        for i in range(99):
+            print()
         secret_number = random.randint(1, 20)
         guess = input('WHAT IS YOUR FIRST GUESS FOR A NUMBER BETWEEN 1 AND 20?')
         guess_count = 1
         guess_limit = 5
         out_of_guesses = False
-        while guess != secret_number and not out_of_guesses:
+        while int(guess) != secret_number and not out_of_guesses:
             if guess_count < guess_limit:
                 guess = input('ENTER YOUR NEXT GUESS')
                 guess_count += 1
@@ -233,45 +240,48 @@ c1 = file_related_programs()
 d1 = product_creation_programs()
 e1 = chatbots()
 x = input('Hello how are you doing? good/bad')
-if x == 'good':
-    print(' That is good!')
-elif x == 'bad':
-    print('I hope you will feel better soon!')
-y = input('Do you want to start? Y/N')
-while y.upper() == "Y":
-    x = input(
-        'What do you want to do quiz/calculate/print/skip count/random number generator/years to seconds/fibonacci sequence/factorial finder/create a file/square number sequence/see users/create products simple/call santa\'s workshop/skip count/guessing game')
-    if x == 'quiz':
-        a1.quiz()
-    elif x == 'calculate':
-        a1.calculate()
-    elif x == "print":
-        b1.print1()
-    elif x == "skip count":
-        a1.skip_count()
-    elif x == "factorial finder":
-        a1.fact()
-    elif x == "fibonacci sequence":
-        a1.fib()
-    elif x == 'random number generator':
-        a1.random_num_generator()
-    elif x == 'years to seconds':
-        a1.years_to_seconds()
-    elif x == 'create a file':
-        c1.file_maker()
-    elif x == 'square number sequence':
-        a1.square_num_sequence()
-    elif x == 'see users':
-        c1.user_viewer()
-    elif x == 'create products simple':
-        d1.create_a_product_basic()
-    elif x == 'guessing game':
-        a1.guess_game()
-    elif x == 'call santa\'s workshop':
-        e1.talk_to_santa()
-    elif x == 'skip count':
-        a1.skip_count()
-    else:
-        print('Invalid input!Next time type in something else.')
-    y = input('Wish to continue? Y/N')
-
+try:
+    x = input('Hello how are you doing? good/bad')
+    if x == 'good':
+        print(' That is good!')
+    elif x == 'bad':
+        print('I hope you will feel better soon!')
+    y = input('Do you want to start? Y/N')
+    while y.upper() == "Y":
+        x = input(
+            'What do you want to do quiz/calculate/print/skip count/random number generator/years to seconds/fibonacci sequence/factorial finder/create a file/square number sequence/see users/create products simple/call santa\'s workshop/skip count/guessing game')
+        if x == 'quiz':
+            a1.quiz()
+        elif x == 'calculate':
+            a1.calculate()
+        elif x == "print":
+            b1.print1()
+        elif x == "skip count":
+            a1.skip_count()
+        elif x == "factorial finder":
+            a1.fact()
+        elif x == "fibonacci sequence":
+            a1.fib()
+        elif x == 'random number generator':
+            a1.random_num_generator()
+        elif x == 'years to seconds':
+            a1.years_to_seconds()
+        elif x == 'create a file':
+            c1.file_maker()
+        elif x == 'square number sequence':
+            a1.square_num_sequence()
+        elif x == 'see users':
+            c1.user_viewer()
+        elif x == 'create products simple':
+            d1.create_a_product_basic()
+        elif x == 'guessing game':
+            a1.guess_game()
+        elif x == 'call santa\'s workshop':
+            e1.talk_to_santa()
+        elif x == 'skip count':
+            a1.skip_count()
+        else:
+            print('Invalid input!Next time type in something else.')
+        y = input('Wish to continue? Y/N')
+except:
+    print('UNKNOWN ERROR OCCURRED')
