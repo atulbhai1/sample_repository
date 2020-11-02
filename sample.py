@@ -70,7 +70,15 @@ class num_programs:
         secret_number = random.randint(1, 20)
         guess = input('WHAT IS YOUR FIRST GUESS FOR A NUMBER BETWEEN 1 AND 20?')
         guess_count = 1
-        guess_limit = 5
+        h = input('What level do you want to play at? easy/medium/hard')
+        if h == 'hard':
+            guess_limit = 5
+        elif h == 'medium':
+            guess_limit = 10
+        elif h == 'easy':
+            guess_limit = 15
+        else:
+            print('Invalid Input setting level to medium.')
         out_of_guesses = False
         while int(guess) != secret_number and not out_of_guesses:
             if guess_count < guess_limit:
