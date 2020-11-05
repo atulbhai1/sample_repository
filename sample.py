@@ -14,8 +14,7 @@ class num_programs:
             type1 = input('what type of quiz do you want?(addition-A/subtraction-S/multiplication-M')
             for x in range(5):
                 if type1.upper() == "A":
-                    a = random.randint(0, 1000)  # generating a rndom number
-                    b = random.randint(0, 1000)
+                    a, b = random.randint(0, 1000), random.randint(0, 1000)  # generating a random number
                     ans1 = int(input("what is the answer of the equation: " + str(a) + "+" + str(b) + "=? "))
                     if ans1 == eval(str(a) + "+" + str(b)):
                         print("Correct")
@@ -24,15 +23,13 @@ class num_programs:
                         print("Incorrect")
                         wrong = wrong + 1
                 elif type1.upper() == "S":
-                    ret = True
-                    ret1 = True
+                    ret, ret1 = True, True
                     while ret:
                         f77 = random.randint(0, 1000)  # generating a rndom number
                         if ret1:
                             u = random.randint(0, 1000)
                         if f77 > u:
-                            ret = False
-                            ret1 = False
+                            ret, ret1 = False, False
                     ans1 = int(input("what is the answer of the equation: " + str(a) + "-" + str(b) + "=? "))
                     if ans1 == eval(str(a) + "-" + str(b)):
                         print("Correct")
@@ -41,8 +38,7 @@ class num_programs:
                         print("Incorrect")
                         wrong = wrong + 1
                 else:
-                    a = random.randint(0, 10)  # generating a rndom number
-                    b = random.randint(0, 10)
+                    a, b = random.randint(0, 10), random.randint(0, 10)  # generating a random number
                     ans1 = int(input("what is the answer of the equation: " + str(a) + "*" + str(b) + "=? "))
                     if ans1 == eval(str(a) + "*" + str(b)):
                         print("Correct")
@@ -67,8 +63,7 @@ class num_programs:
         input('                press enter to start')
         for i in range(99):
             print()
-        secret_number = random.randint(1, 20)
-        h = input('What level do you want to play at? easy/medium/hard')
+        secret_number, h = random.randint(1, 20), input('What level do you want to play at? easy/medium/hard')
         if h == 'hard':
             guess_limit = 5
         elif h == 'medium':
@@ -78,13 +73,10 @@ class num_programs:
         else:
             print('Invalid Input setting level to medium.')
             guess_limit = 10
-        out_of_guesses = False
-        guess = input('WHAT IS YOUR FIRST GUESS FOR A NUMBER BETWEEN 1 AND 20?')
-        guess_count = 1
+        out_of_guesses, guess, guess_count = False, input('WHAT IS YOUR FIRST GUESS FOR A NUMBER BETWEEN 1 AND 20?'), 1
         while int(guess) != secret_number and not out_of_guesses:
             if guess_count < guess_limit:
-                guess = input('ENTER YOUR NEXT GUESS')
-                guess_count += 1
+                guess, guess_count = input('ENTER YOUR NEXT GUESS'), guess_count + 1
             else:
                 out_of_guesses = True
         if out_of_guesses:
@@ -95,9 +87,7 @@ class num_programs:
 
     def skip_count(self):
         print('follow the instructions below to make a sequence that will skip count by the number you enter')
-        a = int(input('starting number?'))
-        b = int(input('ending number?'))
-        c = int(input('What number should you skip count by? '))
+        a, b, c = int(input('starting number?')), int(input('ending number?')), int(input('What number should you skip count by? '))
         arr = arange(a, b, c)
         if b - a > c:
             print(arr)
@@ -105,39 +95,31 @@ class num_programs:
             print('Please enter a smaller number to skip count by next time.')
 
     def square_num_sequence(self):
-        x = int(input('What is the largest possible square number that you want to see?'))
-        i = 1
-        c = i * i
+        x, i, c = int(input('What is the largest possible square number that you want to see?')), 1, 1
         while c <= x:
             print(c)
             i = i + 1
             c = i * i
 
     def fib(self):
-        x = int(input('How many numbers do you want to see in the fibonacci sequence? '))
-        a = 0
-        b = 1
+        x, a, b = int(input('How many numbers do you want to see in the fibonacci sequence? ')), 0, 1
         if x == 1:
             print(a)
         else:
             print(a)
             print(b)
             for i in range(2, x):
-                c = a + b
-                a = b
-                b = c
+                c, a, b= a + b, b, a + b
                 print(c)
 
     def fact(self):
-        f = 1
-        x = int(input('What number do you want to find the factorial of?'))
+        f, x = 1, int(input('What number do you want to find the factorial of?'))
         for i in range(1, x + 1):
             f = f * i
         return f
 
     def random_num_generator(self):
-        rand1 = int(input(' Type the smallest possible random number you want '))
-        rand2 = int(input(' Type the largest possible random number you want '))
+        rand1, rand2 = int(input(' Type the smallest possible random number you want ')), int(input(' Type the largest possible random number you want '))
         print(random.randint(rand1, rand2))
 
     def years_to_seconds(self):
@@ -151,19 +133,17 @@ class num_programs:
 class word_programs():
     def print1(self):
         print('follow the instructions below to print words or numbers and how many times you want to see it!')
-        x = input('type down what you want to say')
-        y = int(input('type down the number of times you want to print it'))
+        x, y = input('type down what you want to say'), int(input('type down the number of times you want to print it'))
         for i in range(y):
             print(x)
 
 
 class file_related_programs:
     def file_maker(self):
-        x = input('Enter the text you want to save in the file')
-        path_to_save = asksaveasfilename(title='enter file name')
+        what_to_print, path_to_save = input('Enter the text you want to save in the file'), asksaveasfilename(title='enter file name')
         try:
             f = open(path_to_save, 'w')
-            print(f)
+            f.write(what_to_print)
         except:
             print('Unknown error occurred')
 
@@ -182,8 +162,7 @@ class product_creation_programs():
         while x == 'yes':
             num_of_prods = int(input('How many products to you want to create today?(please enter a numerical value)'))
             for i in range(num_of_prods):
-                prod_name = input('What is the name of your product you want to create?')
-                prod_price = float(input('What is the price of you product you are creating?'))
+                prod_name, prod_price = input('What is the name of your product you want to create?'), float(input('What is the price of you product you are creating?'))
                 print('You created a product called', prod_name, 'which costs', prod_price, 'dollars.')
             x = input('Do you want to continue? yes/no')
 
@@ -249,12 +228,11 @@ c1 = file_related_programs()
 d1 = product_creation_programs()
 e1 = chatbots()
 try:
-    x = input('Hello how are you doing? good/bad')
+    x, y = input('Hello how are you doing? good/bad'), input('Do you want to start? Y/N')
     if x == 'good':
         print(' That is good!')
     elif x == 'bad':
         print('I hope you will feel better soon!')
-    y = input('Do you want to start? Y/N')
     while y.upper() == "Y":
         x = input(
             'What do you want to do quiz/calculate/print/skip count/random number generator/years to seconds/fibonacci sequence/factorial finder/create a file/square number sequence/see users/create products simple/call santa\'s workshop/skip count/guessing game')
