@@ -154,6 +154,14 @@ class file_related_programs:
         for i in mycursor:
             print(i)
 
+    def create_python_file(self):
+        print('Follow the instructions below to create or re-write a one line python file and code in it.')
+        name, what_to_do = input('What is the name of your python file?'), input('Type the code now!')
+        name = name + '.py'
+        file = open(name, 'w')
+        file.write(what_to_do)
+        print('Done!')
+
 
 class product_creation_programs():
     def create_a_product_basic(self):
@@ -228,14 +236,15 @@ c1 = file_related_programs()
 d1 = product_creation_programs()
 e1 = chatbots()
 try:
-    x, y = input('Hello how are you doing? good/bad'), input('Do you want to start? Y/N')
+    x = input('Hello how are you doing? good/bad')
     if x == 'good':
         print(' That is good!')
     elif x == 'bad':
         print('I hope you will feel better soon!')
+    y = input('Do you want to start? Y/N')
     while y.upper() == "Y":
         x = input(
-            'What do you want to do quiz/calculate/print/skip count/random number generator/years to seconds/fibonacci sequence/factorial finder/create a file/square number sequence/see users/create products simple/call santa\'s workshop/skip count/guessing game')
+            'What do you want to do quiz/calculate/print/skip count/random number generator/years to seconds/fibonacci sequence/factorial finder/create a file/square number sequence/see users/create products simple/call santa\'s workshop/skip count/guessing game/create a python file')
         if x == 'quiz':
             a1.quiz()
         elif x == 'calculate':
@@ -248,6 +257,8 @@ try:
             a1.fact()
         elif x == "fibonacci sequence":
             a1.fib()
+        elif x == 'create a python file':
+            c1.create_python_file()
         elif x == 'random number generator':
             a1.random_num_generator()
         elif x == 'years to seconds':
