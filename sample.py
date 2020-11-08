@@ -2,6 +2,7 @@ from tkinter.filedialog import *
 import mysql.connector
 import random
 from numpy import *
+import datetime
 
 
 class num_programs:
@@ -141,11 +142,8 @@ class word_programs():
 class file_related_programs:
     def file_maker(self):
         what_to_print, path_to_save = input('Enter the text you want to save in the file'), asksaveasfilename(title='enter file name')
-        try:
-            f = open(path_to_save, 'w')
-            f.write(what_to_print)
-        except:
-            print('Unknown error occurred')
+        f = open(path_to_save, 'w')
+        f.write(what_to_print)
 
     def user_viewer(self):
         mydb = mysql.connector.connect(host='localhost', user='root', passwd='atulbhai2', database='Atul_test')
@@ -242,44 +240,93 @@ try:
     elif x == 'bad':
         print('I hope you will feel better soon!')
     y = input('Do you want to start? Y/N')
-    while y.upper() == "Y":
-        x = input(
-            'What do you want to do quiz/calculate/print/skip count/random number generator/years to seconds/fibonacci sequence/factorial finder/create a file/square number sequence/see users/create products simple/call santa\'s workshop/skip count/guessing game/create a python file')
-        if x == 'quiz':
-            a1.quiz()
-        elif x == 'calculate':
-            a1.calculate()
-        elif x == "print":
-            b1.print1()
-        elif x == "skip count":
-            a1.skip_count()
-        elif x == "factorial finder":
-            a1.fact()
-        elif x == "fibonacci sequence":
-            a1.fib()
-        elif x == 'create a python file':
-            c1.create_python_file()
-        elif x == 'random number generator':
-            a1.random_num_generator()
-        elif x == 'years to seconds':
-            a1.years_to_seconds()
-        elif x == 'create a file':
-            c1.file_maker()
-        elif x == 'square number sequence':
-            a1.square_num_sequence()
-        elif x == 'see users':
-            c1.user_viewer()
-        elif x == 'create products simple':
-            d1.create_a_product_basic()
-        elif x == 'guessing game':
-            a1.guess_game()
-        elif x == 'call santa\'s workshop':
-            e1.talk_to_santa()
-        elif x == 'skip count':
-            a1.skip_count()
+    if y.upper() == 'Y':
+        time = input('Do you want to activate time reminders? yes/no')
+        if time == 'yes':
+            while y.upper() == "Y":
+                x = input(
+                    'What do you want to do quiz/calculate/print/skip count/random number generator/years to seconds/fibonacci sequence/factorial finder/create a file/square number sequence/see users/create products simple/call santa\'s workshop/skip count/guessing game/create a python file')
+                if x == 'quiz':
+                    a1.quiz()
+                elif x == 'calculate':
+                    a1.calculate()
+                elif x == "print":
+                    b1.print1()
+                elif x == "skip count":
+                    a1.skip_count()
+                elif x == "factorial finder":
+                    a1.fact()
+                elif x == "fibonacci sequence":
+                    a1.fib()
+                elif x == 'create a python file':
+                    c1.create_python_file()
+                elif x == 'random number generator':
+                    a1.random_num_generator()
+                elif x == 'years to seconds':
+                    a1.years_to_seconds()
+                elif x == 'create a file':
+                    c1.file_maker()
+                elif x == 'square number sequence':
+                    a1.square_num_sequence()
+                elif x == 'see users':
+                    c1.user_viewer()
+                elif x == 'create products simple':
+                    d1.create_a_product_basic()
+                elif x == 'guessing game':
+                    a1.guess_game()
+                elif x == 'call santa\'s workshop':
+                    e1.talk_to_santa()
+                elif x == 'skip count':
+                    a1.skip_count()
+                else:
+                    print('Invalid input!Next time type in something else.')
+                time = datetime.datetime.now()
+                print("The  exact time is", time.strftime('%I') + ':' + time.strftime('%M') + ':' + time.strftime('%S'))
+                print()
+                y = input('Wish to continue? Y/N')
+        elif time == 'no':
+            while y.upper() == "Y":
+                x = input(
+                    'What do you want to do quiz/calculate/print/skip count/random number generator/years to seconds/fibonacci sequence/factorial finder/create a file/square number sequence/see users/create products simple/call santa\'s workshop/skip count/guessing game/create a python file')
+                if x == 'quiz':
+                    a1.quiz()
+                elif x == 'calculate':
+                    a1.calculate()
+                elif x == "print":
+                    b1.print1()
+                elif x == "skip count":
+                    a1.skip_count()
+                elif x == "factorial finder":
+                    a1.fact()
+                elif x == "fibonacci sequence":
+                    a1.fib()
+                elif x == 'create a python file':
+                    c1.create_python_file()
+                elif x == 'random number generator':
+                    a1.random_num_generator()
+                elif x == 'years to seconds':
+                    a1.years_to_seconds()
+                elif x == 'create a file':
+                    c1.file_maker()
+                elif x == 'square number sequence':
+                    a1.square_num_sequence()
+                elif x == 'see users':
+                    c1.user_viewer()
+                elif x == 'create products simple':
+                    d1.create_a_product_basic()
+                elif x == 'guessing game':
+                    a1.guess_game()
+                elif x == 'call santa\'s workshop':
+                    e1.talk_to_santa()
+                elif x == 'skip count':
+                    a1.skip_count()
+                else:
+                    print('Invalid input!Next time type in something else.')
+                print()
+                y = input('Wish to continue? Y/N')
         else:
-            print('Invalid input!Next time type in something else.')
-        y = input('Wish to continue? Y/N')
+            print('Invalid Input!')
+
 except:
     for i in range(99):
         print()
