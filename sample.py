@@ -355,6 +355,42 @@ b1 = word_programs()
 c1 = file_related_programs()
 d1 = product_creation_programs()
 e1 = chatbots()
+def hlp():
+    program = input(
+        'What do you want to find about? quiz/calculate/print/skip count/random number generator/years to seconds/fibonacci sequence/factorial finder/create a file/square number sequence/see users/create products simple/call santa\'s workshop/skip count/guessing game/create a python file/see deepavali presentation')
+    program = program.strip()
+    program = program.lower()
+    if program == 'quiz':
+        print(
+            'The quiz is a way of testing your skills on three mathematical concepts Addition,Subtraction and Multiplication!')
+    elif program == 'calculate':
+        print('This program is a simple calculator!')
+    elif program == 'see deepavali presentation':
+        print('This program is a simple deepavali presentation.')
+    elif program == 'print':
+        print('This program will let you print something you want on to your screen for as many times as you want!')
+    elif program == 'skip count':
+        print('This program generates a skip counting sequence based on the parameters you set!')
+    elif program == 'factorial finder':
+        print('This program finds the factorial of the number provided')
+    elif program == 'fibonacci sequence':
+        print('This program will show you numbers in the fibonacci sequence.')
+    elif program == 'create a python file':
+        print('This program allows you to create and code one line in a python file.')
+    elif program == 'random number generator':
+        print('This program generates a random number')
+    elif program == 'years to seconds':
+        print('This program converts your age in years to your age in seconds.')
+    elif program == 'create a file':
+        print('This program lets you create a file.')
+    elif program == 'create products simple':
+        print('This program makes PRETEND products that you can create.')
+    elif program == 'guessing game':
+        print('This is a fun guessing game which can be configured to different levels.')
+    else:
+        print('Invalid Input!')
+
+
 try:
     x = input('Hello how are you doing? good/bad')
     if x == 'good':
@@ -367,11 +403,13 @@ try:
         if time == 'yes':
             while y.upper() == "Y":
                 x = input(
-                    'What do you want to do quiz/calculate/print/skip count/random number generator/years to seconds/fibonacci sequence/factorial finder/create a file/square number sequence/see users/create products simple/call santa\'s workshop/skip count/guessing game/create a python /see deepavali presentation')
+                    'What do you want to do quiz/calculate/print/skip count/random number generator/years to seconds/fibonacci sequence/factorial finder/create a file/square number sequence/see users/create products simple/call santa\'s workshop/skip count/guessing game/create a python /see deepavali presentation/help')
                 x = x.strip()
                 x = x.lower()
                 if x == 'quiz':
                     a1.quiz()
+                elif x == 'help':
+                    hlp()
                 elif x == 'calculate':
                     a1.calculate()
                 elif x == 'see deepavali presentation':
@@ -413,11 +451,13 @@ try:
         elif time == 'no':
             while y.upper() == "Y":
                 x = input(
-                    'What do you want to do quiz/calculate/print/skip count/random number generator/years to seconds/fibonacci sequence/factorial finder/create a file/square number sequence/see users/create products simple/call santa\'s workshop/skip count/guessing game/create a python file/see deepavali presentation')
+                    'What do you want to do quiz/calculate/print/skip count/random number generator/years to seconds/fibonacci sequence/factorial finder/create a file/square number sequence/see users/create products simple/call santa\'s workshop/skip count/guessing game/create a python file/see deepavali presentation/help')
                 x = x.strip()
                 x = x.lower()
                 if x == 'quiz':
                     a1.quiz()
+                elif x == 'help':
+                    hlp()
                 elif x == 'calculate':
                     a1.calculate()
                 elif x == 'see deepavali presentation':
