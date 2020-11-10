@@ -1,3 +1,4 @@
+import time
 from tkinter.filedialog import *
 import mysql.connector
 import random
@@ -137,6 +138,127 @@ class word_programs():
         x, y = input('type down what you want to say'), int(input('type down the number of times you want to print it'))
         for i in range(y):
             print(x)
+    def deepavali_presentation(self):
+        print('                                                        Deepavali')
+
+        print('                                                   programmed by :Atul Nitin')
+
+        def transition():
+            t = input()
+            for n in range(25):
+                print()
+
+        transition()
+        print('                                                      Introduction')
+        print()
+        print(
+            '        Deepavali is the festival of lights and is widely celebrated all around the world.Let\'s see how Deepavali was formed.')
+        transition()
+        print('                                                    The History Of Deepavali')
+        print()
+        print(
+            '                           The most well known story behind Diwali is in the Ramayana, the great Hindu epic.')
+        print(
+            'According to Ramayana, Rama, the prince of Ayodhya was ordered by his father, King Dasharatha, to go away from his country and come back after living in the forest for fourteen years.')
+        print(
+            '                           So Rama went on exile with his devoted wife Sita and faithful brother, Lakshmana.')
+        print(
+            '      When Ravana, the demon king of Lanka abducted Sita and took her away to his island kingdom of Lanka, Rama fought against and killed Ravana.')
+        print('                                  He rescued Sita and returned to Ayodhya after fourteen years.')
+        print('                   The people of Ayodhya were very happy to hear of their beloved prince\'s homecoming.')
+        print(
+            ' To celebrate Rama\'s return to Ayodhya, they lit up their houses with earthen lamps (diyas), burst crackers and decorated the entire city in the grandest manner.')
+        transition()
+        print('                                               How Deepavali is Celebrated')
+        input(
+            '        For Deepavali people will light their houses with lamps,buy new clothes,eat sweets,be with family,and friends and play with...')
+        for i in range(3):
+            print()
+        print('                                                   FIRECRACKERS!')
+        transition()
+        print('                                             Have a happy Deepavali!')
+        transition()
+        print('Now let\'s play a fireworks game')
+
+        class Fireworks:
+            def aerial(self):
+                print('\|/')
+                print('/|\ ')
+                print('  \ ')
+                print('   \ ')
+                print('    \ ')
+
+            def assortment(self):
+                print('   //')
+                print('--- <')
+                print('   \\\ ')
+                time.sleep(5)
+                print()
+                print('\\\|///')
+                print(' \\|//')
+                print('  \|/')
+                print('   |')
+                time.sleep(5)
+                print()
+                print('\|/')
+                print('/|\ ')
+                print('  \ ')
+                print('   \ ')
+                print('    \ ')
+
+            def barrage(self):
+                print(':::')
+                print('::: ')
+                print('  \ ')
+                print('   \ ')
+                print('    \ ')
+
+            def firecracker(self):
+                print('\\\ ')
+                print('   -----[  ]')
+                print('///')
+
+            def sparklers(self):
+                print('   ///')
+                print('--- <')
+                print("   \\\\\ ")
+
+            def fountain(self):
+                print('\\\\\|///')
+                print(' \\\|//')
+                print('  \|/')
+                print('   |')
+
+        a = Fireworks
+        yes_no = input('Do you want to start? yes or no?')
+        while yes_no == 'yes':
+            to_do = input('What do you want to see? sparklers/assortment/fountain/aerial/firecracker/barrage')
+            if to_do == 'sparklers':
+                a.sparklers(2)
+            elif to_do == 'assortment':
+                a.assortment(2)
+            elif to_do == 'aerial':
+                a.aerial(2)
+            elif to_do == 'firecracker':
+                a.firecracker(2)
+            elif to_do == 'barrage':
+                a.barrage(2)
+            elif to_do == 'fountain':
+                a.fountain(2)
+            yes_no = input('Do you want to continue? yes or no?')
+
+        transition()
+        print('                                                  Credits:')
+        print()
+        print('Research:')
+        print(
+            '      My last year\'s presentation which can be viewed at https://docs.google.com/presentation/d/1JektdEgTDKxP2o47aMf31RYWvcj1rU16UHSBmmS6mA4/edit?usp=sharing ')
+        print()
+        print('Platforms used to create:')
+        print('                                      programming language used: Python')
+        print('                                           Python IDE used:Pycharm')
+        print()
+        print('Programmer: Atul Nitin')
 
 
 class file_related_programs:
@@ -245,11 +367,15 @@ try:
         if time == 'yes':
             while y.upper() == "Y":
                 x = input(
-                    'What do you want to do quiz/calculate/print/skip count/random number generator/years to seconds/fibonacci sequence/factorial finder/create a file/square number sequence/see users/create products simple/call santa\'s workshop/skip count/guessing game/create a python file')
+                    'What do you want to do quiz/calculate/print/skip count/random number generator/years to seconds/fibonacci sequence/factorial finder/create a file/square number sequence/see users/create products simple/call santa\'s workshop/skip count/guessing game/create a python /see deepavali presentation')
+                x = x.strip()
+                x = x.lower()
                 if x == 'quiz':
                     a1.quiz()
                 elif x == 'calculate':
                     a1.calculate()
+                elif x == 'see deepavali presentation':
+                    b1.deepavali_presentation()
                 elif x == "print":
                     b1.print1()
                 elif x == "skip count":
@@ -287,11 +413,15 @@ try:
         elif time == 'no':
             while y.upper() == "Y":
                 x = input(
-                    'What do you want to do quiz/calculate/print/skip count/random number generator/years to seconds/fibonacci sequence/factorial finder/create a file/square number sequence/see users/create products simple/call santa\'s workshop/skip count/guessing game/create a python file')
+                    'What do you want to do quiz/calculate/print/skip count/random number generator/years to seconds/fibonacci sequence/factorial finder/create a file/square number sequence/see users/create products simple/call santa\'s workshop/skip count/guessing game/create a python file/see deepavali presentation')
+                x = x.strip()
+                x = x.lower()
                 if x == 'quiz':
                     a1.quiz()
                 elif x == 'calculate':
                     a1.calculate()
+                elif x == 'see deepavali presentation':
+                    b1.deepavali_presentation()
                 elif x == "print":
                     b1.print1()
                 elif x == "skip count":
