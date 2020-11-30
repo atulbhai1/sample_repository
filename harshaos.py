@@ -91,6 +91,55 @@ def harsha_os():
         print('You are done with this quiz!')
         os_command()
 
+
+    def word_game1():
+        random_stuff = (
+        'apple', 'airplane', 'ball', 'beach', 'cat', 'call', 'degree', 'destroy', 'elephant', 'elevate', 'fat', 'faint',
+        'grow', 'gigabyte', 'hat', 'hot', 'in', 'is', 'java', 'javascript', 'kangaroo', 'long', 'love', 'move', 'mop',
+        'no', 'not', 'of', 'octopus', 'pot', 'plant', 'quiz', 'question', 'rat', 'raven', 'safe', 'save', 'tech', 'top',
+        'umbrella', 'under', 'vent', 'was', 'x-mas', 'year', 'zylaphone')
+        rand_num = random.randint(0, 45)
+        secret = random_stuff[rand_num]
+        print('                WORD GUESSING GAME')
+        print()
+        input('               PRESS ENTER TO START')
+        for i in range(100):
+            print()
+        level = input('WHAT LEVEL WILL YOU PLAY? EASY/MEDIUM/HARD/IMPOSSIBLE?')
+        if level.lower() == 'easy':
+            num_of_tries = 23
+        elif level.lower() == 'medium':
+            num_of_tries = 15
+        elif level.lower() == 'hard':
+            num_of_tries = 9
+        elif level.lower() == 'impossible':
+            num_of_tries = 1
+        else:
+            print('INVALID LEVEL REQUESTED! SETTING LEVEL TO MEDIUM!')
+            num_of_tries = 15
+        hmm = False
+        xyz = 0
+        while hmm == False and num_of_tries > 0:
+            if xyz == 0:
+                guess = input('WHAT IS YOUR FIRST GUESS?')
+                if guess == secret:
+                    hmm == True
+                else:
+                    num_of_tries = num_of_tries - 1
+                    xyz = 999999
+            else:
+                guess = input('WHAT IS YOUR NEXT GUESS?')
+                if guess == secret:
+                    hmm == True
+                else:
+                    num_of_tries -= 1
+        if num_of_tries == 0:
+            print('YOU LOST!!!')
+        else:
+            print('YOU WON!!!')
+        os_command()
+
+
     def num_game1():
         print('                NUMBER GUESSING GAME')
         print()
@@ -133,6 +182,7 @@ def harsha_os():
         print('To access tic-tac-toe type in: tic-tac-toe')
         print('To access rock-paper-scissors ype in: rock-paper-scissors')
         print('To quit harsha os type in: quit harsha os')
+        print('To access the word guessing game type in: word guessing game')
         os_command()
     def tictactoe():
         board = [i for i in range(0, 9)]
@@ -294,6 +344,8 @@ def harsha_os():
             command()
         elif to_do == 'quiz':
             quiz()
+        elif to_do == 'word guessing game':
+            word_game1()
         elif to_do == 'tic-tac-toe':
             tictactoe()
         elif to_do == 'rock-paper-scissors':
