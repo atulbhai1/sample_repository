@@ -57,6 +57,19 @@ class num_programs:
         x = eval(input('enter a equation you want to solve!'))
         print(x)
 
+    def ram_support(self):
+        bit = int(input('how many bits does your operating system support?'))
+        if bit >= 64:
+            print('Your system supports', ((((((((2 ** (bit - 1)) * 2) / 1024) / 1024) / 1024) / 1024) / 1024) / 1024),
+                  'exabytes of ram.')
+        elif bit >= 32:
+            print('Your system supports', (((((2 ** (bit - 1)) * 2) / 1024) / 1024) / 1024), 'gigabytes of ram.')
+        elif bit >= 16:
+            print('Your system supports', ((2 ** (bit - 1)) * 2) / 1024, 'kilobytes of ram.')
+        else:
+            print('Your system supports', ((2 ** (bit - 1)) * 2), 'bytes of ram.')
+
+
     def guess_game(self):
         import random
         print('                NUMBER GUESSING GAME')
@@ -357,7 +370,7 @@ d1 = product_creation_programs()
 e1 = chatbots()
 def hlp():
     program = input(
-        'What do you want to find about? quiz/calculate/print/skip count/random number generator/years to seconds/fibonacci sequence/factorial finder/create a file/square number sequence/see users/create products simple/call santa\'s workshop/skip count/guessing game/create a python file/see deepavali presentation')
+        'What do you want to find about? quiz/calculate/print/skip count/random number generator/years to seconds/fibonacci sequence/factorial finder/create a file/square number sequence/see users/create products simple/call santa\'s workshop/skip count/guessing game/create a python file/see deepavali presentation/byte calculator')
     program = program.strip()
     program = program.lower()
     if program == 'quiz':
@@ -387,6 +400,8 @@ def hlp():
         print('This program makes PRETEND products that you can create.')
     elif program == 'guessing game':
         print('This is a fun guessing game which can be configured to different levels.')
+    elif program == 'byte calculator':
+        print('This program calculates how many bytes of ram your operating system will allow.')
     else:
         print('Invalid Input!')
 
@@ -403,13 +418,15 @@ try:
         if time == 'yes':
             while y.upper() == "Y":
                 x = input(
-                    'What do you want to do quiz/calculate/print/skip count/random number generator/years to seconds/fibonacci sequence/factorial finder/create a file/square number sequence/see users/create products simple/call santa\'s workshop/skip count/guessing game/create a python /see deepavali presentation/help')
+                    'What do you want to do quiz/calculate/print/skip count/random number generator/years to seconds/fibonacci sequence/factorial finder/create a file/square number sequence/see users/create products simple/call santa\'s workshop/skip count/guessing game/create a python /see deepavali presentation/help/byte calculator')
                 x = x.strip()
                 x = x.lower()
                 if x == 'quiz':
                     a1.quiz()
                 elif x == 'help':
                     hlp()
+                elif x == 'byte calculator':
+                    a1.ram_support()
                 elif x == 'calculate':
                     a1.calculate()
                 elif x == 'see deepavali presentation':
@@ -451,7 +468,7 @@ try:
         elif time == 'no':
             while y.upper() == "Y":
                 x = input(
-                    'What do you want to do quiz/calculate/print/skip count/random number generator/years to seconds/fibonacci sequence/factorial finder/create a file/square number sequence/see users/create products simple/call santa\'s workshop/skip count/guessing game/create a python file/see deepavali presentation/help')
+                    'What do you want to do quiz/calculate/print/skip count/random number generator/years to seconds/fibonacci sequence/factorial finder/create a file/square number sequence/see users/create products simple/call santa\'s workshop/skip count/guessing game/create a python file/see deepavali presentation/help/byte calculator')
                 x = x.strip()
                 x = x.lower()
                 if x == 'quiz':
@@ -464,6 +481,8 @@ try:
                     b1.deepavali_presentation()
                 elif x == "print":
                     b1.print1()
+                elif x == 'byte calculator':
+                    a1.ram_support()
                 elif x == "skip count":
                     a1.skip_count()
                 elif x == "factorial finder":
