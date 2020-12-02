@@ -7,6 +7,28 @@ import datetime
 
 
 class num_programs:
+    def mean_calculator(self):
+        range1 = int(input('How many numbers are in your sample?'))
+        list_of_numbers = []
+        for i in range(range1):
+            to_add = int(input('What number do you want to add?'))
+            list_of_numbers.append(to_add)
+        start = 0
+        end = range1 - 1
+        done = False
+        total = 0
+        while not done:
+            total += list_of_numbers[start] + list_of_numbers[end]
+            if start == end:
+                done = True
+                total = total - list_of_numbers[end]
+            if start > end:
+                done = True
+                total = total - list_of_numbers[end] - list_of_numbers[start]
+            start += 1
+            end = end - 1
+        print('The mean is', total / range1)
+
     def quiz(self):
         print('Ready to quiz yourself!')
         c = input("Wish to Continue (Y/N)")
@@ -370,7 +392,7 @@ d1 = product_creation_programs()
 e1 = chatbots()
 def hlp():
     program = input(
-        'What do you want to find about? quiz/calculate/print/skip count/random number generator/years to seconds/fibonacci sequence/factorial finder/create a file/square number sequence/see users/create products simple/call santa\'s workshop/skip count/guessing game/create a python file/see deepavali presentation/byte calculator')
+        'What do you want to find about? quiz/calculate/print/skip count/random number generator/years to seconds/fibonacci sequence/factorial finder/create a file/square number sequence/see users/create products simple/call santa\'s workshop/skip count/guessing game/create a python file/see deepavali presentation/byte calculator/mean calculator')
     program = program.strip()
     program = program.lower()
     if program == 'quiz':
@@ -402,6 +424,8 @@ def hlp():
         print('This is a fun guessing game which can be configured to different levels.')
     elif program == 'byte calculator':
         print('This program calculates how many bytes of ram your operating system will allow.')
+    elif program == 'mean calculator':
+        print('This program lets you calculate the mean of a set of numbers.')
     else:
         print('Invalid Input!')
 
@@ -418,11 +442,13 @@ try:
         if time == 'yes':
             while y.upper() == "Y":
                 x = input(
-                    'What do you want to do quiz/calculate/print/skip count/random number generator/years to seconds/fibonacci sequence/factorial finder/create a file/square number sequence/see users/create products simple/call santa\'s workshop/skip count/guessing game/create a python /see deepavali presentation/help/byte calculator')
+                    'What do you want to do quiz/calculate/print/skip count/random number generator/years to seconds/fibonacci sequence/factorial finder/create a file/square number sequence/see users/create products simple/call santa\'s workshop/skip count/guessing game/create a python /see deepavali presentation/help/byte calculator/mean calculator')
                 x = x.strip()
                 x = x.lower()
                 if x == 'quiz':
                     a1.quiz()
+                elif x == 'mean calculator':
+                    a1.mean_calculator()
                 elif x == 'help':
                     hlp()
                 elif x == 'byte calculator':
@@ -468,7 +494,7 @@ try:
         elif time == 'no':
             while y.upper() == "Y":
                 x = input(
-                    'What do you want to do quiz/calculate/print/skip count/random number generator/years to seconds/fibonacci sequence/factorial finder/create a file/square number sequence/see users/create products simple/call santa\'s workshop/skip count/guessing game/create a python file/see deepavali presentation/help/byte calculator')
+                    'What do you want to do quiz/calculate/print/skip count/random number generator/years to seconds/fibonacci sequence/factorial finder/create a file/square number sequence/see users/create products simple/call santa\'s workshop/skip count/guessing game/create a python file/see deepavali presentation/help/byte calculator/mean calculator')
                 x = x.strip()
                 x = x.lower()
                 if x == 'quiz':
@@ -481,6 +507,8 @@ try:
                     b1.deepavali_presentation()
                 elif x == "print":
                     b1.print1()
+                elif x == 'mean calculator':
+                    a1.mean_calculator()
                 elif x == 'byte calculator':
                     a1.ram_support()
                 elif x == "skip count":
