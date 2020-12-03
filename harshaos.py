@@ -139,6 +139,40 @@ def harsha_os():
             print('YOU WON!!!')
         os_command()
 
+    def rebase_from10():
+        def encode(digits, other_digit_map):
+            if max(digits) >= len(other_digit_map):
+                raise ValueError('digit_map is not long enough to encode the digits')
+            other_encoding = ''
+            for d in digits:
+                other_encoding += digit_map[d]
+            return other_encoding
+
+        def from_base10(n, b):
+            if b < 2:
+                raise ValueError('Base b must be >= 2')
+            if n < 0:
+                raise ValueError('Number n must be >= 0')
+            if n == 0:
+                return [0]
+            digits = []
+            while n > 0:
+                n, m = divmod(n, b)
+                digits.insert(0, m)
+            return digits
+
+        number, base = int(input('What number do you want to change')), int(
+            input('What is the base of number you want to change'))
+        digit_map = '''0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz`~!@#$%^&*()-_=+[{]}\\|;:'",<.>/?'''
+        if base < 2 or base > len(digit_map):
+            raise ValueError(f'Base must be equal to or below {len(digit_map)} and more than or equal to 2')
+        sign = -1 if number < 0 else 1
+        number *= sign
+        encoding = encode(from_base10(number, base), digit_map)
+        if sign == -1:
+            encoding = '-' + encoding
+        print('Your new number is:', encoding)
+        os_command()
 
     def num_game1():
         print('                NUMBER GUESSING GAME')
@@ -183,6 +217,7 @@ def harsha_os():
         print('To access rock-paper-scissors ype in: rock-paper-scissors')
         print('To quit harsha os type in: quit harsha os')
         print('To access the word guessing game type in: word guessing game')
+        print('To access the bae converter type in: base converter')
         os_command()
     def tictactoe():
         board = [i for i in range(0, 9)]
@@ -350,6 +385,8 @@ def harsha_os():
             tictactoe()
         elif to_do == 'rock-paper-scissors':
             rock_paper_scissors()
+        elif to_do == 'base converter':
+            rebase_from10()
         else:
             print(f'{to_do} is not a program')
             os_command()
