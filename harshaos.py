@@ -161,8 +161,7 @@ def harsha_os():
                 digits.insert(0, m)
             return digits
 
-        number, base = int(input('What number do you want to change')), int(
-            input('What is the base of number you want to change'))
+        number, base = int(input('What number do you want to change')), int(input('What is the base of number you want to change'))
         digit_map = '''0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz`~!@#$%^&*()-_=+[{]}\\|;:'",<.>/?'''
         if base < 2 or base > len(digit_map):
             raise ValueError(f'Base must be equal to or below {len(digit_map)} and more than or equal to 2')
@@ -173,6 +172,196 @@ def harsha_os():
             encoding = '-' + encoding
         print('Your new number is:', encoding)
         os_command()
+
+    def titanic_game():
+        print('You are sleeping peacefully when a sudden bang wakes you up.You realize that something crashed into the')
+        to_do = input('ship. What do you do? stay here or look outside?')
+        if to_do == 'stay here':
+            def stay_here():
+                print(
+                    'You stay inside the cabin, covering yourself with bed sheets.Nothing happens for a while, but then someone')
+                print(
+                    'knocks the door. You hop up and open it.A crew member then tells you that the Titanic has hit an iceberg')
+                print(
+                    'and is sinking, so all passengers are requested to come up on deck and wait for further instructions.')
+                to_do1 = input('Will you leave the room or stay?')
+                if to_do1 == 'stay':
+                    def stay():
+                        print(
+                            'You cover yourself up with sheets hoping it will all get over soon.But soon you feel a mighty crash as if')
+                        print(
+                            'the ship is colliding with something again,in a few more minutes another hit follows and you see water')
+                        print('water coming into your cabin.')
+                        print(' Game Over! You Lost!')
+
+                    stay()
+                elif to_do1 == 'leave the room':
+                    def leave():
+                        print(
+                            'You get on deck where a crowd of scared people has already gathered.The ship\'s band is playing music.')
+                        print(
+                            'The crew are trying to calm everybody down but they look like they are at a loss themselves.')
+                        print('Then, someone gives a signal and the lifeboats start getting untied.')
+                        to_do2 = input(
+                            'The order is clear though women and children first. What do you do? help passengers or help the crew?')
+                        if to_do2 == 'help passengers':
+                            def help_passengers():
+                                print(
+                                    'You go inside the ship knocking on all the cabins doors,checking if anybody is inside.Then suddenly another')
+                                print(
+                                    'boom shake the ship.The ship has collided with something again.You run on deck but then another crash knocks')
+                                print(
+                                    'off your feet and the floor under you lurches.You try to hurry but it\'s no use the ship is filling up with water.')
+                                print('Game Over! You Lose!')
+
+                            help_passengers()
+                        elif to_do2 == 'help the crew':
+                            def help_crew():
+                                print(
+                                    'You help the crew seat women and children into the lifeboats and calm down other passengers.')
+                                print(
+                                    'Then another boom crashes through the ship.You keep calm and continue to help loading up passengers.')
+                                print(
+                                    'When the last child is put in the last lifeboat,you see there is space for one more person.')
+                                to_do3 = input(
+                                    'What will you do with it? run across the stern/hop in the boat/run through the ship? ')
+                                if to_do3 == 'run across the stern':
+                                    def run_stern():
+                                        print(
+                                            'You run to the other side of the Titanic, taking the longer but safer route through the stern.')
+                                        print(
+                                            'But then another shudder knocks you off your feet and makes the Titanic split in half.You try on grab on')
+                                        print('but the part you are on suddenly falls into the water.')
+                                        print('Game Over! You Lose!')
+
+                                    run_stern()
+                                elif to_do3 == 'run through the ship':
+                                    def run_ship():
+                                        print(
+                                            'You run to the other side of the Titanic.You choose the shortest route through the ship.')
+                                        print(
+                                            'But then another crash hits the Titanic and the floor lurches,you get back up and hurry.')
+                                        print(
+                                            'You reach the other side but it broke of and the last lifeboat just left.You try to reach it')
+                                        print(
+                                            'but miss,so you jump off the Titanic and swim to the boat and someone pulls you to safety.')
+                                        print('Game Over! You Won!')
+
+                                    run_ship()
+                                elif to_do3 == 'hop in the boat':
+                                    def hop():
+                                        print('You hop into the boat.The boat goes into the water and floats.')
+                                        print('Game Over! You Win!')
+
+                                    hop()
+
+                            help_crew()
+                        else:
+                            print('Invalid action! quiting game')
+
+                    leave()
+                else:
+                    print('Invalid action! quiting game')
+
+            stay_here()
+        elif to_do == 'look outside':
+            def look_out():
+                print('You get up from the bed and try to open the door.The door is locked,so you break the door open.')
+                print(
+                    'You see crew members running everywhere.You manage to grab one and ask him what is happening.He tells you to stay in the cabin.')
+                to_do4 = input('Will you stay in your cabin or leave?')
+                if to_do4 == 'leave':
+                    print(
+                        'You go outside and look over the guardrail.You see that there is a huge gash at the front of the Titanic')
+                    to_do4 = input(
+                        'You go back inside and see the crew who tell you o get on deck. Will you get on deck or help others?')
+                    if to_do4 == 'get on deck':
+                        print(
+                            'You get on deck where a crowd of scared people has already gathered.The ship\'s band is playing music.')
+                        print(
+                            'The crew are trying to calm everybody down but they look like they are at a loss themselves.')
+                        print('Then, someone gives a signal and the lifeboats start getting untied.')
+                        to_do4 = input(
+                            'The order is clear though women and children first. What do you do? help passengers or help the crew?')
+                        if to_do4 == 'help passengers':
+                            def help_passengers():
+                                print(
+                                    'You go inside the ship knocking on all the cabins doors,checking if anybody is inside.Then suddenly another')
+                                print(
+                                    'boom shake the ship.The ship has collided with something again.You run on deck but then another crash knocks')
+                                print(
+                                    'off your feet and the floor under you lurches.You try to hurry but it\'s no use the ship is filling up with water.')
+                                print('Game Over! You Lose!')
+
+                            help_passengers()
+                        elif to_do4 == 'help the crew':
+                            def help_crew():
+                                print(
+                                    'You help the crew seat women and children into the lifeboats and calm down other passengers.')
+                                print(
+                                    'Then another boom crashes through the ship.You keep calm and continue to help loading up passengers.')
+                                print(
+                                    'When the last child is put in the last lifeboat,you see there is space for one more person.')
+                                to_do5 = input(
+                                    'What will you do with it? run across the stern/hop in the boat/run through the ship? ')
+                                if to_do5 == 'run across the stern':
+                                    def run_stern():
+                                        print(
+                                            'You run to the other side of the Titanic, taking the longer but safer route through the stern.')
+                                        print(
+                                            'But then another shudder knocks you off your feet and makes the Titanic split in half.You try on grab on')
+                                        print('but the part you are on suddenly falls into the water.')
+                                        print('Game Over! You Lose!')
+
+                                    run_stern()
+                                elif to_do5 == 'run through the ship':
+                                    def run_ship():
+                                        print(
+                                            'You run to the other side of the Titanic.You choose the shortest route through the ship.')
+                                        print(
+                                            'But then another crash hits the Titanic and the floor lurches,you get back up and hurry.')
+                                        print(
+                                            'You reach the other side but it broke of and the last lifeboat just left.You try to reach it')
+                                        print(
+                                            'but miss,so you jump off the Titanic and swim to the boat and someone pulls you to safety.')
+                                        print('Game Over! You Won!')
+
+                                    run_ship()
+                                elif to_do5 == 'hop in the boat':
+                                    def hop():
+                                        print('You hop into the boat.The boat goes into the water and floats.')
+                                        print('Game Over! You Win!')
+
+                                    hop()
+
+                            help_crew()
+                        else:
+                            print('Invalid action! quiting game')
+                    elif to_do4 == 'help others':
+                        print(
+                            'You go inside the ship knocking on all the cabins doors,checking if anybody is inside.Then suddenly another')
+                        print(
+                            'boom shake the ship.The ship has collided with something again.You run on deck but then another crash knocks')
+                        print(
+                            'off your feet and the floor under you lurches.You try to hurry but it\'s no use the ship is filling up with water.')
+                        print('Game Over! You Lose!')
+                    else:
+                        print('Invalid action! quiting game')
+                elif to_do4 == 'stay in your cabin':
+                    print(
+                        'You cover yourself up with sheets hoping it will all get over soon.But soon you feel a mighty crash as if')
+                    print(
+                        'the ship is colliding with something again,in a few more minutes another hit follows and you see water')
+                    print('water coming into your cabin.')
+                    print(' Game Over! You Lost!')
+                else:
+                    print('Invalid action! quiting game')
+
+            look_out()
+        else:
+            print('Invalid action! quiting game')
+        os_command()
+
 
     def num_game1():
         print('                NUMBER GUESSING GAME')
@@ -218,6 +407,7 @@ def harsha_os():
         print('To quit harsha os type in: quit harsha os')
         print('To access the word guessing game type in: word guessing game')
         print('To access the bae converter type in: base converter')
+        print('To access the titanic game type in: titanic game')
         os_command()
     def tictactoe():
         board = [i for i in range(0, 9)]
@@ -387,6 +577,8 @@ def harsha_os():
             rock_paper_scissors()
         elif to_do == 'base converter':
             rebase_from10()
+        elif to_do == 'titanic game':
+            titanic_game()
         else:
             print(f'{to_do} is not a program')
             os_command()
