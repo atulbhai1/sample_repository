@@ -1,10 +1,17 @@
-from time import time
-from time import sleep
+from time import *
+from tkinter import *
 from googlesearch import search
 import random
 import gc
+import os
 
-
+to_do = 0
+def screen_clear():
+    if os.name == 'posix':
+        _ = os.system('clear')
+    else:
+        # for windows platfrom
+        _ = os.system('cls')
 
 def help101():
     print('''To activate harsha os type in : activate.activate(Harsha_os,_'activate ')''')
@@ -556,7 +563,30 @@ def harsha_os():
             print('Computer wins!')
         os_command()
     def os_command():
-        to_do = input('What do you want to do?')
+        OPTIONS = ['help', 'browser', 'number guessing game', 'calculator', 'quit harsha os', 'word guessing game',
+                   'tic-tac-toe', 'rock-paper-scissors', 'base converter', 'titanic game']
+        master = Tk()
+        #master.overrideredirect(True)
+        master.geometry("400x400+0+0")
+        master.iconify()
+        master.update()
+        master.deiconify()
+        master.eval('tk::PlaceWindow . center')
+        variable = StringVar(master)
+        variable.set(OPTIONS[0])  # default value
+
+        w = OptionMenu(master, variable, *OPTIONS)
+        w.pack()
+
+        def ok():
+            global to_do
+            to_do = variable.get()
+            master.destroy()
+
+        button = Button(master, text="OK", command=ok)
+        button.pack()
+        mainloop()
+        global to_do
         if to_do == 'help':
             help11()
         elif to_do == 'browser':
@@ -585,19 +615,18 @@ def harsha_os():
     os_command()
 
 
-key = 'atulharsha123$$'
-master_key = 'atul$$'
+#key = 'atulharsha123$$'
+#master_key = 'atul$$'
 def a():
-    password_input = input('Password:')
-    if key == password_input:
-        for i in range(50):
-            print()
-        command()
-    elif master_key == password_input:
-        print('Password:atulharsha123$$')
-        a()
-    else:
-        print('Access Denied!')
+    #password_input = input('Password:')
+    #if key == password_input:
+    screen_clear()
+    command()
+    #elif master_key == password_input:
+       # print('Password:atulharsha123$$')
+        #a()
+    #else:
+        #print('Access Denied!')
 
 
 try:

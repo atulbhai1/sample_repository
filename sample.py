@@ -1,6 +1,5 @@
 import time
 from tkinter.filedialog import *
-import mysql.connector
 import random
 from numpy import *
 import datetime
@@ -302,12 +301,6 @@ class file_related_programs:
         f = open(path_to_save, 'w')
         f.write(what_to_print)
 
-    def user_viewer(self):
-        mydb = mysql.connector.connect(host='localhost', user='root', passwd='atulbhai2', database='Atul_test')
-        mycursor = mydb.cursor()
-        mycursor.execute('select * from people')
-        for i in mycursor:
-            print(i)
 
     def create_python_file(self):
         print('Follow the instructions below to create or re-write a one line python file and code in it.')
@@ -392,7 +385,7 @@ d1 = product_creation_programs()
 e1 = chatbots()
 def hlp():
     program = input(
-        'What do you want to find about? quiz/calculate/print/skip count/random number generator/years to seconds/fibonacci sequence/factorial finder/create a file/square number sequence/see users/create products simple/call santa\'s workshop/skip count/guessing game/create a python file/see deepavali presentation/byte calculator/mean calculator')
+        'What do you want to find about? quiz/calculate/print/skip count/random number generator/years to seconds/fibonacci sequence/factorial finder/create a file/square number sequence/create products simple/call santa\'s workshop/skip count/guessing game/create a python file/see deepavali presentation/byte calculator/mean calculator')
     program = program.strip()
     program = program.lower()
     if program == 'quiz':
@@ -442,7 +435,7 @@ try:
         if time == 'yes':
             while y.upper() == "Y":
                 x = input(
-                    'What do you want to do quiz/calculate/print/skip count/random number generator/years to seconds/fibonacci sequence/factorial finder/create a file/square number sequence/see users/create products simple/call santa\'s workshop/skip count/guessing game/create a python /see deepavali presentation/help/byte calculator/mean calculator')
+                    'What do you want to do quiz/calculate/print/skip count/random number generator/years to seconds/fibonacci sequence/factorial finder/create a file/square number sequence/create products simple/call santa\'s workshop/skip count/guessing game/create a python /see deepavali presentation/help/byte calculator/mean calculator')
                 x = x.strip()
                 x = x.lower()
                 if x == 'quiz':
@@ -475,8 +468,6 @@ try:
                     c1.file_maker()
                 elif x == 'square number sequence':
                     a1.square_num_sequence()
-                elif x == 'see users':
-                    c1.user_viewer()
                 elif x == 'create products simple':
                     d1.create_a_product_basic()
                 elif x == 'guessing game':
@@ -494,7 +485,7 @@ try:
         elif time == 'no':
             while y.upper() == "Y":
                 x = input(
-                    'What do you want to do quiz/calculate/print/skip count/random number generator/years to seconds/fibonacci sequence/factorial finder/create a file/square number sequence/see users/create products simple/call santa\'s workshop/skip count/guessing game/create a python file/see deepavali presentation/help/byte calculator/mean calculator')
+                    'What do you want to do quiz/calculate/print/skip count/random number generator/years to seconds/fibonacci sequence/factorial finder/create a file/square number sequence/create products simple/call santa\'s workshop/skip count/guessing game/create a python file/see deepavali presentation/help/byte calculator/mean calculator')
                 x = x.strip()
                 x = x.lower()
                 if x == 'quiz':
@@ -527,8 +518,6 @@ try:
                     c1.file_maker()
                 elif x == 'square number sequence':
                     a1.square_num_sequence()
-                elif x == 'see users':
-                    c1.user_viewer()
                 elif x == 'create products simple':
                     d1.create_a_product_basic()
                 elif x == 'guessing game':
