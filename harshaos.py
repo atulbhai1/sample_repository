@@ -4,54 +4,22 @@ from googlesearch import search
 import random
 import gc
 import os
-
 to_do = 0
-def screen_clear():
-    if os.name == 'posix':
-        _ = os.system('clear')
-    else:
-        # for windows platfrom
-        _ = os.system('cls')
-
-def help101():
-    print('''To activate harsha os type in : activate.activate(Harsha_os,_'activate ')''')
-    print('To turn of type in: turn.off.type(full)')
-    print('To turn on screen saver mode type in: mode.screen.saver(screensaver)')
-    command()
-
-
-def screen_saver_mode():
-    time2763 = time()
-    time2764 = time()
-    while (time2764-time2763) < 300:
-        time2764 = time()
-        print('---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------')
-        sleep(0.25)
-    command()
-
-
-def command():
-    to_do = input('>>')
-    if to_do == 'help':
-        help101()
-    elif to_do == "activate.activate(Harsha_os,_'activate ')":
-        harsha_os()
-    elif to_do == 'mode.screen.saver(screensaver)':
-        screen_saver_mode()
-    elif to_do == 'turn.off.type(full)':
-        pass
-    else:
-        print(f'{to_do} is not a internal nor external command')
-        command()
-
-
-def harsha_os():
-    def browser():
+user_score = 0
+comp_score = 0
+def browser():
         query = input('Enter a URL or a keyword')
         for j in search(query, tld="com", num=10, stop=10, pause=2):
             print(j)
-        os_command()
-    def quiz():
+def screen_saver_mode():
+        time2763 = time()
+        time2764 = time()
+        while (time2764 - time2763) < 300:
+            time2764 = time()
+            print(
+                '---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------')
+            sleep(0.25)
+def quiz():
         print('Ready to quiz yourself!')
         c = input("Wish to Continue (Y/N)")
         correct = 0
@@ -96,10 +64,7 @@ def harsha_os():
         print("you had " + str(correct) + " correct answers and " + str(wrong) + " wrong answers")
         print("Your score is " + str((correct / (correct + wrong)) * 100) + "%")
         print('You are done with this quiz!')
-        os_command()
-
-
-    def word_game1():
+def word_game1():
         random_stuff = (
         'apple', 'airplane', 'ball', 'beach', 'cat', 'call', 'degree', 'destroy', 'elephant', 'elevate', 'fat', 'faint',
         'grow', 'gigabyte', 'hat', 'hot', 'in', 'is', 'java', 'javascript', 'kangaroo', 'long', 'love', 'move', 'mop',
@@ -144,9 +109,7 @@ def harsha_os():
             print('YOU LOST!!!')
         else:
             print('YOU WON!!!')
-        os_command()
-
-    def rebase_from10():
+def rebase_from10():
         def encode(digits, other_digit_map):
             if max(digits) >= len(other_digit_map):
                 raise ValueError('digit_map is not long enough to encode the digits')
@@ -178,9 +141,7 @@ def harsha_os():
         if sign == -1:
             encoding = '-' + encoding
         print('Your new number is:', encoding)
-        os_command()
-
-    def titanic_game():
+def titanic_game():
         print('You are sleeping peacefully when a sudden bang wakes you up.You realize that something crashed into the')
         to_do = input('ship. What do you do? stay here or look outside?')
         if to_do == 'stay here':
@@ -367,10 +328,7 @@ def harsha_os():
             look_out()
         else:
             print('Invalid action! quiting game')
-        os_command()
-
-
-    def num_game1():
+def num_game1():
         print('                NUMBER GUESSING GAME')
         print()
         print()
@@ -398,25 +356,11 @@ def harsha_os():
             print('THE CORRECT NUMBER WAS', secret_number)
         else:
             print('YOU WON!')
-        os_command()
-    def calculator():
+def calculator():
 
             x = eval(input('enter a equation you want to solve!'))
             print(x)
-            os_command()
-    def help11():
-        print('To access the browser type in: browser')
-        print('To access the quiz type in: quiz')
-        print('To access the number guessing game type in: number guessing game')
-        print('To access the calculator type in: calculator')
-        print('To access tic-tac-toe type in: tic-tac-toe')
-        print('To access rock-paper-scissors ype in: rock-paper-scissors')
-        print('To quit harsha os type in: quit harsha os')
-        print('To access the word guessing game type in: word guessing game')
-        print('To access the bae converter type in: base converter')
-        print('To access the titanic game type in: titanic game')
-        os_command()
-    def tictactoe():
+def tictactoe():
         board = [i for i in range(0, 9)]
         player, computer = '', ''
 
@@ -523,110 +467,151 @@ def harsha_os():
 
         print_board()
         print(result)
-        os_command()
+def rock_paper_scissors():
+    window = Tk()
+    window.geometry('400x400+0+0')
+    window.iconify()
+    window.update()
+    window.deiconify()
+    window.eval('tk::PlaceWindow . center')
+    window.title('Rock-Paper-Scissors')
+    global comp_score
+    global user_score
+    user_score = 0
+    comp_score = 0  # this is the computer's score
+    user_choice = ''
+    comp_choice = ''
 
-    def rock_paper_scissors():
-        score = 0
-        computer_score = 0
-        rounds = int(input('How many rounds do you want to play?'))
-        extra_rounds = 0
-        for i in range(rounds):
-            move = input('What will you you play?')
-            rand_num = random.randint(1, 3)
-            if rand_num == 1:
-                computer_move = 'rock'
-            elif rand_num == 2:
-                computer_move = 'paper'
-            else:
-                computer_move = 'scissors'
-            print(f'Computer played {computer_move}')
-            if move == 'rock':
-                if computer_move == 'paper':
-                    computer_score += 1
-                elif computer_move == 'scissors':
-                    score += 1
-            elif move == 'paper':
-                if computer_move == 'rock':
-                    score += 1
-                elif computer_move == 'scissors':
-                    computer_score += 1
-            elif move == 'scissors':
-                if computer_move == 'paper':
-                    score += 1
-                elif computer_move == 'rock':
-                    computer_score += 1
-        if computer_score == score:
-            print('Tie!')
-        elif computer_score < score:
-            print('You win!')
+    def choice_to_number(choice):
+        rps = {'rock': 0, 'paper': 1, 'scissors': 2}
+        return rps[choice]
+
+    def number_to_choice(number):
+        rps = {0: 'rock', 1: 'paper', }
+        return rps[number]
+
+    def random_choice():
+        return random.choice(['rock', 'paper', 'scissors'])
+
+    def result(human_choice, comp_choice):
+        global user_score
+        global comp_score
+        user = choice_to_number(human_choice)
+        comp = choice_to_number(comp_choice)
+        if (user == comp):
+            print("Tie")
+        elif ((user - comp) % 3 == 1):
+            print("You win")
+            user_score += 1
         else:
-            print('Computer wins!')
-        os_command()
-    def os_command():
-        OPTIONS = ['help', 'browser', 'number guessing game', 'calculator', 'quit harsha os', 'word guessing game',
+            print("Comp wins")
+            comp_score += 1
+        text_area = Text(master=window, height=12, width=30, bg="#FFFF99")
+        text_area.grid(column=0, row=4)
+        answer = "Your Choice: {uc} \nComputer's Choice : {cc} \n Your Score : {u} \n Computer Score : {c} ".format(
+            uc=human_choice, cc=comp_choice, u=user_score, c=comp_score)
+        text_area.insert(END, answer)
+
+    def rock():
+        global user_choice
+        global comp_choice
+        user_choice = 'rock'
+        comp_choice = random_choice()
+        result(user_choice, comp_choice)
+
+    def paper():
+        global user_choice
+        global comp_choice
+        user_choice = 'paper'
+        comp_choice = random_choice()
+        result(user_choice, comp_choice)
+
+    def scissor():
+        global user_choice
+        global comp_choice
+        user_choice = 'scissors'
+        comp_choice = random_choice()
+        result(user_choice, comp_choice)
+
+    button1 = Button(text="       Rock       ", bg="skyblue", command=rock)
+    button1.grid(column=0, row=1)
+    button2 = Button(text="       Paper      ", bg="pink", command=paper)
+    button2.grid(column=0, row=2)
+    button3 = Button(text="      Scissor     ", bg="lightgreen", command=scissor)
+    button3.grid(column=0, row=3)
+    mainloop()
+
+
+def os_command():
+        OPTIONS = ['pick a option', 'screen saver mode', 'browser', 'number guessing game', 'calculator', 'quit harsha os', 'word guessing game',
                    'tic-tac-toe', 'rock-paper-scissors', 'base converter', 'titanic game']
         master = Tk()
-        #master.overrideredirect(True)
         master.geometry("400x400+0+0")
+        master.config(bg='yellow')
         master.iconify()
         master.update()
         master.deiconify()
         master.eval('tk::PlaceWindow . center')
         variable = StringVar(master)
         variable.set(OPTIONS[0])  # default value
-
         w = OptionMenu(master, variable, *OPTIONS)
         w.pack()
-
         def ok():
             global to_do
             to_do = variable.get()
             master.destroy()
-
-        button = Button(master, text="OK", command=ok)
+        button = Button(master, text="OK", command=ok, bg='blue')
         button.pack()
         mainloop()
         global to_do
-        if to_do == 'help':
-            help11()
+        if to_do == 'screen saver mode':
+            print('\n' * 80), screen_saver_mode()
+            stop = False
         elif to_do == 'browser':
-            browser()
+            print('\n'*80), browser()
+            stop = False
         elif to_do == 'number guessing game':
-            num_game1()
+            print('\n'*80), num_game1()
+            stop = False
         elif to_do == 'calculator':
-            calculator()
+            print('\n'*80), calculator()
+            stop = False
         elif to_do == 'quit harsha os':
-            command()
+            print('\n'*80)
+            stop = True
         elif to_do == 'quiz':
-            quiz()
+            print('\n'*80), quiz()
+            stop = False
         elif to_do == 'word guessing game':
-            word_game1()
+            print('\n'*80), word_game1()
+            stop = False
         elif to_do == 'tic-tac-toe':
-            tictactoe()
+            print('\n'*80), tictactoe()
+            stop = False
         elif to_do == 'rock-paper-scissors':
-            rock_paper_scissors()
+            print('\n'*80), rock_paper_scissors()
+            stop = False
         elif to_do == 'base converter':
-            rebase_from10()
+            print('\n'*80), rebase_from10()
+            stop = False
         elif to_do == 'titanic game':
-            titanic_game()
+            print('\n'*80), titanic_game()
+            stop = False
         else:
-            print(f'{to_do} is not a program')
-            os_command()
-    os_command()
+            stop = False
+        if not stop:
+            print('\n'*80), os_command()
 
 
-#key = 'atulharsha123$$'
-#master_key = 'atul$$'
+
+key = 'atulharsha123$$'
 def a():
-    #password_input = input('Password:')
-    #if key == password_input:
-    screen_clear()
-    command()
-    #elif master_key == password_input:
-       # print('Password:atulharsha123$$')
-        #a()
-    #else:
-        #print('Access Denied!')
+    password_input = input('Password:')
+    if key == password_input:
+        print('\n'*80)
+        os_command()
+    else:
+        print('Access Denied!')
 
 
 try:
