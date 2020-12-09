@@ -1,23 +1,19 @@
 from time import *
 from tkinter import *
-from googlesearch import search
+import tkinter.messagebox
 import random
+import main
 import gc
 import os
 to_do = 0
 user_score = 0
 comp_score = 0
-def browser():
-        query = input('Enter a URL or a keyword')
-        for j in search(query, tld="com", num=10, stop=10, pause=2):
-            print(j)
 def screen_saver_mode():
         time2763 = time()
         time2764 = time()
         while (time2764 - time2763) < 300:
             time2764 = time()
-            print(
-                '---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------')
+            print('---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------')
             sleep(0.25)
 def quiz():
         print('Ready to quiz yourself!')
@@ -360,113 +356,6 @@ def calculator():
 
             x = eval(input('enter a equation you want to solve!'))
             print(x)
-def tictactoe():
-        board = [i for i in range(0, 9)]
-        player, computer = '', ''
-
-        # Corners, Center and Others, respectively
-        moves = ((1, 7, 3, 9), (5,), (2, 4, 6, 8))
-        # Winner combinations
-        winners = ((0, 1, 2), (3, 4, 5), (6, 7, 8), (0, 3, 6), (1, 4, 7), (2, 5, 8), (0, 4, 8), (2, 4, 6))
-        # Table
-        tab = range(1, 10)
-
-        def print_board():
-            x = 1
-            for i in board:
-                end = ' | '
-                if x % 3 == 0:
-                    end = ' \n'
-                    if i != 1: end += '---------\n';
-                char = ' '
-                if i in ('X', 'O'): char = i;
-                x += 1
-                print(char, end=end)
-
-        def select_char():
-            chars = ('X', 'O')
-            if random.randint(0, 1) == 0:
-                return chars[::-1]
-            return chars
-
-        def can_move(brd, player, move):
-            if move in tab and brd[move - 1] == move - 1:
-                return True
-            return False
-
-        def can_win(brd, player, move):
-            places = []
-            x = 0
-            for i in brd:
-                if i == player: places.append(x);
-                x += 1
-            win = True
-            for tup in winners:
-                win = True
-                for ix in tup:
-                    if brd[ix] != player:
-                        win = False
-                        break
-                if win == True:
-                    break
-            return win
-
-        def make_move(brd, player, move, undo=False):
-            if can_move(brd, player, move):
-                brd[move - 1] = player
-                win = can_win(brd, player, move)
-                if undo:
-                    brd[move - 1] = move - 1
-                return (True, win)
-            return (False, False)
-
-        # AI goes here
-        def computer_move():
-            move = -1
-            # If I can win, others don't matter.
-            for i in range(1, 10):
-                if make_move(board, computer, i, True)[1]:
-                    move = i
-                    break
-            if move == -1:
-                # If player can win, block him.
-                for i in range(1, 10):
-                    if make_move(board, player, i, True)[1]:
-                        move = i
-                        break
-            if move == -1:
-                # Otherwise, try to take one of desired places.
-                for tup in moves:
-                    for mv in tup:
-                        if move == -1 and can_move(board, computer, mv):
-                            move = mv
-                            break
-            return make_move(board, computer, move)
-
-        def space_exist():
-            return board.count('X') + board.count('O') != 9
-
-        player, computer = select_char()
-        print('Player is [%s] and computer is [%s]' % (player, computer))
-        result = '   Tie! Nobody wins!'
-        while space_exist():
-            print_board()
-            print('# Make your move ! [1-9] : ', end='')
-            move = int(input())
-            moved, won = make_move(board, player, move)
-            if not moved:
-                print(' >> Invalid number ! Try again !')
-                continue
-            #
-            if won:
-                result = ' Congratulations ! You won ! '
-                break
-            elif computer_move()[1]:
-                result = ' You lose ! '
-                break;
-
-        print_board()
-        print(result)
 def rock_paper_scissors():
     window = Tk()
     window.geometry('400x400+0+0')
@@ -543,8 +432,7 @@ def rock_paper_scissors():
 
 
 def os_command():
-        OPTIONS = ['pick a option', 'screen saver mode', 'browser', 'number guessing game', 'calculator', 'quit harsha os', 'word guessing game',
-                   'tic-tac-toe', 'rock-paper-scissors', 'base converter', 'titanic game']
+        OPTIONS = ['pick a option', 'screen saver mode', 'number guessing game', 'calculator', 'quit harsha os', 'word guessing game', 'rock-paper-scissors', 'base converter', 'titanic game']
         master = Tk()
         master.geometry("400x400+0+0")
         master.config(bg='yellow')
@@ -567,9 +455,6 @@ def os_command():
         if to_do == 'screen saver mode':
             print('\n' * 80), screen_saver_mode()
             stop = False
-        elif to_do == 'browser':
-            print('\n'*80), browser()
-            stop = False
         elif to_do == 'number guessing game':
             print('\n'*80), num_game1()
             stop = False
@@ -584,9 +469,6 @@ def os_command():
             stop = False
         elif to_do == 'word guessing game':
             print('\n'*80), word_game1()
-            stop = False
-        elif to_do == 'tic-tac-toe':
-            print('\n'*80), tictactoe()
             stop = False
         elif to_do == 'rock-paper-scissors':
             print('\n'*80), rock_paper_scissors()
