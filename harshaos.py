@@ -520,7 +520,7 @@ def os_command():
         else:
             stop = False
         if not stop:
-            print('\n'*80), os_command()
+            print('\n'*80),sleep(5), os_command()
 
 
 
