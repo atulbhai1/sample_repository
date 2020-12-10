@@ -526,7 +526,7 @@ def os_command():
 
 key_if_misbehaving = 'atulthecool😎'
 key = 'atulharsha123$$'
-misbehaving = True
+misbehaving = False
 def a():
     password_input = input('Password:')
     if misbehaving:
