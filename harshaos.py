@@ -1,5 +1,6 @@
 from time import *
 from tkinter import *
+from webbrowser import open
 import tkinter.messagebox
 import random
 import main
@@ -356,6 +357,33 @@ def calculator():
 
             x = eval(input('enter a equation you want to solve!'))
             print(x)
+
+
+def timer():
+    hours = 3600 * float(input('How many hours?'))
+    minutes = 60 * float(input('How many minutes?'))
+    seconds = float(input('How many seconds?'))
+    length = hours + minutes + seconds
+    then = time()
+    now = time()
+    while now - then < length:
+        now = time()
+    box = Tk()
+
+    def ok():
+        box.destroy()
+
+    box.geometry('400x400+0+0')
+    box.iconify()
+    box.update()
+    box.deiconify()
+    box.eval('tk::PlaceWindow . center')
+    box.config(bg='white')
+    message = Label(box, text='Your Timer Is Over!')
+    message.pack()
+    button = Button(box, text='ok', command=ok, bg='blue')
+    button.pack()
+    mainloop()
 def rock_paper_scissors():
     window = Tk()
     window.geometry('400x400+0+0')
@@ -432,7 +460,7 @@ def rock_paper_scissors():
 
 
 def os_command():
-        OPTIONS = ['pick a option', 'tic-tac-toe', 'screen saver mode', 'number guessing game', 'calculator', 'quit harsha os', 'word guessing game', 'rock-paper-scissors', 'base converter', 'titanic game']
+        OPTIONS = ['pick a option', 'timer', 'tic-tac-toe', 'screen saver mode', 'number guessing game', 'calculator', 'quit harsha os', 'word guessing game', 'rock-paper-scissors', 'base converter', 'titanic game', 'web browser']
         master = Tk()
         master.geometry("400x400+0+0")
         master.config(bg='yellow')
@@ -461,6 +489,9 @@ def os_command():
         elif to_do == 'calculator':
             print('\n'*80), calculator()
             stop = False
+        elif to_do == 'timer':
+            print('\n' * 80), timer()
+            stop = False
         elif to_do == 'quit harsha os':
             print('\n'*80)
             stop = True
@@ -476,6 +507,9 @@ def os_command():
         elif to_do == 'base converter':
             print('\n'*80), rebase_from10()
             stop = False
+        elif to_do == 'web browser':
+            print('\n'*80), open('http://' + input('Enter the URL of the site you want to visit.'))
+            stop = False
         elif to_do == 'titanic game':
             print('\n'*80), titanic_game()
             stop = False
@@ -490,14 +524,23 @@ def os_command():
 
 
 
+key_if_misbehaving = 'atulthecool😎'
 key = 'atulharsha123$$'
+misbehaving = True
 def a():
     password_input = input('Password:')
-    if key == password_input:
-        print('\n'*80)
-        os_command()
+    if misbehaving:
+         if key_if_misbehaving == password_input:
+            print('\n'*80)
+            os_command()
+         else:
+            print('Access Denied!')
     else:
-        print('Access Denied!')
+        if key == password_input or key_if_misbehaving == password_input:
+            print('\n' * 80)
+            os_command()
+        else:
+            print('Access Denied')
 
 
 try:
