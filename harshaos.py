@@ -432,7 +432,7 @@ def rock_paper_scissors():
 
 
 def os_command():
-        OPTIONS = ['pick a option', 'screen saver mode', 'number guessing game', 'calculator', 'quit harsha os', 'word guessing game', 'rock-paper-scissors', 'base converter', 'titanic game']
+        OPTIONS = ['pick a option', 'tic-tac-toe', 'screen saver mode', 'number guessing game', 'calculator', 'quit harsha os', 'word guessing game', 'rock-paper-scissors', 'base converter', 'titanic game']
         master = Tk()
         master.geometry("400x400+0+0")
         master.config(bg='yellow')
@@ -478,6 +478,10 @@ def os_command():
             stop = False
         elif to_do == 'titanic game':
             print('\n'*80), titanic_game()
+            stop = False
+        elif to_do == 'tic-tac-toe':
+            print('\n'*80)
+            import g_ttt
             stop = False
         else:
             stop = False
