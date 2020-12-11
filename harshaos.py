@@ -5,10 +5,27 @@ import tkinter.messagebox
 import random
 import main
 import gc
-import os
 to_do = 0
 user_score = 0
 comp_score = 0
+def password_generator():
+    special = '!@#$%^&*()_+-={[]}|\\:"\',<.>?/'
+    alpha = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm"
+    num = '123456789'
+    num_special = random.randint(2, 5)
+    num_alpha = random.randint(3, 9)
+    num_num = random.randint(3, 9)
+    password = ''
+    for i in range(num_num):
+        num_choice = random.randint(0, len(num) - 1)
+        password = password + num[num_choice]
+    for i in range(num_alpha):
+        alpha_special = random.randint(0, len(alpha) - 1)
+        password = password + alpha[alpha_special]
+    for i in range(num_special):
+        special_special = random.randint(0, len(special) - 1)
+        password = password + special[special_special]
+    print(f'Your password is : {password}')
 def screen_saver_mode():
         time2763 = time()
         time2764 = time()
@@ -460,7 +477,7 @@ def rock_paper_scissors():
 
 
 def os_command():
-        OPTIONS = ['pick a option', 'timer', 'tic-tac-toe', 'screen saver mode', 'number guessing game', 'calculator', 'quit harsha os', 'word guessing game', 'rock-paper-scissors', 'base converter', 'titanic game', 'web browser']
+        OPTIONS = ['pick a option', 'password generator','timer', 'tic-tac-toe', 'about os', 'screen saver mode', 'number guessing game', 'calculator', 'quit harsha os', 'word guessing game', 'rock-paper-scissors', 'base converter', 'titanic game', 'web browser']
         master = Tk()
         master.geometry("400x400+0+0")
         master.config(bg='yellow')
@@ -483,8 +500,14 @@ def os_command():
         if to_do == 'screen saver mode':
             print('\n' * 80), screen_saver_mode()
             stop = False
+        if to_do == 'password generator':
+            print('\n'*80), password_generator()
+            stop = False
         elif to_do == 'number guessing game':
             print('\n'*80), num_game1()
+            stop = False
+        elif to_do == 'about os':
+            print('\n'*80), print('OS: harsha os 2.2.3')
             stop = False
         elif to_do == 'calculator':
             print('\n'*80), calculator()
@@ -520,23 +543,23 @@ def os_command():
         else:
             stop = False
         if not stop:
-            print('\n'*80),sleep(5), os_command()
+            print('\n'*80), sleep(10), os_command()
 
 
 
-key_if_misbehaving = 'atulthecool😎'
+atul_key = 'atulthecool😎'
 key = 'atulharsha123$$'
-misbehaving = False
+misbehaving = True
 def a():
     password_input = input('Password:')
     if misbehaving:
-         if key_if_misbehaving == password_input:
+         if atul_key == password_input:
             print('\n'*80)
             os_command()
          else:
             print('Access Denied!')
     else:
-        if key == password_input or key_if_misbehaving == password_input:
+        if key == password_input or atul_key == password_input:
             print('\n' * 80)
             os_command()
         else:

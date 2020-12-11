@@ -11,6 +11,14 @@ def timer():
     now = time()
     while now - then < length:
         now = time()
+        time_left = now - then - length
+        if int(time_left) % 3600 == 0:
+            print(time_left/3600, 'hours left')
+        elif int(time_left) % 60 == 0:
+            print(time_left/60, 'minutes left')
+        else:
+            print(time_left, 'seconds left')
+        sleep(.9937)
     box = Tk()
 
     def ok():
