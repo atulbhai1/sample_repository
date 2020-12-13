@@ -81,6 +81,15 @@ def tic_tac_toe():
     invalid = Label(text='')
     invalid.place(relx=0.4, rely=0.12)
     game.mainloop()
+def about_os():
+    about_window = Tk()
+    show = Label(about_window, text='OS: Harsha os 2.3.1')
+    show.pack()
+    def ok_do_kay():
+        about_window.destroy()
+    button_close = Button(about_window, text='ok', command=ok_do_kay)
+    button_close.pack()
+    about_window.mainloop()
 def password_generator():
     special = '!@#$%^&*()_+-={[]}|\\:"\',<.>?/'
     alpha = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm"
@@ -403,7 +412,7 @@ def os_command():
             print('\n'*80), password_generator()
             stop = False
         elif to_do == 'about os':
-            print('\n'*80), print('OS: harsha os 2.3')
+            print('\n'*80), about_os()
             stop = False
         elif to_do == 'calculator':
             print('\n'*80), calculator()
