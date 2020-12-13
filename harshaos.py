@@ -3,11 +3,84 @@ from tkinter import *
 from webbrowser import open
 import tkinter.messagebox
 import random
-import main
 import gc
 to_do = 0
 user_score = 0
 comp_score = 0
+equation = ''
+txt = ''
+def simple_web_browser():
+    url = ''
+    frame = Tk()
+    frame.geometry('400x200')
+    frame.iconify()
+    frame.update()
+    frame.deiconify()
+    frame.eval('tk::PlaceWindow . center')
+    def get_password():
+        global url
+        url = input_txt.get(1.0, 'end-1c')
+        frame.destroy()
+    lbl = Label(frame, text="Enter the URL of the site you want to visit")
+    lbl.pack()
+    input_txt = Text(frame, height=1, width=20)
+    input_txt.pack()
+    Buttoncool4 = Button(frame, text="Ok", command=get_password)
+    Buttoncool4.pack()
+    frame.mainloop()
+    open('http://' + url)
+
+
+def tic_tac_toe():
+    def create_button(relx, rely):
+        button = Button(width=10, height=2, command=lambda: callback(button))
+        button.place(relx=relx, rely=rely)
+        return button
+
+    def check_win():
+        if (buttons[0]['text'] == buttons[1]['text'] == buttons[2]['text'] != '') or \
+                (buttons[3]['text'] == buttons[4]['text'] == buttons[5]['text'] != '') or \
+                (buttons[6]['text'] == buttons[7]['text'] == buttons[8]['text'] != '') or \
+                (buttons[0]['text'] == buttons[3]['text'] == buttons[6]['text'] != '') or \
+                (buttons[1]['text'] == buttons[4]['text'] == buttons[7]['text'] != '') or \
+                (buttons[2]['text'] == buttons[5]['text'] == buttons[8]['text'] != '') or \
+                (buttons[2]['text'] == buttons[4]['text'] == buttons[6]['text'] != '') or \
+                (buttons[0]['text'] == buttons[4]['text'] == buttons[8]['text'] != ''):
+            return True
+        else:
+            return False
+
+    def callback(button):
+        global turn, x
+        if x == 1:
+            sleep(1)
+            game.quit()
+        invalid['text'] = ''
+        if button['text'] != '':
+            invalid['text'] = 'Invalid space try again'
+            return
+        button['text'] = turn
+        if check_win():
+            invalid['text'] = 'Player ' + turn + ' WINS!!!!!'
+            x = 1
+        turn = ('0' if turn == 'X' else 'X')
+        label_button['text'] = 'PLAYER ' + turn + '\'S TURN.'
+
+    x = 0
+    turn = 'X'
+    game = Tk()
+    game.title('TicTacToe')
+    game.geometry('700x500')
+    buttons = []
+    for i in range(1, 10):
+        button_created = create_button(0.25 if i / 3 <= 1 else 0.45 if i / 3 <= 2 else 0.65, 0.2 if i in [1, 4, 7] else
+        0.4 if i in [2, 5, 8] else 0.6)
+        buttons.append(button_created)
+    label_button = Button(game, text='PLAYER ' + turn + '\'S TURN.', style='Fun.TButton', width=20, state='disabled')
+    label_button.pack(pady=30)
+    invalid = Label(text='')
+    invalid.place(relx=0.4, rely=0.12)
+    game.mainloop()
 def password_generator():
     special = '!@#$%^&*()_+-={[]}|\\:"\',<.>?/'
     alpha = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm"
@@ -25,382 +98,211 @@ def password_generator():
     for i in range(num_special):
         special_special = random.randint(0, len(special) - 1)
         password = password + special[special_special]
-    print(f'Your password is : {password}')
-def screen_saver_mode():
-        time2763 = time()
-        time2764 = time()
-        while (time2764 - time2763) < 300:
-            time2764 = time()
-            print('---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------')
-            sleep(0.25)
-def quiz():
-        print('Ready to quiz yourself!')
-        c = input("Wish to Continue (Y/N)")
-        correct = 0
-        wrong = 0
-        while c.upper() == "Y":
-            type1 = input('what type of quiz do you want?(addition-A/subtraction-S/multiplication-M')
-            for x in range(5):
-                if type1.upper() == "A":
-                    a, b = random.randint(0, 1000), random.randint(0, 1000)  # generating a random number
-                    ans1 = int(input("what is the answer of the equation: " + str(a) + "+" + str(b) + "=? "))
-                    if ans1 == eval(str(a) + "+" + str(b)):
-                        print("Correct")
-                        correct = correct + 1
-                    else:
-                        print("Incorrect")
-                        wrong = wrong + 1
-                elif type1.upper() == "S":
-                    ret, ret1 = True, True
-                    while ret:
-                        f77 = random.randint(0, 1000)  # generating a random number
-                        if ret1:
-                            t = random.randint(0, 1000)
-                        if f77 > t:
-                            ret, ret1 = False, False
-                    ans1 = int(input("what is the answer of the equation: " + str(a) + "-" + str(b) + "=? "))
-                    if ans1 == eval(str(a) + "-" + str(b)):
-                        print("Correct")
-                        correct = correct + 1
-                    else:
-                        print("Incorrect")
-                        wrong = wrong + 1
-                else:
-                    a, b = random.randint(0, 10), random.randint(0, 10)  # generating a random number
-                    ans1 = int(input("what is the answer of the equation: " + str(a) + "*" + str(b) + "=? "))
-                    if ans1 == eval(str(a) + "*" + str(b)):
-                        print("Correct")
-                        correct = correct + 1
-                    else:
-                        print("Incorrect")
-                        wrong = wrong + 1
-            c = input("Wish to Continue (Y/N)")
-        print("you had " + str(correct) + " correct answers and " + str(wrong) + " wrong answers")
-        print("Your score is " + str((correct / (correct + wrong)) * 100) + "%")
-        print('You are done with this quiz!')
-def word_game1():
-        random_stuff = (
-        'apple', 'airplane', 'ball', 'beach', 'cat', 'call', 'degree', 'destroy', 'elephant', 'elevate', 'fat', 'faint',
-        'grow', 'gigabyte', 'hat', 'hot', 'in', 'is', 'java', 'javascript', 'kangaroo', 'long', 'love', 'move', 'mop',
-        'no', 'not', 'of', 'octopus', 'pot', 'plant', 'quiz', 'question', 'rat', 'raven', 'safe', 'save', 'tech', 'top',
-        'umbrella', 'under', 'vent', 'was', 'x-mas', 'year', 'zylaphone')
-        rand_num = random.randint(0, 45)
-        secret = random_stuff[rand_num]
-        print('                WORD GUESSING GAME')
-        print()
-        input('               PRESS ENTER TO START')
-        for i in range(100):
-            print()
-        level = input('WHAT LEVEL WILL YOU PLAY? EASY/MEDIUM/HARD/IMPOSSIBLE?')
-        if level.lower() == 'easy':
-            num_of_tries = 23
-        elif level.lower() == 'medium':
-            num_of_tries = 15
-        elif level.lower() == 'hard':
-            num_of_tries = 9
-        elif level.lower() == 'impossible':
-            num_of_tries = 1
-        else:
-            print('INVALID LEVEL REQUESTED! SETTING LEVEL TO MEDIUM!')
-            num_of_tries = 15
-        hmm = False
-        xyz = 0
-        while hmm == False and num_of_tries > 0:
-            if xyz == 0:
-                guess = input('WHAT IS YOUR FIRST GUESS?')
-                if guess == secret:
-                    hmm == True
-                else:
-                    num_of_tries = num_of_tries - 1
-                    xyz = 999999
-            else:
-                guess = input('WHAT IS YOUR NEXT GUESS?')
-                if guess == secret:
-                    hmm == True
-                else:
-                    num_of_tries -= 1
-        if num_of_tries == 0:
-            print('YOU LOST!!!')
-        else:
-            print('YOU WON!!!')
-def rebase_from10():
-        def encode(digits, other_digit_map):
-            if max(digits) >= len(other_digit_map):
-                raise ValueError('digit_map is not long enough to encode the digits')
-            other_encoding = ''
-            for d in digits:
-                other_encoding += digit_map[d]
-            return other_encoding
-
-        def from_base10(n, b):
-            if b < 2:
-                raise ValueError('Base b must be >= 2')
-            if n < 0:
-                raise ValueError('Number n must be >= 0')
-            if n == 0:
-                return [0]
-            digits = []
-            while n > 0:
-                n, m = divmod(n, b)
-                digits.insert(0, m)
-            return digits
-
-        number, base = int(input('What number do you want to change')), int(input('What is the base of number you want to change'))
-        digit_map = '''0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz`~!@#$%^&*()-_=+[{]}\\|;:'",<.>/?'''
-        if base < 2 or base > len(digit_map):
-            raise ValueError(f'Base must be equal to or below {len(digit_map)} and more than or equal to 2')
-        sign = -1 if number < 0 else 1
-        number *= sign
-        encoding = encode(from_base10(number, base), digit_map)
-        if sign == -1:
-            encoding = '-' + encoding
-        print('Your new number is:', encoding)
-def titanic_game():
-        print('You are sleeping peacefully when a sudden bang wakes you up.You realize that something crashed into the')
-        to_do = input('ship. What do you do? stay here or look outside?')
-        if to_do == 'stay here':
-            def stay_here():
-                print(
-                    'You stay inside the cabin, covering yourself with bed sheets.Nothing happens for a while, but then someone')
-                print(
-                    'knocks the door. You hop up and open it.A crew member then tells you that the Titanic has hit an iceberg')
-                print(
-                    'and is sinking, so all passengers are requested to come up on deck and wait for further instructions.')
-                to_do1 = input('Will you leave the room or stay?')
-                if to_do1 == 'stay':
-                    def stay():
-                        print(
-                            'You cover yourself up with sheets hoping it will all get over soon.But soon you feel a mighty crash as if')
-                        print(
-                            'the ship is colliding with something again,in a few more minutes another hit follows and you see water')
-                        print('water coming into your cabin.')
-                        print(' Game Over! You Lost!')
-
-                    stay()
-                elif to_do1 == 'leave the room':
-                    def leave():
-                        print(
-                            'You get on deck where a crowd of scared people has already gathered.The ship\'s band is playing music.')
-                        print(
-                            'The crew are trying to calm everybody down but they look like they are at a loss themselves.')
-                        print('Then, someone gives a signal and the lifeboats start getting untied.')
-                        to_do2 = input(
-                            'The order is clear though women and children first. What do you do? help passengers or help the crew?')
-                        if to_do2 == 'help passengers':
-                            def help_passengers():
-                                print(
-                                    'You go inside the ship knocking on all the cabins doors,checking if anybody is inside.Then suddenly another')
-                                print(
-                                    'boom shake the ship.The ship has collided with something again.You run on deck but then another crash knocks')
-                                print(
-                                    'off your feet and the floor under you lurches.You try to hurry but it\'s no use the ship is filling up with water.')
-                                print('Game Over! You Lose!')
-
-                            help_passengers()
-                        elif to_do2 == 'help the crew':
-                            def help_crew():
-                                print(
-                                    'You help the crew seat women and children into the lifeboats and calm down other passengers.')
-                                print(
-                                    'Then another boom crashes through the ship.You keep calm and continue to help loading up passengers.')
-                                print(
-                                    'When the last child is put in the last lifeboat,you see there is space for one more person.')
-                                to_do3 = input(
-                                    'What will you do with it? run across the stern/hop in the boat/run through the ship? ')
-                                if to_do3 == 'run across the stern':
-                                    def run_stern():
-                                        print(
-                                            'You run to the other side of the Titanic, taking the longer but safer route through the stern.')
-                                        print(
-                                            'But then another shudder knocks you off your feet and makes the Titanic split in half.You try on grab on')
-                                        print('but the part you are on suddenly falls into the water.')
-                                        print('Game Over! You Lose!')
-
-                                    run_stern()
-                                elif to_do3 == 'run through the ship':
-                                    def run_ship():
-                                        print(
-                                            'You run to the other side of the Titanic.You choose the shortest route through the ship.')
-                                        print(
-                                            'But then another crash hits the Titanic and the floor lurches,you get back up and hurry.')
-                                        print(
-                                            'You reach the other side but it broke of and the last lifeboat just left.You try to reach it')
-                                        print(
-                                            'but miss,so you jump off the Titanic and swim to the boat and someone pulls you to safety.')
-                                        print('Game Over! You Won!')
-
-                                    run_ship()
-                                elif to_do3 == 'hop in the boat':
-                                    def hop():
-                                        print('You hop into the boat.The boat goes into the water and floats.')
-                                        print('Game Over! You Win!')
-
-                                    hop()
-
-                            help_crew()
-                        else:
-                            print('Invalid action! quiting game')
-
-                    leave()
-                else:
-                    print('Invalid action! quiting game')
-
-            stay_here()
-        elif to_do == 'look outside':
-            def look_out():
-                print('You get up from the bed and try to open the door.The door is locked,so you break the door open.')
-                print(
-                    'You see crew members running everywhere.You manage to grab one and ask him what is happening.He tells you to stay in the cabin.')
-                to_do4 = input('Will you stay in your cabin or leave?')
-                if to_do4 == 'leave':
-                    print(
-                        'You go outside and look over the guardrail.You see that there is a huge gash at the front of the Titanic')
-                    to_do4 = input(
-                        'You go back inside and see the crew who tell you o get on deck. Will you get on deck or help others?')
-                    if to_do4 == 'get on deck':
-                        print(
-                            'You get on deck where a crowd of scared people has already gathered.The ship\'s band is playing music.')
-                        print(
-                            'The crew are trying to calm everybody down but they look like they are at a loss themselves.')
-                        print('Then, someone gives a signal and the lifeboats start getting untied.')
-                        to_do4 = input(
-                            'The order is clear though women and children first. What do you do? help passengers or help the crew?')
-                        if to_do4 == 'help passengers':
-                            def help_passengers():
-                                print(
-                                    'You go inside the ship knocking on all the cabins doors,checking if anybody is inside.Then suddenly another')
-                                print(
-                                    'boom shake the ship.The ship has collided with something again.You run on deck but then another crash knocks')
-                                print(
-                                    'off your feet and the floor under you lurches.You try to hurry but it\'s no use the ship is filling up with water.')
-                                print('Game Over! You Lose!')
-
-                            help_passengers()
-                        elif to_do4 == 'help the crew':
-                            def help_crew():
-                                print(
-                                    'You help the crew seat women and children into the lifeboats and calm down other passengers.')
-                                print(
-                                    'Then another boom crashes through the ship.You keep calm and continue to help loading up passengers.')
-                                print(
-                                    'When the last child is put in the last lifeboat,you see there is space for one more person.')
-                                to_do5 = input(
-                                    'What will you do with it? run across the stern/hop in the boat/run through the ship? ')
-                                if to_do5 == 'run across the stern':
-                                    def run_stern():
-                                        print(
-                                            'You run to the other side of the Titanic, taking the longer but safer route through the stern.')
-                                        print(
-                                            'But then another shudder knocks you off your feet and makes the Titanic split in half.You try on grab on')
-                                        print('but the part you are on suddenly falls into the water.')
-                                        print('Game Over! You Lose!')
-
-                                    run_stern()
-                                elif to_do5 == 'run through the ship':
-                                    def run_ship():
-                                        print(
-                                            'You run to the other side of the Titanic.You choose the shortest route through the ship.')
-                                        print(
-                                            'But then another crash hits the Titanic and the floor lurches,you get back up and hurry.')
-                                        print(
-                                            'You reach the other side but it broke of and the last lifeboat just left.You try to reach it')
-                                        print(
-                                            'but miss,so you jump off the Titanic and swim to the boat and someone pulls you to safety.')
-                                        print('Game Over! You Won!')
-
-                                    run_ship()
-                                elif to_do5 == 'hop in the boat':
-                                    def hop():
-                                        print('You hop into the boat.The boat goes into the water and floats.')
-                                        print('Game Over! You Win!')
-
-                                    hop()
-
-                            help_crew()
-                        else:
-                            print('Invalid action! quiting game')
-                    elif to_do4 == 'help others':
-                        print(
-                            'You go inside the ship knocking on all the cabins doors,checking if anybody is inside.Then suddenly another')
-                        print(
-                            'boom shake the ship.The ship has collided with something again.You run on deck but then another crash knocks')
-                        print(
-                            'off your feet and the floor under you lurches.You try to hurry but it\'s no use the ship is filling up with water.')
-                        print('Game Over! You Lose!')
-                    else:
-                        print('Invalid action! quiting game')
-                elif to_do4 == 'stay in your cabin':
-                    print(
-                        'You cover yourself up with sheets hoping it will all get over soon.But soon you feel a mighty crash as if')
-                    print(
-                        'the ship is colliding with something again,in a few more minutes another hit follows and you see water')
-                    print('water coming into your cabin.')
-                    print(' Game Over! You Lost!')
-                else:
-                    print('Invalid action! quiting game')
-
-            look_out()
-        else:
-            print('Invalid action! quiting game')
-def num_game1():
-        print('                NUMBER GUESSING GAME')
-        print()
-        print()
-        input('                press enter to start')
-        for i in range(99):
-            print()
-        secret_number, h = random.randint(1, 20), input('What level do you want to play at? easy/medium/hard')
-        if h == 'hard':
-            guess_limit = 5
-        elif h == 'medium':
-            guess_limit = 10
-        elif h == 'easy':
-            guess_limit = 15
-        else:
-            print('Invalid Input setting level to medium.')
-            guess_limit = 10
-        out_of_guesses, guess, guess_count = False, input('WHAT IS YOUR FIRST GUESS FOR A NUMBER BETWEEN 1 AND 20?'), 1
-        while int(guess) != secret_number and not out_of_guesses:
-            if guess_count < guess_limit:
-                guess, guess_count = input('ENTER YOUR NEXT GUESS'), guess_count + 1
-            else:
-                out_of_guesses = True
-        if out_of_guesses:
-            print('YOU LOST!')
-            print('THE CORRECT NUMBER WAS', secret_number)
-        else:
-            print('YOU WON!')
+    password_window = Tk()
+    password_window.iconify()
+    password_window.update()
+    password_window.deiconify()
+    password_window.eval('tk::PlaceWindow . center')
+    password_label = Label(password_window, text=f'Your password is: {password}')
+    password_label.pack()
+    def password_ok():
+        password_window.destroy()
+    password_button = Button(password_window, text='ok', command=password_ok)
+    password_button.pack()
+    password_window.mainloop()
 def calculator():
+    calculator_window = Tk()
+    user_sees_txt = StringVar()
+    calculator_window.title('Calculator')
 
-            x = eval(input('enter a equation you want to solve!'))
-            print(x)
+    def subtract():
+        global equation
+        global txt
+        equation = equation + '-'
+        txt = txt + '-'
+        user_sees_txt.set(txt)
+
+    def add():
+        global equation
+        global txt
+        equation = equation + '+'
+        txt = txt + '+'
+        user_sees_txt.set(txt)
+
+    def multiply():
+        global equation
+        global txt
+        equation = equation + '*'
+        txt = txt + '*'
+        user_sees_txt.set(txt)
+
+    def divide():
+        global equation
+        global txt
+        equation = equation + '/'
+        txt = txt + chr(247)
+        user_sees_txt.set(txt)
+
+    def equals():
+        global equation
+        global txt
+        txt = eval(equation)
+        user_sees_txt.set(txt)
+        txt = ''
+        equation = ''
+
+    def backspace():
+        global equation
+        global txt
+        length = len(equation) - 2
+        equation = equation[:length]
+        txt = txt[:len(txt) - 2]
+        user_sees_txt.set(txt)
+
+    def clear():
+        global equation
+        global txt
+        equation = ''
+        txt = ''
+        user_sees_txt.set(txt)
+
+    def decimal():
+        global equation
+        global txt
+        equation = equation + '.'
+        txt = txt + '.'
+        user_sees_txt.set(txt)
+
+    def open_parentheses():
+        global equation
+        global txt
+        equation = equation + '('
+        txt = txt + '('
+        user_sees_txt.set(txt)
+
+    def close_parentheses():
+        global equation
+        global txt
+        equation = equation + ')'
+        txt = txt + ')'
+        user_sees_txt.set(txt)
+
+    def zero():
+        global equation
+        global txt
+        equation = equation + '0'
+        txt = txt + '0'
+        user_sees_txt.set(txt)
+
+    def one():
+        global equation
+        global txt
+        equation = equation + '1'
+        txt = txt + '1'
+        user_sees_txt.set(txt)
+
+    def two():
+        global equation
+        global txt
+        equation = equation + '2'
+        txt = txt + '2'
+        user_sees_txt.set(txt)
+
+    def three():
+        global equation
+        global txt
+        equation = equation + '3'
+        txt = txt + '3'
+        user_sees_txt.set(txt)
+
+    def four():
+        global equation
+        global txt
+        equation = equation + '4'
+        txt = txt + '4'
+        user_sees_txt.set(txt)
+
+    def five():
+        global equation
+        global txt
+        equation = equation + '5'
+        txt = txt + '5'
+        user_sees_txt.set(txt)
+
+    def six():
+        global equation
+        global txt
+        equation = equation + '6'
+        txt = txt + '6'
+        user_sees_txt.set(txt)
+
+    def seven():
+        global equation
+        global txt
+        equation = equation + '7'
+        txt = txt + '7'
+        user_sees_txt.set(txt)
+
+    def eight():
+        global equation
+        global txt
+        equation = equation + '8'
+        txt = txt + '8'
+        user_sees_txt.set(txt)
+
+    def nine():
+        global equation
+        global txt
+        equation = equation + '9'
+        txt = txt + '9'
+        user_sees_txt.set(txt)
+
+    user_sees_txt.set('enter the expression')
+    expression_field = Entry(calculator_window, textvariable=user_sees_txt)
+    expression_field.grid(columnspan=10, ipadx=70)
+    button_one = Button(calculator_window, text='   𝟙   ', command=one, height=1, width=7)
+    button_one.grid(row=2, column=3)
+    button_two = Button(calculator_window, text='   𝟚   ', command=two, height=1, width=7)
+    button_two.grid(row=2, column=4)
+    button_three = Button(calculator_window, text='   𝟛   ', command=three, height=1, width=7)
+    button_three.grid(row=2, column=5)
+    button_plus = Button(calculator_window, text='   ₊   ', command=add, height=1, width=7)
+    button_plus.grid(row=2, column=6)
+    button_four = Button(calculator_window, text='   𝟜   ', command=four, height=1, width=7)
+    button_four.grid(row=3, column=3)
+    button_five = Button(calculator_window, text='   𝟝   ', command=five, height=1, width=7)
+    button_five.grid(row=3, column=4)
+    button_six = Button(calculator_window, text='   𝟞   ', command=six, height=1, width=7)
+    button_six.grid(row=3, column=5)
+    button_minus = Button(calculator_window, text='   ˗   ', command=subtract, height=1, width=7)
+    button_minus.grid(row=3, column=6)
+    button_seven = Button(calculator_window, text='   𝟟   ', command=seven, height=1, width=7)
+    button_seven.grid(row=4, column=3)
+    button_eight = Button(calculator_window, text='   𝟠   ', command=eight, height=1, width=7)
+    button_eight.grid(row=4, column=4)
+    button_nine = Button(calculator_window, text='   𝟡   ', command=nine, height=1, width=7)
+    button_nine.grid(row=4, column=5)
+    button_multiply = Button(calculator_window, text='   ✖️️️   ', command=multiply, height=1, width=7)
+    button_multiply.grid(row=4, column=6)
+    button_zero = Button(calculator_window, text='   𝟘   ', command=zero, height=1, width=7)
+    button_zero.grid(row=5, column=3)
+    button_clear = Button(calculator_window, text='   🆑   ', command=clear, height=1, width=7)
+    button_clear.grid(row=5, column=4)
+    button_undo = Button(calculator_window, text='   🔙   ', command=backspace, height=1, width=7)
+    button_undo.grid(row=5, column=5)
+    button_divide = Button(calculator_window, text='   ÷   ', command=divide, height=1, width=7)
+    button_divide.grid(row=5, column=6)
+    button_dot = Button(calculator_window, text='    ．    ', command=decimal, height=1, width=9)
+    button_dot.grid(row=6, column=3)
+    button__open_parentheses = Button(calculator_window, text='   ⦅   ', command=open_parentheses, height=1, width=9)
+    button__open_parentheses.grid(row=6, column=4)
+    button_close_parentheses = Button(calculator_window, text='   ⦆   ', command=close_parentheses, height=1, width=9)
+    button_close_parentheses.grid(row=6, column=5)
+    button_equal = Button(calculator_window, text='              ₌             ', command=equals, height=1, width=28)
+    button_equal.grid(row=7, column=5)
+    calculator_window.mainloop()
 
 
-def timer():
-    hours = 3600 * float(input('How many hours?'))
-    minutes = 60 * float(input('How many minutes?'))
-    seconds = float(input('How many seconds?'))
-    length = hours + minutes + seconds
-    then = time()
-    now = time()
-    while now - then < length:
-        now = time()
-    box = Tk()
-
-    def ok():
-        box.destroy()
-
-    box.geometry('400x400+0+0')
-    box.iconify()
-    box.update()
-    box.deiconify()
-    box.eval('tk::PlaceWindow . center')
-    box.config(bg='white')
-    message = Label(box, text='Your Timer Is Over!')
-    message.pack()
-    button = Button(box, text='ok', command=ok, bg='blue')
-    button.pack()
-    mainloop()
 def rock_paper_scissors():
     window = Tk()
     window.geometry('400x400+0+0')
@@ -477,7 +379,7 @@ def rock_paper_scissors():
 
 
 def os_command():
-        OPTIONS = ['pick a option', 'password generator','timer', 'tic-tac-toe', 'about os', 'screen saver mode', 'number guessing game', 'calculator', 'quit harsha os', 'word guessing game', 'rock-paper-scissors', 'base converter', 'titanic game', 'web browser']
+        OPTIONS = ['pick a option', 'password generator', 'tic-tac-toe', 'about os', 'number guessing game', 'calculator', 'quit harsha os', 'rock-paper-scissors', 'web browser']
         master = Tk()
         master.geometry("400x400+0+0")
         master.config(bg='yellow')
@@ -497,48 +399,26 @@ def os_command():
         button.pack()
         mainloop()
         global to_do
-        if to_do == 'screen saver mode':
-            print('\n' * 80), screen_saver_mode()
-            stop = False
         if to_do == 'password generator':
             print('\n'*80), password_generator()
             stop = False
-        elif to_do == 'number guessing game':
-            print('\n'*80), num_game1()
-            stop = False
         elif to_do == 'about os':
-            print('\n'*80), print('OS: harsha os 2.2.3')
+            print('\n'*80), print('OS: harsha os 2.3')
             stop = False
         elif to_do == 'calculator':
             print('\n'*80), calculator()
             stop = False
-        elif to_do == 'timer':
-            print('\n' * 80), timer()
-            stop = False
         elif to_do == 'quit harsha os':
             print('\n'*80)
             stop = True
-        elif to_do == 'quiz':
-            print('\n'*80), quiz()
-            stop = False
-        elif to_do == 'word guessing game':
-            print('\n'*80), word_game1()
-            stop = False
         elif to_do == 'rock-paper-scissors':
             print('\n'*80), rock_paper_scissors()
             stop = False
-        elif to_do == 'base converter':
-            print('\n'*80), rebase_from10()
-            stop = False
         elif to_do == 'web browser':
-            print('\n'*80), open('http://' + input('Enter the URL of the site you want to visit.'))
-            stop = False
-        elif to_do == 'titanic game':
-            print('\n'*80), titanic_game()
+            print('\n'*80), simple_web_browser()
             stop = False
         elif to_do == 'tic-tac-toe':
-            print('\n'*80)
-            import g_ttt
+            print('\n'*80), tic_tac_toe()
             stop = False
         else:
             stop = False
@@ -547,23 +427,31 @@ def os_command():
 
 
 
-atul_key = 'atulthecool😎'
 key = 'atulharsha123$$'
-misbehaving = True
+password_input = ''
 def a():
-    password_input = input('Password:')
-    if misbehaving:
-         if atul_key == password_input:
-            print('\n'*80)
-            os_command()
-         else:
-            print('Access Denied!')
+    frame = Tk()
+    frame.geometry('400x200')
+    frame.iconify()
+    frame.update()
+    frame.deiconify()
+    frame.eval('tk::PlaceWindow . center')
+    def get_password():
+        global password_input
+        password_input = input_txt.get(1.0, 'end-1c')
+        frame.destroy()
+    lbl = Label(frame, text="Enter the password")
+    lbl.pack()
+    input_txt = Text(frame, height=1, width=20)
+    input_txt.pack()
+    Buttoncool = Button(frame, text="Ok", command=get_password)
+    Buttoncool.pack()
+    frame.mainloop()
+    if key == password_input:
+        print('\n' * 80)
+        os_command()
     else:
-        if key == password_input or atul_key == password_input:
-            print('\n' * 80)
-            os_command()
-        else:
-            print('Access Denied')
+        print('Access Denied')
 
 
 try:
