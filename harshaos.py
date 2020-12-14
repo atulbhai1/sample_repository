@@ -9,6 +9,64 @@ user_score = 0
 comp_score = 0
 equation = ''
 txt = ''
+counter = 0
+def pointless_button():
+    global counter
+    pointless = Tk()
+    message = StringVar()
+    message.set('Warning Pointless')
+
+    def ok():
+        global counter
+        if counter == 0:
+            message.set('I told you the button does nothing.')
+        elif counter == 1:
+            message.set('Stop pressing it!')
+        elif counter == 2:
+            message.set('I said stop pressing it!')
+        elif counter == 3:
+            message.set("Really the button doesn't like it!")
+        elif counter == 4:
+            message.set('Please?🥺')
+        elif counter == 5:
+            message.set('You want it to do something right?')
+        elif counter == 6:
+            message.set("It won't.")
+        elif counter == 7:
+            message.set('Stop and I can make it do something.')
+        elif counter == 8:
+            message.set('I said STOP!')
+        elif counter == 9:
+            message.set('What is making you to give him so much agony?')
+        elif counter == 10:
+            message.set('You are evil.')
+        elif counter == 11:
+            message.set('Fine, I will ignore you!')
+        elif 12 == counter:
+            message.set('I said I am ignoring you!')
+        elif counter == 13:
+            message.set('I am exhausted!')
+        else:
+            message.set('STOP!')
+        counter += 1
+
+    they_see = Entry(pointless, textvariable=message)
+    they_see.grid(columnspan=10, ipadx=70)
+    ok = Radiobutton(pointless, command=ok)
+    ok.grid(row=2, column=4)
+    pointless.mainloop()
+    message = Tk()
+    show = Label(message, text=f'You pressed the button {counter + 1} times.')
+    show.pack()
+
+    def kay():
+        message.destroy()
+
+    stop = Button(message, text='ok', command=kay)
+    stop.pack()
+    message.mainloop()
+
+
 def simple_web_browser():
     url = ''
     frame = Tk()
@@ -29,61 +87,9 @@ def simple_web_browser():
     Buttoncool4.pack()
     frame.mainloop()
     open('http://' + url)
-
-
-def tic_tac_toe():
-    def create_button(relx, rely):
-        button = Button(width=10, height=2, command=lambda: callback(button))
-        button.place(relx=relx, rely=rely)
-        return button
-
-    def check_win():
-        if (buttons[0]['text'] == buttons[1]['text'] == buttons[2]['text'] != '') or \
-                (buttons[3]['text'] == buttons[4]['text'] == buttons[5]['text'] != '') or \
-                (buttons[6]['text'] == buttons[7]['text'] == buttons[8]['text'] != '') or \
-                (buttons[0]['text'] == buttons[3]['text'] == buttons[6]['text'] != '') or \
-                (buttons[1]['text'] == buttons[4]['text'] == buttons[7]['text'] != '') or \
-                (buttons[2]['text'] == buttons[5]['text'] == buttons[8]['text'] != '') or \
-                (buttons[2]['text'] == buttons[4]['text'] == buttons[6]['text'] != '') or \
-                (buttons[0]['text'] == buttons[4]['text'] == buttons[8]['text'] != ''):
-            return True
-        else:
-            return False
-
-    def callback(button):
-        global turn, x
-        if x == 1:
-            sleep(1)
-            game.quit()
-        invalid['text'] = ''
-        if button['text'] != '':
-            invalid['text'] = 'Invalid space try again'
-            return
-        button['text'] = turn
-        if check_win():
-            invalid['text'] = 'Player ' + turn + ' WINS!!!!!'
-            x = 1
-        turn = ('0' if turn == 'X' else 'X')
-        label_button['text'] = 'PLAYER ' + turn + '\'S TURN.'
-
-    x = 0
-    turn = 'X'
-    game = Tk()
-    game.title('TicTacToe')
-    game.geometry('700x500')
-    buttons = []
-    for i in range(1, 10):
-        button_created = create_button(0.25 if i / 3 <= 1 else 0.45 if i / 3 <= 2 else 0.65, 0.2 if i in [1, 4, 7] else
-        0.4 if i in [2, 5, 8] else 0.6)
-        buttons.append(button_created)
-    label_button = Button(game, text='PLAYER ' + turn + '\'S TURN.', style='Fun.TButton', width=20, state='disabled')
-    label_button.pack(pady=30)
-    invalid = Label(text='')
-    invalid.place(relx=0.4, rely=0.12)
-    game.mainloop()
 def about_os():
     about_window = Tk()
-    show = Label(about_window, text='OS: Harsha os 2.3.1')
+    show = Label(about_window, text='OS: Harsha os 2.3.5')
     show.pack()
     def ok_do_kay():
         about_window.destroy()
@@ -301,14 +307,14 @@ def calculator():
     button_undo.grid(row=5, column=5)
     button_divide = Button(calculator_window, text='   ÷   ', command=divide, height=1, width=7)
     button_divide.grid(row=5, column=6)
-    button_dot = Button(calculator_window, text='    ．    ', command=decimal, height=1, width=9)
+    button_dot = Button(calculator_window, text='    ．    ', command=decimal, height=1, width=7)
     button_dot.grid(row=6, column=3)
-    button__open_parentheses = Button(calculator_window, text='   ⦅   ', command=open_parentheses, height=1, width=9)
+    button__open_parentheses = Button(calculator_window, text='   ⦅   ', command=open_parentheses, height=1, width=7)
     button__open_parentheses.grid(row=6, column=4)
-    button_close_parentheses = Button(calculator_window, text='   ⦆   ', command=close_parentheses, height=1, width=9)
+    button_close_parentheses = Button(calculator_window, text='   ⦆   ', command=close_parentheses, height=1, width=7)
     button_close_parentheses.grid(row=6, column=5)
-    button_equal = Button(calculator_window, text='              ₌             ', command=equals, height=1, width=28)
-    button_equal.grid(row=7, column=5)
+    button_equal = Button(calculator_window, text='   ₌   ', command=equals, height=1, width=7)
+    button_equal.grid(row=6, column=6)
     calculator_window.mainloop()
 
 
@@ -388,7 +394,7 @@ def rock_paper_scissors():
 
 
 def os_command():
-        OPTIONS = ['pick a option', 'password generator', 'tic-tac-toe', 'about os', 'number guessing game', 'calculator', 'quit harsha os', 'rock-paper-scissors', 'web browser']
+        OPTIONS = ['pick a option', 'password generator', 'about os', 'mess around with the pointless button','number guessing game', 'calculator', 'quit harsha os', 'rock-paper-scissors', 'web browser']
         master = Tk()
         master.geometry("400x400+0+0")
         master.config(bg='yellow')
@@ -409,30 +415,29 @@ def os_command():
         mainloop()
         global to_do
         if to_do == 'password generator':
-            print('\n'*80), password_generator()
+            password_generator()
+            stop = False
+        elif to_do == 'mess around with the pointless button':
+            pointless_button()
             stop = False
         elif to_do == 'about os':
-            print('\n'*80), about_os()
+            about_os()
             stop = False
         elif to_do == 'calculator':
-            print('\n'*80), calculator()
+            calculator()
             stop = False
         elif to_do == 'quit harsha os':
-            print('\n'*80)
             stop = True
         elif to_do == 'rock-paper-scissors':
-            print('\n'*80), rock_paper_scissors()
+            rock_paper_scissors()
             stop = False
         elif to_do == 'web browser':
-            print('\n'*80), simple_web_browser()
-            stop = False
-        elif to_do == 'tic-tac-toe':
-            print('\n'*80), tic_tac_toe()
+            simple_web_browser()
             stop = False
         else:
             stop = False
         if not stop:
-            print('\n'*80), sleep(10), os_command()
+            os_command()
 
 
 
@@ -457,14 +462,33 @@ def a():
     Buttoncool.pack()
     frame.mainloop()
     if key == password_input:
-        print('\n' * 80)
         os_command()
     else:
-        print('Access Denied')
+        access_denied_window = Tk()
+        Message = Label(access_denied_window, text='ACCESS DENIED!')
+        Message.pack()
+
+        def ok():
+            access_denied_window.destroy()
+
+        close = Button(access_denied_window, text='ok', command=ok)
+        close.pack()
+        access_denied_window.mainloop()
 
 
 try:
     a()
 except:
-    print('                                                                          UNKNOWN ERROR OCCURRED')
+    Error_Window = Tk()
+    Error_label = Label(Error_Window, text='ERROR OCCURRED')
+    Error_label.pack()
+
+
+    def ok():
+        Error_Window.destroy()
+
+
+    Close = Button(Error_Window, text='ok', command=ok)
+    Close.pack()
+    Error_Window.mainloop()
 gc.collect()
