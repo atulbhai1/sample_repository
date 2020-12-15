@@ -10,6 +10,176 @@ comp_score = 0
 equation = ''
 txt = ''
 counter = 0
+def titanic_game():
+    show = 'You wake up to a sudden bang to the ship.What do you do?'
+    start_window = Tk()
+    start_story = Label(start_window, text=show)
+    start_story.pack()
+
+    def ok1():
+        start_window.destroy()
+        stay_in_bed1()
+
+    def ok2():
+        start_window.destroy()
+        get_out1()
+
+    start_button1 = Button(start_window, text='Stay in bed', command=ok1)
+    start_button1.pack()
+    start_button2 = Button(start_window, text='Get out!', command=ok2)
+    start_button2.pack()
+    start_window.mainloop()
+
+    def stay_in_bed1():
+        show = 'You go back to sleep hoping it all goes over soon.But later someone knocks your door and tells you to come on deck immediately. What do you do?'
+        stay1_window = Tk()
+        stay1_story = Label(stay1_window, text=show)
+        stay1_story.pack()
+
+        def ok1():
+            stay1_window.destroy()
+            stay_in_bed2()
+
+        def ok2():
+            stay1_window.destroy()
+            get_out2()
+
+        stay1_button1 = Button(stay1_window, text='stay', command=ok1)
+        stay1_button1.pack()
+        stay1_button2 = Button(stay1_window, text='leave', command=ok2)
+        stay1_button2.pack()
+        stay1_window.mainloop()
+
+    def stay_in_bed2():
+        stay2_window = Tk()
+
+        def ok():
+            stay2_window.destroy()
+
+        stay2_says = Label(stay2_window,
+                           text='You go back to sleep.But after a while you notice that the ship is filling with water.You try to escape but drown.YOU LOST!😞')
+        stay2_says.pack()
+        stay2_button = Button(stay2_window, text='ok', command=ok)
+        stay2_button.pack()
+        stay2_window.mainloop()
+
+    def get_out2():
+        show = 'You get out on deck and see a large commotion.Everyone was panicking and the crew was trying to calm everyone down, but they seemed at a loss themselves.What do you do?'
+        get_out2_window = Tk()
+        get_out2_story = Label(get_out2_window, text=show)
+        get_out2_story.pack()
+
+        def ok():
+            get_out2_window.destroy()
+            help_crew()
+
+        def ok2():
+            get_out2_window.destroy()
+            help_others()
+
+        get_out2_button1 = Button(get_out2_window, text='help people out of the ship', command=ok2)
+        get_out2_button1.pack()
+        get_out2_button2 = Button(get_out2_window, text='help the crew', command=ok)
+        get_out2_button2.pack()
+        get_out2_window.mainloop()
+
+    def help_others():
+        show = 'You go back in the ship to check if anyone is left behind.\nSuddenly the floor shudders and you fall down,you get back up but later the floor lurches and you drown.You Lose!😞'
+        help_others_window = Tk()
+        lose_message = Label(help_others_window, text=show)
+        lose_message.pack()
+
+        def ok():
+            help_others_window.destroy()
+
+        fine = Button(help_others_window, text='ok', command=ok)
+        fine.pack()
+        help_others_window.mainloop()
+
+    def help_crew():
+        help_crew_window = Tk()
+        show = 'You help the crew put everyone into the lifeboats with only one shudder occuring.Once you are done you see that their is room left for one person.What do you do?'
+        help_crew_story = Label(help_crew_window, text=show)
+        help_crew_story.pack()
+
+        def ok1():
+            help_crew_window.destroy()
+            run_across_the_stern()
+
+        def ok2():
+            help_crew_window.destroy()
+            run_through_the_ship()
+
+        def ok3():
+            help_crew_window.destroy()
+            hop_in_the_boat()
+
+        help_crew_button1 = Button(help_crew_window, text='hop in the boat', command=ok3)
+        help_crew_button1.pack()
+        help_crew_button2 = Button(help_crew_window, text='run through the ship', command=ok2)
+        help_crew_button2.pack()
+        help_crew_button3 = Button(help_crew_window, text='run across the stern', command=ok1)
+        help_crew_button3.pack()
+        help_crew_window.mainloop()
+
+    def run_across_the_stern():
+        run_across_the_stern_window = Tk()
+        show = Label(run_across_the_stern_window,
+                     text='You run across the stern,the longer but safer route.After a bit of running the floor suddenly lurches.You try to escape but fail.YOU LOSE!😞')
+        show.pack()
+
+        def ok():
+            run_across_the_stern_window.destroy()
+
+        run_across_the_stern_button = Button(run_across_the_stern_window, text='ok', command=ok)
+        run_across_the_stern_button.pack()
+        run_across_the_stern_window.mainloop()
+
+    def run_through_the_ship():
+        run_through_the_ship_window = Tk()
+        show = Label(run_through_the_ship_window,
+                     text='You run through the ship.After some running you reach the other side and see the last lifeboat leaving you manage to hop on it.YOU WIN!😎😀')
+        show.pack()
+
+        def ok():
+            run_through_the_ship_window.destroy()
+
+        close = Button(run_through_the_ship_window, text='ok', command=ok)
+        close.pack()
+
+    def hop_in_the_boat():
+        hop_in_the_boat_window = Tk()
+        show = Label(hop_in_the_boat_window, text='You hop in the boat.YOU WIN!😀😎')
+        show.pack()
+
+        def ok():
+            hop_in_the_boat_window.destroy()
+
+        close = Button(hop_in_the_boat_window, text='ok', command=ok)
+        close.pack()
+        hop_in_the_boat_window.mainloop()
+
+    def get_out1():
+        get_out1_window = Tk()
+        show = 'You go outside and see a that the ship is badly damaged.Then you run back inside and see a crew member who tells you to get on deck.What do you do?'
+        get_out1_label = Label(get_out1_window, text=show)
+        get_out1_label.pack()
+
+        def ok1():
+            get_out1_window.destroy()
+            stay_in_bed2()
+
+        def ok2():
+            get_out1_window.destroy()
+            get_out2()
+
+        get_out1_button1 = Button(get_out1_window, text='go back to the room and sleep', command=ok1)
+        get_out1_button1.pack()
+        get_out1_button2 = Button(get_out1_window, text='get on deck', command=ok2)
+        get_out1_button2.pack()
+        get_out1_window.mainloop()
+
+
 def pointless_button():
     global counter
     pointless = Tk()
@@ -394,8 +564,9 @@ def rock_paper_scissors():
 
 
 def os_command():
-        OPTIONS = ['pick a option', 'password generator', 'about os', 'mess around with the pointless button','number guessing game', 'calculator', 'quit harsha os', 'rock-paper-scissors', 'web browser']
+        OPTIONS = ['pick a option', 'password generator', 'titanic game', 'about os', 'mess around with the pointless button','number guessing game', 'calculator', 'quit harsha os', 'rock-paper-scissors', 'web browser']
         master = Tk()
+        master.title('Harsha OS')
         master.geometry("400x400+0+0")
         master.config(bg='yellow')
         master.iconify()
@@ -416,6 +587,9 @@ def os_command():
         global to_do
         if to_do == 'password generator':
             password_generator()
+            stop = False
+        elif to_do == 'titanic game':
+            titanic_game()
             stop = False
         elif to_do == 'mess around with the pointless button':
             pointless_button()
@@ -445,6 +619,7 @@ key = 'atulharsha123$$'
 password_input = ''
 def a():
     frame = Tk()
+    frame.title('Password')
     frame.geometry('400x200')
     frame.iconify()
     frame.update()
