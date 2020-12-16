@@ -1,5 +1,6 @@
 from tkinter import *
 
+
 equation = ''
 txt = ''
 
@@ -27,7 +28,7 @@ def calculator():
         global equation
         global txt
         equation = equation + '*'
-        txt = txt + '*'
+        txt = txt + '✖️️'
         user_sees_txt.set(txt)
 
     def divide():
@@ -195,6 +196,7 @@ def calculator():
     button_equal = Button(calculator_window, text='   ₌   ', command=equals, height=1, width=7)
     button_equal.grid(row=6, column=6)
     calculator_window.mainloop()
+
 
 try:
     calculator()

@@ -11,25 +11,6 @@ equation = ''
 txt = ''
 counter = 0
 def titanic_game():
-    show = 'You wake up to a sudden bang to the ship.What do you do?'
-    start_window = Tk()
-    start_story = Label(start_window, text=show)
-    start_story.pack()
-
-    def ok1():
-        start_window.destroy()
-        stay_in_bed1()
-
-    def ok2():
-        start_window.destroy()
-        get_out1()
-
-    start_button1 = Button(start_window, text='Stay in bed', command=ok1)
-    start_button1.pack()
-    start_button2 = Button(start_window, text='Get out!', command=ok2)
-    start_button2.pack()
-    start_window.mainloop()
-
     def stay_in_bed1():
         show = 'You go back to sleep hoping it all goes over soon.But later someone knocks your door and tells you to come on deck immediately. What do you do?'
         stay1_window = Tk()
@@ -179,6 +160,26 @@ def titanic_game():
         get_out1_button2.pack()
         get_out1_window.mainloop()
 
+    show = 'You wake up to a sudden bang to the ship.What do you do?'
+    start_window = Tk()
+    start_story = Label(start_window, text=show)
+    start_story.pack()
+
+    def ok1():
+        start_window.destroy()
+        stay_in_bed1()
+
+    def ok2():
+        start_window.destroy()
+        get_out1()
+
+    start_button1 = Button(start_window, text='Stay in bed', command=ok1)
+    start_button1.pack()
+    start_button2 = Button(start_window, text='Get out!', command=ok2)
+    start_button2.pack()
+    start_window.mainloop()
+
+
 
 def pointless_button():
     global counter
@@ -245,7 +246,7 @@ def simple_web_browser():
     frame.update()
     frame.deiconify()
     frame.eval('tk::PlaceWindow . center')
-    def get_password():
+    def get_url():
         global url
         url = input_txt.get(1.0, 'end-1c')
         frame.destroy()
@@ -253,13 +254,13 @@ def simple_web_browser():
     lbl.pack()
     input_txt = Text(frame, height=1, width=20)
     input_txt.pack()
-    Buttoncool4 = Button(frame, text="Ok", command=get_password)
+    Buttoncool4 = Button(frame, text="Ok", command=get_url)
     Buttoncool4.pack()
     frame.mainloop()
-    open('http://' + url)
+    open('http://www' + url)
 def about_os():
     about_window = Tk()
-    show = Label(about_window, text='OS: Harsha os 2.3.5')
+    show = Label(about_window, text='OS: Harsha os 2.4.0')
     show.pack()
     def ok_do_kay():
         about_window.destroy()
@@ -318,7 +319,7 @@ def calculator():
         global equation
         global txt
         equation = equation + '*'
-        txt = txt + '*'
+        txt = txt + '✖️'
         user_sees_txt.set(txt)
 
     def divide():
@@ -564,7 +565,7 @@ def rock_paper_scissors():
 
 
 def os_command():
-        OPTIONS = ['pick a option', 'password generator', 'titanic game', 'about os', 'mess around with the pointless button','number guessing game', 'calculator', 'quit harsha os', 'rock-paper-scissors', 'web browser']
+        OPTIONS = ['pick a option', 'password generator', 'titanic game', 'about os', 'mess around with the pointless button', 'calculator', 'quit harsha os', 'rock-paper-scissors', 'web browser']
         master = Tk()
         master.title('Harsha OS')
         master.geometry("400x400+0+0")
@@ -636,7 +637,7 @@ def a():
     Buttoncool = Button(frame, text="Ok", command=get_password)
     Buttoncool.pack()
     frame.mainloop()
-    if key == password_input:
+    if password_input == key:
         os_command()
     else:
         access_denied_window = Tk()
