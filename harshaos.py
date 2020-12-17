@@ -1,15 +1,46 @@
 from time import *
 from tkinter import *
-from webbrowser import open
 import tkinter.messagebox
 import random
 import gc
+from math import *
 to_do = 0
 user_score = 0
 comp_score = 0
 equation = ''
 txt = ''
 counter = 0
+num = 0
+def sqrt_calculator():
+    global num
+    frame = Tk()
+    frame.title('Square Root Calculator')
+    frame.geometry('400x200')
+    frame.iconify()
+    frame.update()
+    frame.deiconify()
+    frame.eval('tk::PlaceWindow . center')
+
+    def get_num():
+        global num
+        num = input_txt.get(1.0, 'end-1c')
+        frame.destroy()
+
+    lbl = Label(frame, text="Enter the number you want to get the square root of")
+    lbl.pack()
+    input_txt = Text(frame, height=1, width=20)
+    input_txt.pack()
+    Buttoncool = Button(frame, text="Ok", command=get_num)
+    Buttoncool.pack()
+    frame.mainloop()
+    frame2 = Tk()
+    show = Label(frame2, text=f'The square root of {num} is {sqrt(int(num))}.')
+    show.pack()
+    so = Button(frame2, text='ok', command=frame2.destroy)
+    so.pack()
+    frame2.mainloop()
+
+
 def titanic_game():
     def stay_in_bed1():
         show = 'You go back to sleep hoping it all goes over soon.But later someone knocks your door and tells you to come on deck immediately. What do you do?'
@@ -236,31 +267,9 @@ def pointless_button():
     stop = Button(message, text='ok', command=kay)
     stop.pack()
     message.mainloop()
-
-
-def simple_web_browser():
-    url = ''
-    frame = Tk()
-    frame.geometry('400x200')
-    frame.iconify()
-    frame.update()
-    frame.deiconify()
-    frame.eval('tk::PlaceWindow . center')
-    def get_url():
-        global url
-        url = input_txt.get(1.0, 'end-1c')
-        frame.destroy()
-    lbl = Label(frame, text="Enter the URL of the site you want to visit")
-    lbl.pack()
-    input_txt = Text(frame, height=1, width=20)
-    input_txt.pack()
-    Buttoncool4 = Button(frame, text="Ok", command=get_url)
-    Buttoncool4.pack()
-    frame.mainloop()
-    open('http://www' + url)
 def about_os():
     about_window = Tk()
-    show = Label(about_window, text='OS: Harsha os 2.4.0')
+    show = Label(about_window, text='OS: Harsha os 2.4.1')
     show.pack()
     def ok_do_kay():
         about_window.destroy()
@@ -565,7 +574,7 @@ def rock_paper_scissors():
 
 
 def os_command():
-        OPTIONS = ['pick a option', 'password generator', 'titanic game', 'about os', 'mess around with the pointless button', 'calculator', 'quit harsha os', 'rock-paper-scissors', 'web browser']
+        OPTIONS = ['pick a option', 'sqrt calculator', 'password generator', 'titanic game', 'about os', 'mess around with the pointless button', 'calculator', 'quit harsha os', 'rock-paper-scissors']
         master = Tk()
         master.title('Harsha OS')
         master.geometry("400x400+0+0")
@@ -589,6 +598,9 @@ def os_command():
         if to_do == 'password generator':
             password_generator()
             stop = False
+        elif to_do == 'sqrt calculator':
+            sqrt_calculator()
+            stop = False
         elif to_do == 'titanic game':
             titanic_game()
             stop = False
@@ -606,9 +618,6 @@ def os_command():
         elif to_do == 'rock-paper-scissors':
             rock_paper_scissors()
             stop = False
-        elif to_do == 'web browser':
-            simple_web_browser()
-            stop = False
         else:
             stop = False
         if not stop:
@@ -616,7 +625,7 @@ def os_command():
 
 
 
-key = 'atulharsha123$$'
+key = 'harshaisevil'
 password_input = ''
 def a():
     frame = Tk()
