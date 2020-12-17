@@ -1,4 +1,5 @@
 from time import *
+import pygame
 from tkinter import *
 import tkinter.messagebox
 import random
@@ -11,6 +12,104 @@ equation = ''
 txt = ''
 counter = 0
 num = 0
+def boing():
+    BLACK = (93, 250, 9)
+    WHITE = (250, 166, 9)
+
+    SCREEN_WIDTH = 1500
+    SCREEN_HEIGHT = 900
+    BALL_SIZE = 100
+
+    class Ball:
+        """
+        Class to keep track of a ball's location and vector.
+        """
+
+        def __init__(self):
+            self.x = 0
+            self.y = 0
+            self.change_x = 0
+            self.change_y = 0
+
+    def make_ball():
+        """
+        Function to make a new, random ball.
+        """
+        ball = Ball()
+        # Starting position of the ball.
+        # Take into account the ball size so we don't spawn on the edge.
+        ball.x = random.randrange(BALL_SIZE, SCREEN_WIDTH - BALL_SIZE)
+        ball.y = random.randrange(BALL_SIZE, SCREEN_HEIGHT - BALL_SIZE)
+
+        # Speed and direction of rectangle
+        ball.change_x = 10
+        ball.change_y = 10
+
+        return ball
+
+    def main():
+        """
+        This is our main program.
+        """
+        pygame.init()
+
+        # Set the height and width of the screen
+        size = [SCREEN_WIDTH, SCREEN_HEIGHT]
+        screen = pygame.display.set_mode(size)
+
+        pygame.display.set_caption("Bouncing Ball")
+
+        # Used to manage how fast the screen updates
+        clock = pygame.time.Clock()
+
+        ball_list = []
+
+        ball = make_ball()
+        ball_list.append(ball)
+
+        # -------- Main Program Loop -----------
+        while True:
+            # --- Event Processing
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    done = True
+                elif event.type == pygame.KEYDOWN:
+                    # Space bar! Spawn a new ball.
+                    if event.key == pygame.K_SPACE:
+                        ball = make_ball()
+                        ball_list.append(ball)
+
+            # --- Logic
+            for ball in ball_list:
+                # Move the ball's center
+                ball.x += ball.change_x
+                ball.y += ball.change_y
+
+                # Bounce the ball if needed
+                if ball.y > SCREEN_HEIGHT - BALL_SIZE or ball.y < BALL_SIZE:
+                    ball.change_y *= -1
+                if ball.x > SCREEN_WIDTH - BALL_SIZE or ball.x < BALL_SIZE:
+                    ball.change_x *= -1
+
+            # --- Drawing
+            # Set the screen background
+            screen.fill(BLACK)
+
+            # Draw the balls
+            for ball in ball_list:
+                pygame.draw.circle(screen, WHITE, [ball.x, ball.y], BALL_SIZE)
+
+            # --- Wrap-up
+            # Limit to 60 frames per second
+            clock.tick(60)
+
+            # Go ahead and update the screen with what we've drawn.
+            pygame.display.flip()
+
+        # Close everything down
+        pygame.quit()
+
+    main()
 def sqrt_calculator():
     global num
     frame = Tk()
@@ -574,7 +673,7 @@ def rock_paper_scissors():
 
 
 def os_command():
-        OPTIONS = ['pick a option', 'sqrt calculator', 'password generator', 'titanic game', 'about os', 'mess around with the pointless button', 'calculator', 'quit harsha os', 'rock-paper-scissors']
+        OPTIONS = ['pick a option', 'bouncy balls', 'sqrt calculator', 'password generator', 'titanic game', 'about os', 'mess around with the pointless button', 'calculator', 'quit harsha os', 'rock-paper-scissors']
         master = Tk()
         master.title('Harsha OS')
         master.geometry("400x400+0+0")
@@ -604,6 +703,8 @@ def os_command():
         elif to_do == 'titanic game':
             titanic_game()
             stop = False
+        elif to_do == 'bouncy balls':
+            boing()
         elif to_do == 'mess around with the pointless button':
             pointless_button()
             stop = False
