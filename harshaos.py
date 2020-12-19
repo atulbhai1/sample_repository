@@ -1,5 +1,6 @@
 from time import *
 import pygame
+from datetime import datetime
 from tkinter import *
 import tkinter.messagebox
 import random
@@ -12,6 +13,16 @@ equation = ''
 txt = ''
 counter = 0
 num = 0
+def countdown(countdown_year):
+    while True:
+        current_time = datetime.now()
+        if current_time.strftime('%Y') == countdown_year: break
+        month = current_time.strftime('%B')
+        day = current_time.strftime('%')
+        other_time = current_time.strftime('%X')
+        print(f'The year is still {int(countdown_year) - 1}, the month is {month}, the day number is {day}, and the time is {other_time}')
+        sleep(1)
+    print('Happy New Year!🥳')
 def boing():
     BLACK = (93, 250, 9)
     WHITE = (250, 166, 9)
@@ -673,7 +684,7 @@ def rock_paper_scissors():
 
 
 def os_command():
-        OPTIONS = ['pick a option', 'bouncy balls', 'sqrt calculator', 'password generator', 'titanic game', 'about os', 'mess around with the pointless button', 'calculator', 'quit harsha os', 'rock-paper-scissors']
+        OPTIONS = ['pick a option', 'countdown', 'bouncy balls', 'sqrt calculator', 'password generator', 'titanic game', 'about os', 'mess around with the pointless button', 'calculator', 'rock-paper-scissors', 'quit harsha os']
         master = Tk()
         master.title('Harsha OS')
         master.geometry("400x400+0+0")
@@ -697,6 +708,9 @@ def os_command():
         if to_do == 'password generator':
             password_generator()
             stop = False
+        elif to_do == 'countdown':
+            countdown(input('what year are you counting down to?'))
+            stop = False
         elif to_do == 'sqrt calculator':
             sqrt_calculator()
             stop = False
@@ -705,6 +719,7 @@ def os_command():
             stop = False
         elif to_do == 'bouncy balls':
             boing()
+            os_command()
         elif to_do == 'mess around with the pointless button':
             pointless_button()
             stop = False
@@ -726,7 +741,7 @@ def os_command():
 
 
 
-key = 'harshaisevil'
+key = 'atulharsha123$$'
 password_input = ''
 def a():
     frame = Tk()
@@ -778,3 +793,4 @@ except:
     Close.pack()
     Error_Window.mainloop()
 gc.collect()
+
