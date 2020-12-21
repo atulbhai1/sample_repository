@@ -26,10 +26,30 @@ def pygame_shapes():
     orange = (255, 119, 0)
     gameDisplay = pygame.display.set_mode(
         (int(input('What is the width of the image?')), int(input('What is the length of the image?'))))
-    gameDisplay.fill(black)
+    color_input = input(
+        'What color  should the display be? white, black, red, green, blue, pink, purple, yellow or orange?')
+    if color_input == 'red':
+        color = red
+    elif color_input == 'white':
+        color = white
+    elif color_input == 'black':
+        color = black
+    elif color_input == 'green':
+        color = green
+    elif color_input == 'blue':
+        color = blue
+    elif color_input == 'pink':
+        color = pink
+    elif color_input == 'purple':
+        color = purple
+    elif color_input == 'yellow':
+        color = yellow
+    else:
+        color = orange
+    gameDisplay.fill(color)
     you_should_keep_going = True
     while you_should_keep_going:
-        shape = input('What do you want to add to the image a circle, rectangle or line?').strip()
+        shape = input('What do you want to add to the image a pentagon, circle, triangle, rectangle or line?').strip()
         color_input = input('What color white, black, red, green, blue, pink, purple, yellow or orange?')
         if color_input == 'red':
             color = red
@@ -72,6 +92,18 @@ def pygame_shapes():
                 input('What is the y-coordinate of the second corner of the triangle?'))), (int(
                 input('What is the x-coordinate of the third corner of the triangle?')), int(
                 input('What is the y-coordinate of the third corner of the triangle?')))))
+        elif shape == 'pentagon':
+            pygame.draw.polygon(gameDisplay, color, ((int(
+                input('What is the x-coordinate of the first corner of the pentagon?')), int(
+                input('What is the y-coordinate of the first corner of the pentagon?'))), (int(
+                input('What is the x-coordinate of the second corner of the pentagon?')), int(
+                input('What is the y-coordinate of the second corner of the pentagon?'))), (int(
+                input('What is the x-coordinate of the third corner of the pentagon?')), int(
+                input('What is the y-coordinate of the third corner of the pentagon?'))), (int(
+                input('What is the x-coordinate of the fourth corner of the pentagon?')), int(
+                input('What is the y-coordinate of the fourth corner of the pentagon?'))), (int(
+                input('What is the x-coordinate of the fifth corner of the pentagon?')), int(
+                input('What is the y-coordinate of the fifth corner of the pentagon?')))))
         keep = input('Do you want to add more things?')
         if keep == 'no':
             you_should_keep_going = False
@@ -447,7 +479,7 @@ def pointless_button():
     message.mainloop()
 def about_os():
     about_window = Tk()
-    show = Label(about_window, text='OS: Harsha os 2.4.1')
+    show = Label(about_window, text='OS: Harsha os 2.4.7')
     show.pack()
     def ok_do_kay():
         about_window.destroy()
