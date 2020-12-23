@@ -784,7 +784,7 @@ def rock_paper_scissors():
 
 
 def os_command():
-        OPTIONS = ['pick a option', 'shape maker', 'countdown', 'bouncy balls', 'sqrt calculator', 'password generator', 'titanic game', 'about os', 'mess around with the pointless button', 'calculator', 'rock-paper-scissors', 'quit harsha os']
+        OPTIONS = ['pick a option', 'see a image', 'space invaders!', 'shape maker', 'countdown', 'bouncy balls', 'sqrt calculator', 'password generator', 'titanic game', 'about os', 'mess around with the pointless button', 'calculator', 'rock-paper-scissors', 'quit harsha os']
         master = Tk()
         master.title('Harsha OS')
         master.geometry("400x400+0+0")
@@ -808,8 +808,14 @@ def os_command():
         if to_do == 'password generator':
             password_generator()
             stop = False
+        elif to_do == 'see a image':
+            import imageviewer
+            stop = False
         elif to_do == 'shape maker':
             pygame_shapes()
+            stop = False
+        elif to_do == 'space invaders!':
+            import spaceinvaders
             stop = False
         elif to_do == 'countdown':
             countdown(input('what year are you counting down to?'))
