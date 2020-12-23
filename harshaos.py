@@ -880,9 +880,9 @@ def a():
         access_denied_window.mainloop()
 
 
-try:
-    a()
-except:
+#try:
+a()
+'''except:
     Error_Window = Tk()
     Error_label = Label(Error_Window, text='ERROR OCCURRED')
     Error_label.pack()
@@ -895,5 +895,5 @@ except:
     Close = Button(Error_Window, text='ok', command=ok)
     Close.pack()
     Error_Window.mainloop()
+'''
 gc.collect()
-
