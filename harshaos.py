@@ -479,7 +479,7 @@ def pointless_button():
     message.mainloop()
 def about_os():
     about_window = Tk()
-    show = Label(about_window, text='OS: Harsha os 2.4.7')
+    show = Label(about_window, text='OS: Harsha os 2.5')
     show.pack()
     def ok_do_kay():
         about_window.destroy()
@@ -784,7 +784,7 @@ def rock_paper_scissors():
 
 
 def os_command():
-        OPTIONS = ['pick a option', 'see a image', 'space invaders!', 'shape maker', 'countdown', 'bouncy balls', 'sqrt calculator', 'password generator', 'titanic game', 'about os', 'mess around with the pointless button', 'calculator', 'rock-paper-scissors', 'quit harsha os']
+        OPTIONS = ['pick a option', 'see a image', 'run!', 'space invaders!', 'shape maker', 'countdown', 'bouncy balls', 'sqrt calculator', 'password generator', 'titanic game', 'about os', 'mess around with the pointless button', 'calculator', 'rock-paper-scissors', 'quit harsha os']
         master = Tk()
         master.title('Harsha OS')
         master.geometry("400x400+0+0")
@@ -807,6 +807,9 @@ def os_command():
         global to_do
         if to_do == 'password generator':
             password_generator()
+            stop = False
+        elif to_do == 'run!':
+            import run_away
             stop = False
         elif to_do == 'see a image':
             import imageviewer
