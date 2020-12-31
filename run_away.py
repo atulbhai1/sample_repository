@@ -16,6 +16,7 @@ font = pygame.font.Font('freesansbold.ttf', 64)
 def you_lost():
     over_text = font.render('GAME OVER', True, (255, 255, 255))
     gameDisplay.blit(over_text, (200, 250))
+
 def make_player(x, y):
     gameDisplay.blit(player, (x, y))
 enemy = pygame.image.load('badguy.png')

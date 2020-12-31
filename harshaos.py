@@ -2,7 +2,6 @@ from time import *
 import pygame
 from datetime import datetime
 from tkinter import *
-import tkinter.messagebox
 import random
 import gc
 from math import *
@@ -249,8 +248,6 @@ def sqrt_calculator():
     so = Button(frame2, text='ok', command=frame2.destroy)
     so.pack()
     frame2.mainloop()
-
-
 def titanic_game():
     def stay_in_bed1():
         show = 'You go back to sleep hoping it all goes over soon.But later someone knocks your door and tells you to come on deck immediately. What do you do?'
@@ -419,9 +416,6 @@ def titanic_game():
     start_button2 = Button(start_window, text='Get out!', command=ok2)
     start_button2.pack()
     start_window.mainloop()
-
-
-
 def pointless_button():
     global counter
     pointless = Tk()
@@ -706,8 +700,6 @@ def calculator():
     button_equal = Button(calculator_window, text='   ₌   ', command=equals, height=1, width=7)
     button_equal.grid(row=6, column=6)
     calculator_window.mainloop()
-
-
 def rock_paper_scissors():
     window = Tk()
     window.geometry('400x400+0+0')
@@ -781,8 +773,6 @@ def rock_paper_scissors():
     button3 = Button(text="      Scissor     ", bg="lightgreen", command=scissor)
     button3.grid(column=0, row=3)
     mainloop()
-
-
 def os_command():
         OPTIONS = ['pick a option', 'see a image', 'run!', 'space invaders!', 'shape maker', 'countdown', 'bouncy balls', 'sqrt calculator', 'password generator', 'titanic game', 'about os', 'mess around with the pointless button', 'calculator', 'rock-paper-scissors', 'quit harsha os']
         master = Tk()
@@ -850,9 +840,6 @@ def os_command():
             stop = False
         if not stop:
             os_command()
-
-
-
 key = 'atulharsha123$$'
 password_input = ''
 def a():
@@ -887,11 +874,9 @@ def a():
         close = Button(access_denied_window, text='ok', command=ok)
         close.pack()
         access_denied_window.mainloop()
-
-
-#try:
-a()
-'''except:
+try:
+    a()
+except:
     Error_Window = Tk()
     Error_label = Label(Error_Window, text='ERROR OCCURRED')
     Error_label.pack()
@@ -904,5 +889,4 @@ a()
     Close = Button(Error_Window, text='ok', command=ok)
     Close.pack()
     Error_Window.mainloop()
-'''
 gc.collect()
