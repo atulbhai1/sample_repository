@@ -1,5 +1,5 @@
 class Book:
-    def __init__(self, name='NULL', nonfiction_or_fiction='NULL', author='NULL', illustrator='NULL', page_count=0, publishing_company='scholastic', genre='NULL', series='NULL', price=0.00):
+    def __init__(self, name='NULL', nonfiction_or_fiction='fiction', author='NULL', illustrator='NULL', page_count=0, publishing_company='scholastic', genre='NULL', series='NULL', price=0.00):
         self.name, self.nonfiction_or_fiction, self.author, self.illustrator, self.page_count, self.publishing_company, self.genre, self.series, self.price = name, nonfiction_or_fiction, author, illustrator, page_count, publishing_company, genre, series, price
     def is_it_overpriced(self):
         if self.price > 15.00 and self.page_count > 500:
@@ -35,4 +35,8 @@ class Book:
             return 'at https://www.wimpykid.com'
         else:
             return 'at https://www.amazon.com'
-
+    def can_i_trust_it(self):
+        if self.nonfiction_or_fiction.lower() == 'nonfiction':
+            return 'yes'
+        else:
+            return 'no'
