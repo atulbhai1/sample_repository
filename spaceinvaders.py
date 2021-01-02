@@ -31,15 +31,13 @@ py = 480
 pxc = 0
 score = 0
 font = pygame.font.Font('freesansbold.ttf', 32)
-tx = 10
-ty = 10
 over_font = pygame.font.Font('freesansbold.ttf', 64)
 def game_over_t():
     over_text = over_font.render('GAME OVER', True, (255, 255, 255))
     screen.blit(over_text, (200, 250))
-def show_score(x, y, score1):
-    score_show = font.render(f'Score:{score1}', True, (255, 255, 255))
-    screen.blit(score_show, (x, y))
+def show_score():
+    score_show = font.render(f'Score:{score}', True, (255, 255, 255))
+    screen.blit(score_show, (10, 10))
 def fire_bullet(x):
     global bulletS
     global bulletY
@@ -110,5 +108,5 @@ while True:
     elif px > 736:
         px = 736
     player(px, py)
-    show_score(tx, ty, score)
+    show_score()
     pygame.display.update()

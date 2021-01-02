@@ -1,6 +1,4 @@
-from time import *
 import pygame
-from datetime import datetime
 from tkinter import *
 import random
 import gc
@@ -112,16 +110,6 @@ def pygame_shapes():
                 pygame.quit()
                 quit()
         pygame.display.update()
-def countdown(countdown_year):
-    while True:
-        current_time = datetime.now()
-        if current_time.strftime('%Y') == countdown_year: break
-        month = current_time.strftime('%B')
-        day = current_time.strftime('%')
-        other_time = current_time.strftime('%X')
-        print(f'The year is still {int(countdown_year) - 1}, the month is {month}, the day number is {day}, and the time is {other_time}')
-        sleep(1)
-    print('Happy New Year!🥳')
 def boing():
     BLACK = (93, 250, 9)
     WHITE = (250, 166, 9)
@@ -473,7 +461,7 @@ def pointless_button():
     message.mainloop()
 def about_os():
     about_window = Tk()
-    show = Label(about_window, text='OS: Harsha os 2.5')
+    show = Label(about_window, text='OS: Harsha os 2.6')
     show.pack()
     def ok_do_kay():
         about_window.destroy()
@@ -774,7 +762,7 @@ def rock_paper_scissors():
     button3.grid(column=0, row=3)
     mainloop()
 def os_command():
-        OPTIONS = ['pick a option', 'see a image', 'run!', 'space invaders!', 'shape maker', 'countdown', 'bouncy balls', 'sqrt calculator', 'password generator', 'titanic game', 'about os', 'mess around with the pointless button', 'calculator', 'rock-paper-scissors', 'quit harsha os']
+        OPTIONS = ['pick a option', 'shoot the bad guy', 'see a image', 'run!', 'space invaders!', 'shape maker', 'bouncy balls', 'sqrt calculator', 'password generator', 'titanic game', 'about os', 'mess around with the pointless button', 'calculator', 'rock-paper-scissors', 'quit harsha os']
         master = Tk()
         master.title('Harsha OS')
         master.geometry("400x400+0+0")
@@ -798,6 +786,8 @@ def os_command():
         if to_do == 'password generator':
             password_generator()
             stop = False
+        elif to_do == 'shoot the bad guy':
+            import shootthebadguy
         elif to_do == 'run!':
             import run_away
             stop = False
@@ -809,9 +799,6 @@ def os_command():
             stop = False
         elif to_do == 'space invaders!':
             import spaceinvaders
-            stop = False
-        elif to_do == 'countdown':
-            countdown(input('what year are you counting down to?'))
             stop = False
         elif to_do == 'sqrt calculator':
             sqrt_calculator()
