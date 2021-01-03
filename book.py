@@ -5,6 +5,42 @@ class Book:
         Book.num_of_books += 1
     def __str__(self):
         return f'name is {self.name}, is {self.nonfiction_or_fiction}, author is {self.author} illustrator is {self.illustrator},has {self.page_count} pages, genre is {self.genre}, publishing company is {self.publishing_company}, is part of the {self.series} series and costs {self.price}.'
+    def __len__(self):
+        return self.page_count
+    def __add__(self, other, what_to_add_to):
+        if what_to_add_to == 'price':
+            self.price += other
+            return self.price
+        elif what_to_add_to == 'page count':
+            self.page_count += other
+            return self.page_count
+        else:
+            raise ValueError('what_to_add_to has to be defined as price or page count')
+    def __sub__(self, other, what_to_subtract_from):
+        if what_to_subtract_from == 'price':
+            self.price -= other
+            return self.price
+        elif what_to_subtract_from == 'page count':
+            self.page_count -= other
+            return self.page_count
+        else:
+            raise ValueError('what_to_subtract_from has to be defined as price or page count')
+    def __float__(self, what):
+        if what == 'price':
+            return float(self.price)
+        elif what == 'page count':
+            return float(self.page_count)
+        else:
+            raise ValueError('what has to be either page count or price')
+    def __int__(self, what):
+        if what == 'price':
+            return int(self.price)
+        elif what == 'page count':
+            return int(self.page_count)
+        else:
+            raise ValueError('what has to be either price or page count')
+    def __complex__(self):
+        raise SystemError('This should never be converted into a complex number!')
     def is_it_overpriced(self):
         if self.price > 15.00 and self.page_count > 500:
             return 'yes'
