@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import pygame
 print()
 print('Prepare to have the image ready in Pycharm.')

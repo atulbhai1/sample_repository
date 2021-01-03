@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import pygame
 from tkinter import *
 import random

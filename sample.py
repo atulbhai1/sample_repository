@@ -1,4 +1,5 @@
 import time
+#!/usr/bin/env python3
 from tkinter.filedialog import *
 import random
 from numpy import *

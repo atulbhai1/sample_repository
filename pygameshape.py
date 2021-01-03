@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import pygame
 pygame.init()
 white = (255,255,255)

@@ -1,3 +1,4 @@
+#!
 class Book:
     num_of_books = 0
     def __init__(self, name='NULL', nonfiction_or_fiction='fiction', author='NULL', illustrator='NULL', page_count=0, publishing_company='scholastic', genre='NULL', series='NULL', price=0.00):
