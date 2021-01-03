@@ -3,6 +3,8 @@ class Book:
     def __init__(self, name='NULL', nonfiction_or_fiction='fiction', author='NULL', illustrator='NULL', page_count=0, publishing_company='scholastic', genre='NULL', series='NULL', price=0.00):
         self.name, self.nonfiction_or_fiction, self.author, self.illustrator, self.page_count, self.publishing_company, self.genre, self.series, self.price = name, nonfiction_or_fiction, author, illustrator, page_count, publishing_company, genre, series, price
         Book.num_of_books += 1
+    def __str__(self):
+        return f'name is {self.name}, is {self.nonfiction_or_fiction}, author is {self.author} illustrator is {self.illustrator},has {self.page_count} pages, genre is {self.genre}, publishing company is {self.publishing_company}, is part of the {self.series} series and costs {self.price}.'
     def is_it_overpriced(self):
         if self.price > 15.00 and self.page_count > 500:
             return 'yes'
