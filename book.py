@@ -27,6 +27,16 @@ class Book:
             elif self.name.lower() == 'rodrick rules':
                 return 'Secrets have a way of getting out, ' \
                        'especially when a diary is involved.'
+            elif self.name.lower() == 'the last straw':
+                return 'Let\'s face it: Greg Heffley will never change his wimpy ways. Somebody just needs to explain that to Greg\'s father.'
+            elif self.name.lower() == 'dog days':
+                return 'It\'s summer vacation, the weather\'s great, and all the kids are having fun outside. So where\'s Greg Heffley? Inside his house, playing video games with the shades drawn.'
+            elif self.name.lower() == 'the ugly truth':
+                return 'Greg Heffley has always been in a hurry to grow up. But is getting older really all it\'s cracked up to be?'
+            elif self.name.lower() == 'cabin fever':
+                return 'Greg Heffley is in big trouble. School property has been damaged, and Greg is the prime suspect. But the crazy thing is, he\'s innocent. Or at least sort of.'
+            elif self.name.lower() == 'the third wheel':
+                return 'Love is in the air—but what does that mean for Greg Heffley?'
             else:
                 return 'Sorry we do not have \a description for that book yet.'
         else:

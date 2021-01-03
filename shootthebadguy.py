@@ -4,8 +4,8 @@ import math
 pygame.init()
 screen = pygame.display.set_mode((800, 600))
 pygame.display.set_caption('Shoot The Bad Guy')
-icon = pygame.image.load('badguy.png')
-pygame.display.set_icon(icon)
+enemy = pygame.image.load('badguy.png')
+pygame.display.set_icon(enemy)
 playerImg = pygame.image.load('player.png')
 playerImg = pygame.transform.scale(playerImg, (64, 64))
 PlayerX = 370
@@ -15,15 +15,26 @@ PlayerYC = 0
 player_direction = 'forwards'
 def player():
     screen.blit(playerImg, (PlayerX, PlayerY))
-enemy = pygame.image.load('badguy.png')
+def change_player_movement_angle(angle=0, pxc=0, pyc=0, pd='forwards'):
+    global playerImg, PlayerXC, PlayerYC, player_direction
+    playerImg = pygame.image.load('player.png')
+    playerImg = pygame.transform.scale(playerImg, (64, 64))
+    playerImg = pygame.transform.rotate(playerImg, angle)
+    PlayerYC = pyc
+    PlayerXC = pxc
+    player_direction = pd
 enemy = pygame.transform.scale(enemy, (64, 64))
 ex = random.randint(50, 150)
 ey = random.randint(50, 150)
-exc = random.randint(-5, 5)
-eyc = random.randint(-5, 5)
-if exc == 0 or eyc == 0:
+exc = random.randint(-10, 10)
+eyc = random.randint(-10, -10)
+def change_enemy_movement():
+    global exc
+    global eyc
     exc = random.randint(-10, 10)
     eyc = random.randint(-10, 10)
+if exc == 0 or eyc == 0:
+    change_enemy_movement()
 def make_enemy():
     screen.blit(enemy, (ex, ey))
 bx = 0
@@ -34,6 +45,14 @@ def bullet():
     global bs
     screen.blit(bulletImg, (bx, by))
     bs = 'fired'
+def change_bullet(byc, bxc, rotate_needed, angle):
+    global by, bx, bulletImg
+    by = PlayerY - byc
+    bx = PlayerX + bxc
+    bulletImg = pygame.image.load('bullet.png')
+    bulletImg = pygame.transform.scale(bulletImg, (64, 64))
+    if rotate_needed:
+        bulletImg = pygame.transform.rotate(bulletImg, angle)
 def collision():
     distance = math.sqrt((PlayerX - ex) ** 2 + (PlayerY - ey) ** 2)
     if distance < 32:
@@ -49,7 +68,7 @@ def collision2():
     else:
         return False
 score = 0
-font = pygame.font.Font('freesansbold.ttf', 32)
+font = pygame.font.Font('freesansbold.ttf', 40)
 over_font = pygame.font.Font('freesansbold.ttf', 40)
 def show_score():
     score_show = font.render(f'Score:{score}', True, (255, 255, 255))
@@ -65,83 +84,44 @@ while True:
             quit()
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
-                if player_direction != 'left':
-                    playerImg = pygame.image.load('player.png')
-                    playerImg = pygame.transform.scale(playerImg, (64, 64))
-                    playerImg = pygame.transform.rotate(playerImg, 90)
-                PlayerXC = -5
-                player_direction = 'left'
+                change_player_movement_angle(90, -5, pd='left')
             elif event.key == pygame.K_UP:
-                if player_direction != 'forwards':
-                    playerImg = pygame.image.load('player.png')
-                    playerImg = pygame.transform.scale(playerImg, (64, 64))
-                PlayerYC = -5
-                player_direction = 'forwards'
+                change_player_movement_angle(pyc=-5)
             elif event.key == pygame.K_DOWN:
-                if player_direction != 'backwards':
-                    playerImg = pygame.image.load('player.png')
-                    playerImg = pygame.transform.scale(playerImg, (64, 64))
-                    playerImg = pygame.transform.rotate(playerImg, 180)
-                PlayerYC = 5
-                player_direction = 'backwards'
+                change_player_movement_angle(180, pyc=5, pd='backwards')
             elif event.key == pygame.K_RIGHT:
-                if player_direction != 'right':
-                    playerImg = pygame.image.load('player.png')
-                    playerImg = pygame.transform.scale(playerImg, (64, 64))
-                    playerImg = pygame.transform.rotate(playerImg, 270)
-                player_direction = 'right'
-                PlayerXC = 5
+                change_player_movement_angle(270, 5, pd='right')
             elif event.key == pygame.K_SPACE:
                 if bs == 'ready':
                     bullet_direction = player_direction
                     if bullet_direction == 'left':
-                        by = PlayerY- 16
-                        bx = PlayerX
-                        bulletImg = pygame.image.load('bullet.png')
-                        bulletImg = pygame.transform.scale(bulletImg, (64, 64))
-                        bulletImg = pygame.transform.rotate(bulletImg, 90)
+                        change_bullet(16, 0, True, 90)
                     elif bullet_direction == 'right':
-                        by = PlayerY - 16
-                        bx = PlayerX + 32
-                        bulletImg = pygame.image.load('bullet.png')
-                        bulletImg = pygame.transform.scale(bulletImg, (64, 64))
-                        bulletImg = pygame.transform.rotate(bulletImg, 270)
+                        change_bullet(16, 32, True, 270)
                     elif bullet_direction == 'forwards':
-                        by = PlayerY
-                        bx = PlayerX + 16
-                        bulletImg = pygame.image.load('bullet.png')
-                        bulletImg = pygame.transform.scale(bulletImg, (64, 64))
+                        change_bullet(0, 16, False, 0)
                     else:
-                        by  = PlayerY - 32
-                        bx = PlayerX + 16
-                        bulletImg = pygame.image.load('bullet.png')
-                        bulletImg = pygame.transform.scale(bulletImg, (64, 64))
-                        bulletImg = pygame.transform.rotate(bulletImg, 180)
+                        change_bullet(32, 16, True, 180)
                     bullet()
         elif event.type == pygame.KEYUP:
             PlayerXC = 0
             PlayerYC = 0
     if exc == 0 or eyc == 0:
-        exc = random.randint(-10, 10)
-        eyc = random.randint(-10, 10)
+        change_enemy_movement()
     ex += exc
     ey += eyc
     if ex < 0:
         ex = 0
-        exc = random.randint(-10, 10)
-        eyc = random.randint(-10, 10)
+        change_enemy_movement()
     elif ex > 736:
         ex = 736
-        exc = random.randint(-10, 10)
-        eyc = random.randint(-10, 10)
+        change_enemy_movement()
     if ey < 0:
         ey = 0
-        exc = random.randint(-10, 10)
-        eyc = random.randint(-10, 10)
+        change_enemy_movement()
     elif ey > 536:
         ey = 536
-        exc = random.randint(-10, 10)
-        eyc = random.randint(-10, 10)
+        change_enemy_movement()
     make_enemy()
     if not already_lost:
         lost = collision()
@@ -176,11 +156,9 @@ while True:
             score += 1
             ex = random.randint(50, 150)
             ey = random.randint(50, 150)
-            exc = random.randint(-5, 5)
-            eyc = random.randint(-5, 5)
+            change_enemy_movement()
             if exc == 0 or eyc == 0:
-                exc = random.randint(-10, 10)
-                eyc = random.randint(-10, 10)
+                change_enemy_movement()
         show_score()
     else:
         game_over()
