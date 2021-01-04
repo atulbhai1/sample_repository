@@ -1,4 +1,3 @@
-#!
 class Book:
     num_of_books = 0
     def __init__(self, name='NULL', nonfiction_or_fiction='fiction', author='NULL', illustrator='NULL', page_count=0, publishing_company='scholastic', genre='NULL', series='NULL', price=0.00):
@@ -91,3 +90,40 @@ class Book:
             return 'yes'
         else:
             return 'no'
+class Animal:
+    def __init__(self, name='NULL', alive=True, species='NULL', age=0, number_of_legs=0):
+        self.name = name
+        self.species = species
+        self.age = age
+        self.number_of_legs = number_of_legs
+        self.alive = alive
+    def can_it_walk(self):
+        if self.number_of_legs < 2 or not self.alive:
+            return 'no'
+        else:
+            return 'maybe'
+    def __add__(self, other):
+        self.age += other
+    def __sub__(self, other):
+        self.number_of_legs -= other
+    def dead(self):
+        self.alive = False
+class Computer:
+    def __init__(self, brand, price, processor, model, ram, storage):
+        self.brand = brand
+        self.price = price
+        self.processor = processor
+        self.model = model
+        self.ram = ram
+        self.storage = storage
+    def is_it_expensive(self):
+        if self.price < 999:
+            return 'yes'
+        else:
+            return 'no'
+    def is_it_cheap(self):
+        if self.price < 500:
+            return 'yes'
+        else:
+            return 'no'
+# work on later⬆️
