@@ -5,42 +5,6 @@ class Book:
         Book.num_of_books += 1
     def __str__(self):
         return f'name is {self.name}, is {self.nonfiction_or_fiction}, author is {self.author} illustrator is {self.illustrator},has {self.page_count} pages, genre is {self.genre}, publishing company is {self.publishing_company}, is part of the {self.series} series and costs {self.price}.'
-    def __len__(self):
-        return self.page_count
-    def __add__(self, other, what_to_add_to):
-        if what_to_add_to == 'price':
-            self.price += other
-            return self.price
-        elif what_to_add_to == 'page count':
-            self.page_count += other
-            return self.page_count
-        else:
-            raise ValueError('what_to_add_to has to be defined as price or page count')
-    def __sub__(self, other, what_to_subtract_from):
-        if what_to_subtract_from == 'price':
-            self.price -= other
-            return self.price
-        elif what_to_subtract_from == 'page count':
-            self.page_count -= other
-            return self.page_count
-        else:
-            raise ValueError('what_to_subtract_from has to be defined as price or page count')
-    def __float__(self, what):
-        if what == 'price':
-            return float(self.price)
-        elif what == 'page count':
-            return float(self.page_count)
-        else:
-            raise ValueError('what has to be either page count or price')
-    def __int__(self, what):
-        if what == 'price':
-            return int(self.price)
-        elif what == 'page count':
-            return int(self.page_count)
-        else:
-            raise ValueError('what has to be either price or page count')
-    def __complex__(self):
-        raise SystemError('This should never be converted into a complex number!')
     def is_it_overpriced(self):
         if self.price > 15.00 and self.page_count > 500:
             return 'yes'
@@ -76,7 +40,7 @@ class Book:
             elif self.name.lower() == 'the third wheel':
                 return 'Love is in the air—but what does that mean for Greg Heffley?'
             else:
-                return 'Sorry we do not have \a description for that book yet.'
+                return 'Sorry we do not have a description for that book yet.'
         else:
             return 'Sorry we do not have a description for this book yet.'
     #continue later ⬆️
@@ -104,18 +68,21 @@ class Animal:
             return 'maybe'
     def __add__(self, other):
         self.age += other
+        return self.age
     def __sub__(self, other):
         self.number_of_legs -= other
+        return self.number_of_legs
     def dead(self):
         self.alive = False
 class Computer:
-    def __init__(self, brand, price, processor, model, ram, storage):
+    def __init__(self, brand='NULL', price=600.00, processor='i3', model="NULL", ram=8, storage=256, year=2021):
         self.brand = brand
         self.price = price
         self.processor = processor
         self.model = model
         self.ram = ram
         self.storage = storage
+        self.year = year
     def is_it_expensive(self):
         if self.price < 999:
             return 'yes'
@@ -126,4 +93,13 @@ class Computer:
             return 'yes'
         else:
             return 'no'
-# work on later⬆️
+    def is_it_not_modern(self):
+        if self.year < 2017:
+            return 'yes'
+        else:
+            return 'no'
+    def is_it_modern(self):
+        if self.year < 2016:
+            return 'yes'
+        else:
+            return 'no'
