@@ -103,3 +103,11 @@ class Computer:
             return 'yes'
         else:
             return 'no'
+def sum2(*numbers):
+    total = 0
+
+    for i in numbers:
+        if isinstance(i, int):
+            return 'you should only put numbers in this function'
+        total += i
+    return total
