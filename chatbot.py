@@ -1,8 +1,9 @@
-import requests, random, datetime
+import requests, random, datetime, os
 from time import sleep
 def get_weather():
     key = 'c973e051a52d4f1122c7a0f9eff64fe4'
-    city = input('What is the name of the city you want to get the weather of?')
+    os.system(" say 'What is the name of the city you want to get the weather of?'")
+    city = input('')
     url = f'http://api.openweathermap.org/data/2.5/weather?appid={key}&q={city}'
     response = requests.get(url)
     x = response.json()
@@ -19,14 +20,14 @@ def get_weather():
         humidity = y['humidity']
         z = x['weather']
         description = z[0]['description']
-        print(f'Description : {description}')
-        print(f'Temperature : {temp}°F')
-        print(f'Feels Like: {feelslike}°F')
-        print(f'High Today: {maximum}°F')
-        print(f'Low Today: {minimum}°F')
-        print(f'Humidity : {humidity}%')
+        os.system(f"say 'Description : {description}'")
+        os.system(f"say 'Temperature : {temp}°F'")
+        os.system(f"say 'Feels Like: {feelslike}°F'")
+        os.system(f"say 'High Today: {maximum}°F'")
+        os.system(f"say 'Low Today: {minimum}°F'")
+        os.system(f"say 'Humidity : {humidity}%'")
     else:
-        print('The city was not found.')
+        os.system("say 'The city was not found.'")
 def tell_a_joke():
     number_of_jokes = 3
     joke_num = random.randint(1, number_of_jokes)
@@ -42,18 +43,20 @@ def tell_a_joke():
         print('Do you know why we tell actors to "break a leg"?')
         sleep(5)
         print('Because every play has a cast.')
+def story():
+    global the_story1
+    num_of_stories = 1
+    num = random.randint(1, num_of_stories)
+    if num == 1:
+        the_story1 = '''Once upon a time there was an old mother pig who had three little pigs and not enough food to feed them. So when they were old enough, she sent them out into the world to seek their fortunes.The first little pig was very lazy. He didn't want to work at all and he built his house out of straw. The second little pig worked a little bit harder but he was somewhat lazy too and he built his house out of sticks. Then, they sang and danced and played together the rest of the day.The third little pig worked hard all day and built his house with bricks. It was a sturdy house complete with a fine fireplace and chimney. It looked like it could withstand the strongest winds.The next day, a wolf happened to pass by the lane where the three little pigs lived and he saw the straw house, and he smelled the pig inside. He thought the pig would make a mighty fine meal and his mouth began to water.So he knocked on the door and said Little pig! Little pig!Let me in! Let me in!But the little pig saw the wolf's big paws through the keyhole, so he answered back No! No! No! Not by the hairs on my chinny chin chin!Then the wolf showed his teeth and said Then I'll huff and I'll puff and I'll blow your house down.So he huffed and he puffed and he blew the house down! The wolf opened his jaws very wide and bit down as hard as he could, but the first little pig escaped and ran away to hide with the second little pig.The wolf continued down the lane and he passed by the second house made of sticks; and he saw the house, and he smelled the pigs inside, and his mouth began to water as he thought about the fine dinner they would make.So he knocked on the door and said Little pigs! Little pigs!Let me in! Let me in!But the little pigs saw the wolf's pointy ears through the keyhole, so they answered back No! No! No!Not by the hairs on our chinny chin chins!So the wolf showed his teeth and said Then I'll huff and I'll puff and I'll blow your house down!So he huffed and he puffed and he blew the house down! The wolf was greedy and he tried to catch both pigs at once, but he was too greedy and got neither! His big jaws clamped down on nothing but air and the two little pigs scrambled away as fast as their little hooves would carry them.The wolf chased them down the lane and he almost caught them. But they made it to the brick house and slammed the door shut before the wolf could catch them. The three little pigs were very frightened, they knew the wolf wanted to eat them. And that was very, very true. The wolf hadn't eaten all day and he had worked up a large appetite chasing the pigs around and now he could smell all three of them inside and he knew that the three little pigs would make a lovely feast.So the wolf knocked on the door and said Little pigs! Little pigs!Let me in! Let me in!But the little pigs saw the wolf's narrow eyes through the keyhole, so they answered back No! No! No! Not by the hairs on our chinny chin chins!So the wolf showed his teeth and said Then I'll huff and I'll puff and I'll blow your house down.Well! he huffed and he puffed. He puffed and he huffed. And he huffed, huffed, and he puffed, puffed but he could not blow the house down. At last, he was so out of breath that he couldn't huff and he couldn't puff anymore. So he stopped to rest and thought a bit.But this was too much. The wolf danced about with rage and swore he would come down the chimney and eat up the little pig for his supper. But while he was climbing on to the roof the little pig made up a blazing fire and put on a big pot full of water to boil. Then, just as the wolf was coming down the chimney, the little piggy pulled off the lid, and plop! in fell the wolf into the scalding water. So the little piggy put on the cover again, boiled the wolf up, and the three little pigs ate him for supper.'''
+    os.system(f"say '{the_story1}'")
 name = 'Atul'
 birthday = '04/16/2010'
 day = datetime.datetime.now()
 day = day.strftime('%x')
-if day[:5] == birthday[:5]:
-    say_happy_b_day = True
-else:
-    say_happy_b_day = False
 while True:
-    if say_happy_b_day:
-        print('🎉🥳Happy Birthday!🎉🥳')
-        say_happy_b_day = False
+    if day[:5] == birthday[:5]:
+        os.system("say 'Happy Birthday!'")
     user_says = input().lower()
     user_says = user_says.strip()
     if user_says == 'what is the weather' or user_says == 'what is the weather?' or user_says == 'what is the weather outside' or user_says == 'what is the weather outside?':
@@ -61,4 +64,12 @@ while True:
     elif user_says == 'tell me a joke' or user_says == 'gimme a joke' or user_says == 'give me a joke' or user_says == 'please tell me a joke':
         tell_a_joke()
     elif user_says == 'hello' or user_says == 'hello!' or user_says == 'hi' or user_says == 'hi!' or user_says == 'hey' or user_says == 'hey!':
-        print('Hello!')
+        os.system(f"say 'Hello {name}!'")
+    elif user_says == 'i am feeling sad' or user_says == 'i am sad':
+        os.system("say 'I hope you feel better soon.'")
+    elif user_says == 'how are you' or user_says == 'how are you?':
+        os.system("say 'I am good.'")
+    elif user_says == 'tell me a story':
+        story()
+    else:
+        os.system("say 'Sorry, I do not understand.'")
