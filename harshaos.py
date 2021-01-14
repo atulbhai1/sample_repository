@@ -461,7 +461,7 @@ def pointless_button():
     message.mainloop()
 def about_os():
     about_window = Tk()
-    show = Label(about_window, text='OS: Harsha os 2.6')
+    show = Label(about_window, text='OS: Harsha os 2.6.1')
     show.pack()
     def ok_do_kay():
         about_window.destroy()
@@ -762,7 +762,7 @@ def rock_paper_scissors():
     button3.grid(column=0, row=3)
     mainloop()
 def os_command():
-        OPTIONS = ['pick a option', 'shoot the bad guy', 'see a image', 'run!', 'space invaders!', 'shape maker', 'bouncy balls', 'sqrt calculator', 'password generator', 'titanic game', 'about os', 'mess around with the pointless button', 'calculator', 'rock-paper-scissors', 'quit harsha os']
+        OPTIONS = ['pick a option', 'pong', 'shoot the bad guy', 'see a image', 'run!', 'space invaders!', 'shape maker', 'bouncy balls', 'sqrt calculator', 'password generator', 'titanic game', 'about os', 'mess around with the pointless button', 'calculator', 'rock-paper-scissors', 'quit harsha os']
         master = Tk()
         master.title('Harsha OS')
         master.geometry("400x400+0+0")
@@ -788,6 +788,8 @@ def os_command():
             stop = False
         elif to_do == 'shoot the bad guy':
             import shootthebadguy
+        if to_do == 'pong':
+            import pong
         elif to_do == 'run!':
             import run_away
             stop = False
