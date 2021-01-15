@@ -32,17 +32,17 @@ def tell_a_joke():
     number_of_jokes = 3
     joke_num = random.randint(1, number_of_jokes)
     if joke_num == 1:
-        print('What’s the best thing about Switzerland?')
-        sleep(5)
-        print('I don’t know, but the flag is a big plus.')
+        os.system("say 'What’s the best thing about Switzerland?'")
+        sleep(1)
+        os.system("say 'I don’t know, but the flag is a big plus.'")
     elif joke_num == 2:
-        print('I invented a new word!')
-        sleep(5)
-        print('Plagiarism!')
+        os.system("say 'I invented a new word!'")
+        sleep(1)
+        os.system("say 'Plagiarism!'")
     elif joke_num == 3:
-        print('Do you know why we tell actors to "break a leg"?')
-        sleep(5)
-        print('Because every play has a cast.')
+        os.system("say 'Do you know why we tell actors to 'break a leg'?'")
+        sleep(1)
+        os.system("say 'Because every play has a cast.'")
 def story():
     global the_story1
     num_of_stories = 1
@@ -52,24 +52,24 @@ def story():
     os.system(f"say '{the_story1}'")
 name = 'Atul'
 birthday = '04/16/2010'
-day = datetime.datetime.now()
-day = day.strftime('%x')
 while True:
+    day = datetime.datetime.now()
+    day = day.strftime('%x')
     if day[:5] == birthday[:5]:
         os.system("say 'Happy Birthday!'")
     user_says = input().lower()
     user_says = user_says.strip()
-    if user_says == 'what is the weather' or user_says == 'what is the weather?' or user_says == 'what is the weather outside' or user_says == 'what is the weather outside?':
+    if user_says.__contains__('weather'):
         get_weather()
-    elif user_says == 'tell me a joke' or user_says == 'gimme a joke' or user_says == 'give me a joke' or user_says == 'please tell me a joke':
+    elif user_says.__contains__('joke'):
         tell_a_joke()
-    elif user_says == 'hello' or user_says == 'hello!' or user_says == 'hi' or user_says == 'hi!' or user_says == 'hey' or user_says == 'hey!':
+    elif user_says.__contains__('hello') or user_says.__contains__('hi'):
         os.system(f"say 'Hello {name}!'")
-    elif user_says == 'i am feeling sad' or user_says == 'i am sad':
+    elif user_says.__contains__('I') and user_says.__contains__('am') and user_says.__contains__('sad'):
         os.system("say 'I hope you feel better soon.'")
-    elif user_says == 'how are you' or user_says == 'how are you?':
+    elif user_says.__contains__('how are you'):
         os.system("say 'I am good.'")
-    elif user_says == 'tell me a story':
+    elif user_says.__contains__('tell me a story'):
         story()
     else:
         os.system("say 'Sorry, I do not understand.'")

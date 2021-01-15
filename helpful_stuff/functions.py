@@ -1,3 +1,4 @@
+import os
 def sum2(*numbers):
     total = 0
     for i in numbers:
@@ -42,3 +43,5 @@ def len_of_a_sequence(first_num, last_num, increment_by, operation):
     return counter
 def sum_of_sequence(first_num, last_num, len_of_sequence):
     return (len_of_sequence*(first_num + last_num))/2
+def play_sound(location):
+    os.system(f'afplay {location}&')
