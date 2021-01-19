@@ -1,5 +1,6 @@
 import pygame
 from tkinter import *
+from tkinter.messagebox import *
 import random
 import gc
 from math import *
@@ -863,20 +864,9 @@ def a():
         close = Button(access_denied_window, text='ok', command=ok)
         close.pack()
         access_denied_window.mainloop()
-if __name__ == '__main__':
-    try:
-        a()
-    except:
-        Error_Window = Tk()
-        Error_label = Label(Error_Window, text='ERROR OCCURRED')
-        Error_label.pack()
 
-
-        def ok():
-            Error_Window.destroy()
-
-
-        Close = Button(Error_Window, text='ok', command=ok)
-        Close.pack()
-        Error_Window.mainloop()
-    gc.collect()
+try:
+    a()
+except:
+        showerror('ERROR', 'ERROR OCCURRED')
+gc.collect()
