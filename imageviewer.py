@@ -1,11 +1,9 @@
-#!/usr/bin/env python3
 import pygame
-print()
-print('Prepare to have the image ready in Pycharm.')
-print()
+from tkinter.filedialog import askopenfilename
 pygame.init()
 display = pygame.display.set_mode((800, 600))
-image = pygame.image.load(input('What image are you trying to see?'))
+file = input('Enter file location')
+image = pygame.image.load(file)
 while True:
     display.blit(image, (0, 0))
     for event in pygame.event.get():
