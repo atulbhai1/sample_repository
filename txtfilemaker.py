@@ -4,11 +4,12 @@ from tkinter.messagebox import askquestion
 from tkinter import ttk
 window = Tk()
 window.title('My Text Editor')
+Label(window, text='Enter the text below').grid(column=0, row=0)
 text_editor = Text(window, width=68, height=20, fg='black', font=(('Times'), 15), wrap=WORD)
-text_editor.grid(row=0, column=0)
+text_editor.grid(row=1, column=0)
 text_editor.insert(INSERT, 'Enter The Text')
 scroll = ttk.Scrollbar(window, orient=VERTICAL, command=text_editor.yview)
-scroll.grid(row=0, column=1, sticky=N+S)
+scroll.grid(row=1, column=1, sticky=N+S)
 text_editor.config(yscrollcommand=scroll.set)
 def save():
     result = text_editor.get(1.0, END)
