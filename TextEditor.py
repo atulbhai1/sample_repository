@@ -23,8 +23,11 @@ def delete():
     if reply == 'yes':
         text_editor.delete(0.0, END)
 def close():
-    reply = askquestion('Are You Sure?', 'Are You Sure?')
+    reply = askquestion('Are You Sure?', 'Are You Sure This Will Close The Window ?')
     if reply == 'yes':
+        reply2 = askquestion('Do You Want To Save The File', 'Do You Want To Save?')
+        if reply2 == 'yes':
+            save()
         window.destroy()
 def port():
     cont = askquestion('Are You Sure?', 'Are You Sure This Will Erase The Text Editor')
