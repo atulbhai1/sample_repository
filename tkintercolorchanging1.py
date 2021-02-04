@@ -1,19 +1,24 @@
 from tkinter import *
+from tkinter import colorchooser
 from random import randint
 window = Tk()
 label = Label(master=window, text='PRESS THE BUTTON TO CHANGE THE COLOR')
 label.pack()
 def converter(rgb):
     return '%02x%02x%02x' % rgb
-def ok(to):
-    label.config(fg='#'+converter((randint(0, 255), randint(0, 255), randint(0, 255))), bg='#'+converter((randint(0, 255), randint(0, 255), randint(0, 255))))
+def ok():
+    label.config(fg=colorchooser.askcolor()[1], bg=colorchooser.askcolor()[1])
     label.update()
-    to.config(fg='#'+converter((randint(0, 255), randint(0, 255), randint(0, 255))), bg='#'+converter((randint(0, 255), randint(0, 255), randint(0, 255))))
-    to.update()
-    window.config(bg='#'+converter((randint(0, 255), randint(0, 255), randint(0, 255))))
+    button.config(fg=colorchooser.askcolor()[1])
+    button.update()
+    button2.config(fg=colorchooser.askcolor()[1])
+    button2.update()
+    window.config(bg=colorchooser.askcolor()[1])
     window.update()
-button = Button(master=window, text='PRESS ME', command=lambda : ok(button))
+button = Button(master=window, text='PRESS ME', command=ok)
 button.pack()
+button2 = Button(master=window, text='CLOSE', command=window.destroy)
+button2.pack()
 window.geometry('350x300')
 window.mainloop()
 
