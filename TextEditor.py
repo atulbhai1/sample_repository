@@ -40,5 +40,4 @@ Button(window, text='Clear Text', command=delete).grid(row=55, column=0, sticky=
 Button(window, text='Close', command=close).grid(row=56, column=0, sticky=W)
 Button(window, text='Port from other file', command=port).grid(row=56, column=0, sticky=E)
 window.geometry('570x415')
-
 window.mainloop()
