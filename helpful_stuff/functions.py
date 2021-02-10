@@ -93,3 +93,41 @@ def get_dropdown(prompt, options=[''], name='tk', button='OK'):
     Button(window, text=button, command=window.destroy).grid(row=1, column=0, columnspan=2)
     window.mainloop()
     return answer.get()
+def dictionary_flipper(dictionary={'' : ''}):
+    ret = {}
+    for key, value in dictionary.items():
+        ret.update({value : key})
+    return ret
+def list_or_tuple_to_str(ob=['']):
+    rex = ''
+    for i in ob:
+        rex = rex + i
+    return rex
+def encoder(words=''):
+    key = {'': '', ' ': ' ', 'a': '~', 'b': '!', 'c': '@', 'd': '#', 'e': '$', 'f': '%', 'g': '^', 'h': '&', 'i': '*',
+           'j': '(', 'k': ')', 'l': '-', 'm': '_', 'n': '=', 'o': '+', 'p': '[', 'q': '{', 'r': ']', 's': '}',
+           't': '\\', 'u': '|', 'v': ';', 'w': ':', 'x': '\'', 'y': '"', 'z': ',', '~': 'a', '!': 'b', '@': 'c',
+           '#': 'd', '$': 'e', '%': 'f', '^': 'g', '&': 'h', '*': 'i', '(': 'j', ')': 'k', '-': 'l', '_': 'm', '=': 'n',
+           '+': 'o', '[': 'p', '{': 'q', ']': 'r', '}': 's', '\\': 't', '|': 'u', ';': 'v', ':': 'w', '\'': 'x',
+           '"': 'y', ',': 'z', 'A': '~', 'B': '!', 'C': '@', 'D': '#', 'E': '$', 'F': '%', 'G': '^', 'H': '&', 'I': '*',
+           'J': '(', 'K': ')', 'L': '-', 'M': '_', 'N': '=', 'O': '+', 'P': '[', 'Q': '{', 'R': ']', 'S': '}',
+           'T': '\\', 'U': '|', 'V': ';', 'W': ':', 'X': '\'', 'Y': '"', 'Z': ','}
+    word = list(words)
+    for i in range(len(word)):
+        try:
+            word[i] = key[word[i]]
+        except:pass
+    re = ''
+    for i in word:
+        re = re + i
+    return re
+def capitalize_dict(dictionary={'' : ''}):
+    ret = {}
+    for key, value in dictionary.items():
+        ret.update({key.capitalize() : value.capitalize()})
+    return ret
+def uppercase_dict(dictionary={'' : ''}):
+    ret = {}
+    for key, value in dictionary.items():
+        ret.update({key.upper() : value.upper()})
+    return ret
