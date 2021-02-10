@@ -1,4 +1,6 @@
 import os
+show = ''
+from tkinter import *
 def sum2(*numbers):
     total = 0
     for i in numbers:
@@ -8,13 +10,12 @@ def sum2(*numbers):
     return total
 def num_input(prompt='', accept_float='yes'):
     value = input(prompt)
-    show = ''
     try:
-        show = int(value)
+        awns = int(value)
     except ValueError:
         try:
             if accept_float == 'yes':
-                show = float(value)
+                awns = float(value)
             else:
                 raise ValueError
         except ValueError:
@@ -22,7 +23,7 @@ def num_input(prompt='', accept_float='yes'):
                 raise TypeError('You must enter a whole number!')
             else:
                 raise TypeError('You must enter a number!')
-    return show
+    return awns
 def make_copy(origin_file_location, copyfile_location):
     file = open(origin_file_location, 'r')
     info = file.read()
@@ -66,3 +67,29 @@ def word_splitter(words=''):
                 separated_words.append(words[b:i])
                 b = i + 1
     return separated_words
+def get_entry(prompt, name='tk', button='OK'):
+    global show
+    window = Tk()
+    window.title(name)
+    show = ''
+    Label(window, text=prompt).grid(row=0, column=0, sticky=W)
+    entry = Entry(window)
+    entry.grid(row=0, column=1)
+    def ok():
+        global show
+        show = entry.get()
+        window.destroy()
+    Button(window, text=button, command=ok).grid(row=2, column=0, columnspan=2)
+    window.mainloop()
+    return show
+def get_dropdown(prompt, options=[''], name='tk', button='OK'):
+    window = Tk()
+    window.title(name)
+    Label(window, text=prompt).grid(row=0, column=0, sticky=W)
+    answer = StringVar()
+    answer.set(options[1])
+    answers = list(options)
+    OptionMenu(window, answer, *answers).grid(row=0, column=1)
+    Button(window, text=button, command=window.destroy).grid(row=1, column=0, columnspan=2)
+    window.mainloop()
+    return answer.get()

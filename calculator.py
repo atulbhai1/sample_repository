@@ -1,4 +1,4 @@
-#!
+
 from tkinter import *
 
 
@@ -42,8 +42,12 @@ def calculator():
     def equals():
         global equation
         global txt
-        txt = eval(equation)
-        user_sees_txt.set(txt)
+        try:
+            txt = eval(equation)
+            user_sees_txt.set(txt)
+        except:
+            txt = 'ERROR OCCURRED'
+            user_sees_txt.set(txt)
         txt = ''
         equation = ''
 
