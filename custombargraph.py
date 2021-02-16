@@ -18,11 +18,9 @@ else:
     with open(filename, 'r') as data:
         for line in csv.DictReader(data):
             l.append(line)
-    print(l)
     labels = []
     for i, d in l[1].items():
         labels.append(i)
-    print(labels)
     hist.x_title = labels[0]
     hist.y_title = labels[1]
     x_values = []
