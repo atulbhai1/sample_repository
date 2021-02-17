@@ -129,10 +129,10 @@ def encoder(words=''):
         try:
             word[i] = key[word[i]]
         except:pass
-    re = ''
+    rex = ''
     for i in word:
-        re = re + i
-    return re
+        rex = rex + i
+    return rex
 def capitalize_dict(dictionary={'' : ''}):
     ret = {}
     for key, value in dictionary.items():
@@ -145,3 +145,48 @@ def uppercase_dict(dictionary={'' : ''}):
     return ret
 def mean(numbers=[0]):
     return sum(numbers)/len(numbers)
+def median(sequence=[0]):
+    if len(sequence) % 2 == 0:
+        ty = 'noGap'
+    else:
+        ty = 'Gap'
+    c = len(sequence) // 2 - 1
+    if ty == 'noGap':
+        an = (sequence[c] + sequence[c+1]) / 2
+    else:
+        an = sequence[c + 1]
+    return an
+def mode(sequence=[0]):
+    myDict = {}
+    counted = []
+    for i in range(len(sequence)):
+        if i == 0:
+            item = sequence[0]
+            item_count = 0
+            for t in sequence:
+                if t == item:
+                    item_count += 1
+            counted.append(item)
+            myDict.update({item : item_count})
+        else:
+            item = sequence[i]
+            if item in counted:
+                continue
+            item_count = 0
+            for t in sequence:
+                if t == item:
+                    item_count += 1
+            counted.append(item)
+            myDict.update({item : item_count})
+    ma = {'0' : 0}
+    for i, t in myDict.items():
+        if t == ma[list(ma.keys())[0]]:
+            ma.update({str(i) : t})
+        elif t > ma[list(ma.keys())[0]]:
+            ma = {str(i) : t}
+    ans = list(ma.keys())
+    for i in range(len(ans)):
+        ans[i] = int(ans[i])
+    if len(ans) == 1:
+        ans = ans[0]
+    return ans
