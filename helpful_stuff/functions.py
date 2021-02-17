@@ -143,3 +143,5 @@ def uppercase_dict(dictionary={'' : ''}):
     for key, value in dictionary.items():
         ret.update({key.upper() : value.upper()})
     return ret
+def mean(numbers=[0]):
+    return sum(numbers)/len(numbers)

@@ -14,6 +14,11 @@ if functions.get_dropdown('PORT FROM .csv FILE ?', ['YES', 'NO']) == 'NO':
     hist.x_labels = labels
 else:
     filename = askopenfilename()
+    point = 0
+    for i in range(len(filename)):
+        if filename[i] == '.':
+            point = i
+    filetype = filename[point:]
     l = []
     with open(filename, 'r') as data:
         for line in csv.DictReader(data):
