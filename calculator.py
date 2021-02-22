@@ -38,7 +38,6 @@ def calculator():
         equation = equation + '/'
         txt = txt + chr(247)
         user_sees_txt.set(txt)
-
     def equals():
         global equation
         global txt
@@ -201,8 +200,6 @@ def calculator():
     button_equal = Button(calculator_window, text='   ₌   ', command=equals, height=1, width=7)
     button_equal.grid(row=6, column=6)
     calculator_window.mainloop()
-
-
 try:
     calculator()
 except TypeError:

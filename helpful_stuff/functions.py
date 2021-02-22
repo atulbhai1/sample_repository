@@ -1,4 +1,5 @@
 import os
+from random import randint
 show = ''
 from tkinter import *
 def sum2(*numbers):
@@ -190,3 +191,9 @@ def mode(sequence=[0]):
     if len(ans) == 1:
         ans = ans[0]
     return ans
+def coinFlip():
+    chose = randint(0, 1)
+    if chose == 1:
+        return 'heads'
+    else:
+        return 'tails'
