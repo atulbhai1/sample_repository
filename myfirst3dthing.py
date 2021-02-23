@@ -29,4 +29,5 @@ class MyGame(ShowBase):
         self.camera.setHpr(angleDegrees, 0, 0)
         return Task.cont
 game = MyGame()
+import os
 game.run()

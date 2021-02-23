@@ -1,7 +1,8 @@
 import os
 from random import randint
-show = ''
 from tkinter import *
+import translators
+show = ''
 def sum2(*numbers):
     total = 0
     for i in numbers:
@@ -100,7 +101,7 @@ def get_dropdown(prompt, options=[''], name='tk', button='OK'):
     window.title(name)
     Label(window, text=prompt).grid(row=0, column=0, sticky=W)
     answer = StringVar()
-    answer.set(options[1])
+    answer.set(options[0])
     answers = list(options)
     OptionMenu(window, answer, *answers).grid(row=0, column=1)
     Button(window, text=button, command=window.destroy).grid(row=1, column=0, columnspan=2)
@@ -197,3 +198,6 @@ def coinFlip():
         return 'heads'
     else:
         return 'tails'
+def translate(text='hello', to_lang='english'):
+    lang_key = {'english': 'en', 'tamil': 'ta', 'french': 'fr', 'spanish': 'es'}
+    return translators.google(text, if_use_cn_host=True, to_language=lang_key[to_lang])
