@@ -1,5 +1,7 @@
 from ursina import *
 from ursina.prefabs.first_person_controller import  FirstPersonController
+
+from time import sleep
 app = Ursina()
 grass_texture = load_texture('grass_block.png')
 stone_texture = load_texture('stone_block.png')
@@ -27,7 +29,12 @@ def update():
         block_pick = 4
         sideBlock.change(dirt_texture)
     if held_keys['backspace']: app.destroy(), quit()
-    if player.y < 0: app.destroy(), quit()
+    if player.y < -10:
+        player.y = 0
+        if player.x > 25:player.x = 49
+        else:player.x = 0
+        if player.z > 25:player.z = 49
+        else:player.z = 0
 class Block(Button):
     def __init__(self, position=(0, 0, 0), texture=grass_texture):
         super(Block, self).__init__(parent=scene, position=position, model='block.obj'
