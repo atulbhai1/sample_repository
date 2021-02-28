@@ -27,6 +27,7 @@ def update():
         block_pick = 4
         sideBlock.change(dirt_texture)
     if held_keys['backspace']: app.destroy(), quit()
+    if player.y < 0: app.destroy(), quit()
 class Block(Button):
     def __init__(self, position=(0, 0, 0), texture=grass_texture):
         super(Block, self).__init__(parent=scene, position=position, model='block.obj'
