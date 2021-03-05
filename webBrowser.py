@@ -101,14 +101,14 @@ class MainWindow(QMainWindow):
         newTabBtn.setStatusTip('Makes a new tab')
         newTabBtn.triggered.connect(lambda :self.add_new_tab(QUrl('http://www.google.com'), 'Homepage'))
         navtb.addAction(newTabBtn)
+        navtb.setMovable(False)
         # creating first tab
         self.add_new_tab(QUrl('http://www.google.com'), 'Homepage')
-
         # showing all the components
         self.show()
 
         # setting window title
-        self.setWindowTitle("Geek PyQt5")
+        self.setWindowTitle("Web Browser")
 
         # method for adding new tab
 
