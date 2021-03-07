@@ -31,9 +31,9 @@ def update():
     if held_keys['backspace']: app.destroy(), quit()
     if player.y < -10:
         player.y = 0
-        if player.x > 25:player.x = 49
+        if player.x > 30:player.x = 59
         else:player.x = 0
-        if player.z > 25:player.z = 49
+        if player.z > 30:player.z = 59
         else:player.z = 0
 class Block(Button):
     def __init__(self, position=(0, 0, 0), texture=grass_texture):
@@ -58,7 +58,7 @@ class Block(Button):
 class Sky(Entity):
     def __init__(self):
         super(Sky, self).__init__(
-            parent=scene, model='sphere', texture =sky_texture, scale=150, double_sided=True)
+            parent=scene, model='sphere', texture =sky_texture, scale=200, double_sided=True)
 class Hand(Entity):
     def __init__(self):
         super(Hand, self).__init__(parent=camera.ui, model='arm.obj', texture=arm_texture, scale=0.2, rotation=Vec3(150, -10, 0), position=Vec2(0.4, -0.6))
@@ -71,8 +71,8 @@ class SideBlock(Entity):
         super(SideBlock, self).__init__(parent=camera.ui, model='block.obj', texture=grass_texture, scale=0.1, position=Vec2(0.6, 0.35), rotation=Vec3(20, -45, 0))
     def change(self, te=grass_texture):
         self.texture = te
-for z in range(50):
-    for x in range(50):
+for z in range(60):
+    for x in range(60):
         block = Block((x, 0, z))
 player = FirstPersonController()
 hand = Hand()
