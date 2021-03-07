@@ -1,7 +1,39 @@
 from ursina import *
 from ursina.prefabs.first_person_controller import  FirstPersonController
-
+import tkinter
 from time import sleep
+grass_strength = 1
+stone_strength = 1
+brick_strength = 1
+dirt_strength = 1
+width = 60
+length = 60
+window = tkinter.Tk()
+tkinter.Label(window).grid(row=0, column=0)
+heightEntry = tkinter.Entry(window)
+heightEntry.insert(0, '60')
+heightEntry.grid(row=0, column=1)
+widthEntry = tkinter.Entry(window)
+widthEntry.insert(0, '60')
+widthEntry.grid(row=1, column=1)
+grassStrengthEntry = tkinter.Entry(window)
+grassStrengthEntry.insert(0, '1')
+grassStrengthEntry.grid(row=2, column=1)
+stoneStrengthEntry = tkinter.Entry(window)
+stoneStrengthEntry.insert(0, '1')
+stoneStrengthEntry.grid(row=3, column=1)
+brickStrengthEntry = tkinter.Entry(window)
+brickStrengthEntry.insert(0, '1')
+brickStrengthEntry.grid(row=4, column=1)
+dirtStrengthEntry = tkinter.Entry(window)
+dirtStrengthEntry.insert(0, '1')
+dirtStrengthEntry.grid(row=5, column=1)
+def ok():
+    global width, length, grass_strength, dirt_strength, brick_strength, stone_strength
+    width, length, grass_strength, stone_strength, brick_strength, dirt_strength = int(widthEntry.get()), int(heightEntry.get()), int(grassStrengthEntry.get()), int(stoneStrengthEntry.get()), int(brickStrengthEntry.get()), int(dirtStrengthEntry.get())
+    window.destroy()
+tkinter.Button(window, text='Load Game', command=ok).grid(row=6, columnspan=2)
+window.mainloop()
 app = Ursina()
 grass_texture = load_texture('grass_block.png')
 stone_texture = load_texture('stone_block.png')
@@ -31,30 +63,33 @@ def update():
     if held_keys['backspace']: app.destroy(), quit()
     if player.y < -10:
         player.y = 0
-        if player.x > 30:player.x = 59
+        if player.x > width/2:player.x = width-1
         else:player.x = 0
-        if player.z > 30:player.z = 59
+        if player.z > length/2:player.z = length-1
         else:player.z = 0
 class Block(Button):
-    def __init__(self, position=(0, 0, 0), texture=grass_texture):
+    def __init__(self, position=(0, 0, 0), texture=grass_texture, strength=grass_strength):
         super(Block, self).__init__(parent=scene, position=position, model='block.obj'
                                     , origin_y=0.5, texture=texture,
                                     color=color.color(0, 0, random.uniform(0.9, 1)),
                                     scale=0.5)
+        self.strength = strength
     def input(self, key):
         if self.hovered:
             if key == 'left mouse down':
                 # noinspection PyShadowingNames
                 if block_pick == 1:
-                    block = Block(self.position + mouse.normal, grass_texture)
+                    block = Block(self.position + mouse.normal, grass_texture, grass_strength)
                 if block_pick == 2:
-                    block = Block(self.position + mouse.normal, stone_texture)
+                    block = Block(self.position + mouse.normal, stone_texture, stone_strength)
                 if block_pick == 3:
-                    block = Block(self.position + mouse.normal, brick_texture)
+                    block = Block(self.position + mouse.normal, brick_texture, brick_strength)
                 if block_pick == 4:
-                    block = Block(self.position + mouse.normal, dirt_texture)
+                    block = Block(self.position + mouse.normal, dirt_texture, dirt_strength)
             if key == 'right mouse down':
-                destroy(self)
+                self.strength -= 1
+                if self.strength <= 0:
+                    destroy(self)
 class Sky(Entity):
     def __init__(self):
         super(Sky, self).__init__(
@@ -71,8 +106,8 @@ class SideBlock(Entity):
         super(SideBlock, self).__init__(parent=camera.ui, model='block.obj', texture=grass_texture, scale=0.1, position=Vec2(0.6, 0.35), rotation=Vec3(20, -45, 0))
     def change(self, te=grass_texture):
         self.texture = te
-for z in range(60):
-    for x in range(60):
+for z in range(width):
+    for x in range(length):
         block = Block((x, 0, z))
 player = FirstPersonController()
 hand = Hand()
