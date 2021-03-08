@@ -1,0 +1,36 @@
+import smtplib, os
+from tkinter import *
+username, password = '', ''
+window = Tk()
+Label(window, text='Username:').grid(row=0, column=0)
+usernameEntry = Entry(window)
+usernameEntry.insert(0, 'atulbhai.nitin@gmail.com')
+usernameEntry.grid(row=0, column=1)
+Label(window, text='Password:').grid(row=1, column=0)
+passwordEntry = Entry(window)
+passwordEntry.insert(0, 'atulbhai1')
+passwordEntry.grid(row=1, column=1)
+def login():
+    global username, password
+    username, password = usernameEntry.get(), passwordEntry.get()
+    window.destroy()
+Button(window, text='LOGIN', command=login).grid(row=2, column=0, columnspan=2)
+window.mainloop()
+server = smtplib.SMTP('smtp.gmail.com', 587)
+server.starttls()
+server.login(username, password)
+window = Tk()
+Label(window, text='To:').grid(row=0, column=0)
+sendTo = Entry(window)
+sendTo.grid(row=0, column=1)
+Label(window, text='Message:').grid(row=1, column=0)
+message = Text(window, width=50, height=10)
+message.grid(row=1, column=1)
+def send():
+    server.sendmail(username, str(sendTo.get()), str(message.get(0.0, END)))
+    message.delete(0.0, END)
+    os.system(f'osascript -e \'display notification "Your message was sent to {str(sendTo.get())}" with title "Success"\'')
+Button(window, text='SEND', command=send).grid(row=2, column=0, columnspan=2)
+Button(window, text='CLOSE', command=window.destroy).grid(row=3, column=0, columnspan=2)
+window.mainloop()
+server.close()
