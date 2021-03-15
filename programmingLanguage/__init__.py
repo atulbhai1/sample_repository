@@ -2,11 +2,10 @@ import basic
 from sty import fg
 def shell():
     text = ''
-    while text != 'quit':
+    while True:
         text = input('basic > ')
-        if text == 'quit'or text == 'pass':continue
         result, error = basic.run('<main>', text)
         if error:
             print(fg.da_red + error.as_string() + fg.rs)
-        else: print(result)
+        elif result: print(result)
 shell()
