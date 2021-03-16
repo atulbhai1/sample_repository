@@ -1,4 +1,4 @@
-import requests, random, datetime, os
+import requests, random, datetime, os, pyjokes
 from time import sleep
 def get_weather():
     key = 'c973e051a52d4f1122c7a0f9eff64fe4'
@@ -29,20 +29,7 @@ def get_weather():
     else:
         os.system("say 'The city was not found.'")
 def tell_a_joke():
-    number_of_jokes = 3
-    joke_num = random.randint(1, number_of_jokes)
-    if joke_num == 1:
-        os.system("say 'What’s the best thing about Switzerland?'")
-        sleep(1)
-        os.system("say 'I don’t know, but the flag is a big plus.'")
-    elif joke_num == 2:
-        os.system("say 'I invented a new word!'")
-        sleep(1)
-        os.system("say 'Plagiarism!'")
-    elif joke_num == 3:
-        os.system("say 'Do you know why we tell actors to 'break a leg'?'")
-        sleep(1)
-        os.system("say 'Because every play has a cast.'")
+    os.system(f"say '{pyjokes.get_joke()}'")
 def story():
     global the_story1
     num_of_stories = 1
@@ -52,6 +39,7 @@ def story():
     os.system(f"say '{the_story1}'")
 name = 'Atul'
 birthday = '04/16/2010'
+os.system("say 'Hello! How can I help you?'")
 while True:
     day = datetime.datetime.now()
     day = day.strftime('%x')
@@ -71,5 +59,6 @@ while True:
         os.system("say 'I am good.'")
     elif user_says.__contains__('tell me a story'):
         story()
+    elif user_says.__contains__('bye'):break
     else:
         os.system("say 'Sorry, I do not understand.'")

@@ -1,11 +1,14 @@
 import basic
 from sty import fg
-def shell():
-    text = ''
-    while True:
-        text = input('basic > ')
-        result, error = basic.run('<main>', text)
-        if error:
-            print(fg.da_red + error.as_string() + fg.rs)
-        elif result: print(result)
-shell()
+def shell(comm):
+
+    result, error = basic.run('<main>', text)
+    if error:
+            return None, str(fg.da_red + error.as_string() + fg.rs)
+    elif result: return result, None
+while True:
+    text = input('basic > ')
+    result, error = shell(text)
+    if error:print(error)
+    elif result:
+        print(result)
