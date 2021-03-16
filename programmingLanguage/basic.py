@@ -805,6 +805,25 @@ class Parser:
         res.register_advancement()
         self.advance()
         arg_name_tokens = []
+        if self.current_tok.type == TT_IDENTIFIER:
+            arg_name_tokens.append(self.current_tok)
+            res.register_advancement()
+            self.advance()
+            while self.current_tok.type == TT_COMMA:
+                res.register_advancement()
+                self.advance()
+                if self.current_tok.type == TT_IDENTIFIER:
+                    arg_name_tokens.append(self.current_tok)
+                    res.register_advancement()
+                    self.advance()
+                else:
+                    return res.failure(InvalidSyntaxError(self.current_tok.pos_start, self.current_tok.pos_end, f"Expected Identifier"))
+            if self.current_tok.type != TT_RPAREN:
+                return res.failure(InvalidSyntaxError(self.current_tok.pos_start, self.current_tok.pos_end, "Expected ',' or ')'"))
+        else:
+            if self.current_tok.type != TT_RPAREN:
+                return res.failure(InvalidSyntaxError(self.current_tok.pos_start, self.current_tok.pos_end, "Expected Identifier or ')'"))
+
 
 
 #######################################
