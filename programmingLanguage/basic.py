@@ -1288,7 +1288,6 @@ class String(Value):
     def __repr__(self):
         return f'"{self.value}"'
 
-
 class List(Value):
     def __init__(self, elements):
         super().__init__()
@@ -1859,7 +1858,6 @@ class Interpreter:
         return_value = return_value.copy().set_pos(node.pos_start, node.pos_end).set_context(context)
         return res.success(return_value)
 
-
 #######################################
 # RUN
 #######################################
@@ -1883,6 +1881,7 @@ global_symbol_table.set("APPEND", BuiltInFunction.append)
 global_symbol_table.set("POP", BuiltInFunction.pop)
 global_symbol_table.set("EXTEND", BuiltInFunction.extend)
 global_symbol_table.set('TERMINAL', BuiltInFunction.terminal)
+global_symbol_table.set("PASS", String(''))
 
 
 def run(fn, text):

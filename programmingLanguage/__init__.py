@@ -14,6 +14,9 @@ while True:
     if error:print(error)
     elif result:
         print(result)
+#############################################################
+#
+#os.chdir('/Users/srinivasansrinivasan/PycharmProjects/sample_repository')
 #        def execute_terminal(self, exec_ctx):
 #         comm = exec_ctx.symbol_table.get('comm')
 #         if isinstance(comm, String):
@@ -30,3 +33,7 @@ while True:
 #
 #
 #global_symbol_table.set('TERMINAL', BuiltInFunction.terminal)
+#
+#######################################################
+#
+#global_symbol_table.set("PASS", String(''))
