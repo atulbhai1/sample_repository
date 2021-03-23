@@ -3,8 +3,9 @@ from sty import fg
 if not sys.stdin.isatty():
     print(str(fg.da_red + 'Use terminal for access to clear function' + fg.rs))
 def shell(comm):
-
-    result, error = basic.run('<main>', text)
+    if "QUIT" in comm:
+        quit()
+    result, error = basic.run('<main>', comm)
     if error:
             return None, str(fg.da_red + error.as_string() + fg.rs)
     elif result: return result, None
@@ -17,6 +18,8 @@ while True:
 #############################################################
 #
 #os.chdir('/Users/srinivasansrinivasan/PycharmProjects/sample_repository')
+#
+#
 #        def execute_terminal(self, exec_ctx):
 #         comm = exec_ctx.symbol_table.get('comm')
 #         if isinstance(comm, String):
@@ -34,6 +37,3 @@ while True:
 #
 #global_symbol_table.set('TERMINAL', BuiltInFunction.terminal)
 #
-#######################################################
-#
-#global_symbol_table.set("PASS", String(''))
