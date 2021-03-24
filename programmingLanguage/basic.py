@@ -2,7 +2,7 @@
 # IMPORTS
 #######################################
 
-from strings_with_arrows import *
+from programmingLanguage.strings_with_arrows import *
 
 import string
 import os
