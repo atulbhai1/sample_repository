@@ -16,6 +16,82 @@ class GameState:
         self.board[move.endRow][move.endCol] = move.pieceMoved
         self.moveLog.append(move)
         self.whiteToMove = not self.whiteToMove
+    def undoMove(self):
+        if len(self.moveLog) != 0:
+            move = self.moveLog.pop()
+            self.board[move.startRow][move.startCol] = move.pieceMoved
+            self.board[move.endRow][move.endCol] = move.pieceCaptured
+            self.whiteToMove = not self.whiteToMove
+    def getValidMoves(self):
+        return self.getAllPossibleMoves()
+    def getAllPossibleMoves(self):
+        moves = []
+        for r in range(len(self.board)):
+            for c in range(len(self.board[r])):
+                turn = self.board[r][c][0]
+                if (turn == 'w' and self.whiteToMove) or (turn == 'b' and not self.whiteToMove):
+                    piece = self.board[r][c][1]
+                    if piece == 'p':
+                        self.getPawnMoves(r, c, moves)
+                    elif piece == 'R':
+                        self.getRookMoves(r, c, moves)
+        return moves
+    def getPawnMoves(self, r, c, moves):
+        if self.whiteToMove:
+            if self.board[r-1][c] == '--':
+                moves.append(Move((r, c), (r-1, c), self.board))
+                if r == 6 and self.board[r-2][c] == '--':
+                    moves.append(Move((r, c), (r-2, c), self.board))
+            if c - 1 >= 0:
+                if self.board[r-1][c-1] != '--':
+                    if self.board[r-1][c-1][0] != 'w':
+                        moves.append(Move((r, c), (r-1, c-1), self.board))
+            if c + 1 < 8:
+                if self.board[r-1][c+1] != '--':
+                    if self.board[r - 1][c + 1][0] != 'w':
+                        moves.append(Move((r, c), (r-1, c+1), self.board))
+        else:
+            if self.board[r+1][c] == '--':
+                moves.append(Move((r, c), (r+1, c), self.board))
+                if r == 1 and self.board[r+2][c] == '--':
+                    moves.append(Move((r, c), (r+2, c), self.board))
+            if c - 1 >= 0:
+                if self.board[r+1][c-1] != '--':
+                    if self.board[r+1][c-1][0] != 'b':
+                        moves.append(Move((r, c), (r+1, c-1), self.board))
+            if c + 1 < 8:
+                if self.board[r+1][c+1] != '--':
+                    if self.board[r + 1][c + 1][0] != 'b':
+                        moves.append(Move((r, c), (r+1, c+1), self.board))
+    def getRookMoves(self, r, c, moves):
+        for exR in  range(r - 1, -1, -1):
+            if self.board[exR][c] == '--':
+                moves.append(Move((r, c), (exR, c), self.board))
+            else:
+                if self.board[exR][c][0] != self.board[r][c][0]:
+                    moves.append(Move((r, c), (exR, c), self.board))
+                break
+        for exR in range(r + 1, 8):
+            if self.board[exR][c] == '--':
+                moves.append(Move((r, c), (exR, c), self.board))
+            else:
+                if self.board[exR][c][0] != self.board[r][c][0]:
+                    moves.append(Move((r, c), (exR, c), self.board))
+                break
+        for exC in range(c - 1, -1, -1):
+            if self.board[r][exC] == '--':
+                moves.append(Move((r, c), (r, exC), self.board))
+            else:
+                if self.board[r][exC][0] != self.board[r][c][0]:
+                    moves.append(Move((r, c), (r, exC), self.board))
+                break
+        for exC in range(c + 1, 8):
+            if self.board[r][exC] == '--':
+                moves.append(Move((r, c), (r, exC), self.board))
+            else:
+                if self.board[r][exC][0] != self.board[r][c][0]:
+                    moves.append(Move((r, c), (r, exC), self.board))
+                break
 class Move:
     ranksToRows = {'1':7, '2':6, '3':5, '4':4, '5':3, '6':2, '7':1, '8':0}
     rowsToRanks = {v: k for k, v in ranksToRows.items()}
@@ -28,7 +104,13 @@ class Move:
         self.endCol = endSQ[1]
         self.pieceMoved = board[self.startRow][self.startCol]
         self.pieceCaptured = board[self.endRow][self.endCol]
+        self.moveID = self.startRow*1000 + self.startCol*100 + self.endRow*10 + self.endCol
+        print(self.moveID)
     def getChessNotation(self):
         return self.getRankFile(self.startRow, self.startCol) + self.getRankFile(self.endRow, self.endCol)
     def getRankFile(self, r, c):
         return self.colsToFiles[c] + self.rowsToRanks[r]
+    def __eq__(self, other):
+        if isinstance(other, Move):
+            return self.moveID == other.moveID
+        return False
