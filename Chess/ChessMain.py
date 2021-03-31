@@ -39,6 +39,9 @@ def main():
                 else:
                     sqSelected = (row, col)
                     playerClicks.append(sqSelected)
+                if len(playerClicks) == 1 and gs.board[sqSelected[0]][sqSelected[1]] == '--':
+                    playerClicks = []
+                    sqSelected = ()
                 if len(playerClicks) == 2:
                     move = ChessEngine.Move(playerClicks[0], playerClicks[1], board=gs.board)
                     print(move.getChessNotation())
