@@ -1,17 +1,18 @@
 import pygame as p
 from Chess import ChessEngine
 from tkinter.messagebox import showinfo
-WIDTH = HEIGHT = 512
+HEIGHT = 512
+WIDTH = 712
 DIMENSION = 8
 SQ_SIZE = HEIGHT // DIMENSION
 MAX_FPS = 15
 IMAGES = {}
+p.init()
 def loadImages():
     pieces = ['bR', 'bN', 'bB', 'bQ', 'bK', 'bp', 'wR', 'wN', 'wB', 'wK', 'wQ', 'wp']
     for piece in pieces:
         IMAGES[piece] = p.transform.scale(p.image.load(f'images/{piece}.png'), (SQ_SIZE, SQ_SIZE))
 def main():
-    p.init()
     screen = p.display.set_mode((WIDTH, HEIGHT))
     clock = p.time.Clock()
     screen.fill(p.Color('white'))
@@ -71,13 +72,20 @@ def main():
             else:
                 winner = 'White'
             won = True
-        drawGameState(screen, gs)
+            continue
+        drawGameState(screen, gs, sqSelected)
         clock.tick(MAX_FPS)
         p.display.flip()
     p.quit()
-def drawGameState(scr, g):
+oldPiece = None
+def drawGameState(scr, g, sq):
     drawBoard(scr)
     drawPieces(scr, g)
+    if len(sq) == 2:
+        piece = g.board[sq[0]][sq[1]]
+    else:
+        piece = 'No Piece Selected'
+    drawSelectedPiece(piece, scr)
 def drawBoard(scr):
     colors = [p.Color('white'), p.Color('gray')]
     for r in range(DIMENSION):
@@ -90,6 +98,15 @@ def drawPieces(scr, g):
             piece = g.board[r][c]
             if piece != '--':
                 scr.blit(IMAGES[piece], p.Rect(c*SQ_SIZE, r*SQ_SIZE, SQ_SIZE, SQ_SIZE))
+font = p.font.Font('freesansbold.ttf', 20)
+def drawSelectedPiece(pc, scr):
+    global oldPiece
+    scr.blit(font.render('You have selected:', True, (0, 0, 0)), (512, 100))
+    if pc != '--' and pc != 'No Piece Selected':
+        scr.blit(IMAGES[pc], (600, 200))
+        if oldPiece is not None:
+            scr.blit(oldPiece, (1000, 1000))
+        oldPiece = IMAGES[pc]
 if __name__ == '__main__':
     main()
     #
