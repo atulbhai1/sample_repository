@@ -23,9 +23,7 @@ def main():
     running = True
     sqSelected = ()
     playerClicks = []
-    winner = None
-    won = False
-    while running and not won:
+    while running :
         for e in p.event.get():
             if e.type == p.QUIT:
                 running = False
@@ -55,24 +53,12 @@ def main():
                 if e.key == p.K_z:
                     gs.undoMove()
                     moveMade = True
+                    sqSelected = ()
+                    playerClicks = []
         if moveMade:
             validMoves = gs.getValidMoves()
             moveMade = False
             print(len(validMoves))
-        whiteSurvives = False
-        blackSurvives = False
-        for row in gs.board:
-            if 'wK' in row:
-                whiteSurvives = True
-            if 'bK' in row:
-                blackSurvives = True
-        if not blackSurvives or not whiteSurvives:
-            if blackSurvives:
-                winner = 'Black'
-            else:
-                winner = 'White'
-            won = True
-            continue
         drawGameState(screen, gs, sqSelected)
         clock.tick(MAX_FPS)
         p.display.flip()
