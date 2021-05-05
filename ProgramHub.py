@@ -5,7 +5,7 @@ for root, dirs, files in os.walk('/Users/srinivasansrinivasan/PycharmProjects/sa
     for file in files:
         if file.endswith('.py'):
             options.append(file)
-options.pop(), options.pop(), options.pop(), options.remove('Server.py'), options.remove('Client.py'), options.remove('ProgramHub.py'), options.remove('__init__.py'), options.remove('functions.py'), options.remove('classes.py')
+#options.pop(), options.pop(), options.pop(), options.remove('Server.py'), options.remove('Client.py'), options.remove('ProgramHub.py'), options.remove('__init__.py'), options.remove('functions.py'), options.remove('classes.py')
 option = ''
 options.append('close')
 def get_dropdown(prompt, possibleOptions=[''], name='tk', button='OK'):

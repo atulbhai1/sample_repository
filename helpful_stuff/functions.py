@@ -69,18 +69,6 @@ def play_sound(location):
     os.system(f'afplay {location}&')
 def say(to_say=''):
     os.system(f"say '{to_say}'")
-def word_splitter(words=''):
-    if not isinstance(words, str):
-        raise TypeError('The value of words must be a string!')
-    words = words + ' '
-    separated_words = []
-    b = 0
-    for i in range(len(words)):
-        if i != 0:
-            if words[i] == ' ':
-                separated_words.append(words[b:i])
-                b = i + 1
-    return separated_words
 def get_entry(prompt, name='tk', button='OK'):
     global show
     window = Tk()
@@ -201,3 +189,29 @@ def coinFlip():
 def translate(text='hello', to_lang='english'):
     lang_key = {'english': 'en', 'tamil': 'ta', 'french': 'fr', 'spanish': 'es'}
     return translators.google(text, if_use_cn_host=True, to_language=lang_key[to_lang])
+def rgbToHex(rgb):
+    return '%02x%02x%02x' % rgb
+def tokenizeWordsInSentence(string=''):
+    wordList = []
+    start = 0
+    for pos, letter in enumerate(string):
+        if letter == ' ':
+            word = string[start : pos]
+            wordList.append(word)
+            start = pos + 1
+        if pos == len(string) - 1:
+            word = string[start: ]
+            wordList.append(word)
+    return wordList
+def tokenizeSentence(string=''):
+    sentenceList = []
+    start = 0
+    for pos, letter in enumerate(string):
+        if letter == '.' or letter == '!' or letter == '?':
+            sentence = string[start : pos + 1]
+            sentenceList.append(sentence)
+            start = pos + 1
+        if pos == len(string) - 1:
+            sentence = string[start: ]
+            sentenceList.append(sentence)
+    return sentenceList
