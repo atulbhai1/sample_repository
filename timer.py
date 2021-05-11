@@ -1,51 +1,50 @@
-import time, tkinter.messagebox, tkinter
-hours = 0
-minutes = 0
-seconds = 0
-window = tkinter.Tk()
-tkinter.Label(window, text='Hours:').grid(row=0, column=0)
-hours_entry = tkinter.Entry(window, width=30)
-hours_entry.insert(0, '0')
-hours_entry.grid(row=0, column=1)
-tkinter.Label(window, text='Minutes:').grid(row=1, column=0)
-minutes_entry = tkinter.Entry(window, width=30)
-minutes_entry.insert(0, '0')
-minutes_entry.grid(row=1, column=1)
-tkinter.Label(window, text='Seconds:').grid(row=2, column=0)
-seconds_entry = tkinter.Entry(window, width=30)
-seconds_entry.insert(0, '0')
-seconds_entry.grid(row=2, column=1)
-def get():
-    global hours, minutes, seconds
-    hours = int(hours_entry.get())
-    minutes = int(minutes_entry.get())
-    seconds = int(seconds_entry.get())
-    seconds += minutes*60 + hours*3600
-    window.destroy()
-tkinter.Button(window, text='Make The Timer', command=get).grid(row=3, column=1)
+import sys
+from tkinter import *
+from tkinter.messagebox import showinfo
+t = 0
+def convert(seconds):
+    seconds = seconds % (24 * 3600)
+    hour = seconds // 3600
+    seconds %= 3600
+    minutes = seconds // 60
+    seconds %= 60
+    return "%d:%02d:%02d" % (hour, minutes, seconds)
+def set_timer():
+    global t
+    t = int(e1.get()) * 3600 + int(e2.get()) * 60 + int(e3.get())
+    return t
+def countdown():
+    global t
+    if t > 0:
+        l1.config(text=convert(t))
+        t = t-1
+        l1.after(1000, countdown)
+    elif t == 0:
+        l1.config(text='Set Timer')
+        showinfo(message='Your Timer Is Over')
+def clear():
+    global t
+    t = 0
+window = Tk()
+window.title("Timer")
+l1 = Label(window, font='times 20', text= 'Set Timer')
+l1.grid(row=1, column=2)
+Label(window, text='Hours:').grid(row=3, column=1)
+e1 = Entry(window)
+e1.insert(0, '0')
+e1.grid(row=3, column=2)
+Label(window, text='Minutes:').grid(row=4, column=1)
+e2 = Entry(window)
+e2.insert(0, '0')
+e2.grid(row=4, column=2)
+Label(window, text='Seconds:').grid(row=5, column=1)
+e3 = Entry(window)
+e3.insert(0, '0')
+e3.grid(row=5, column=2)
+button1 = Button(window, text='Set', width=21, command=set_timer, bd=2)
+button1.grid(row=6, column=2, padx = 21, pady=5)
+button2 = Button(window, text='Start', width=21, command=countdown, bd=2)
+button2.grid(row=7, column=2, padx=21)
+button3 = Button(window, text='Clear', width=21, command=clear, bd=2)
+button3.grid(row=8, column=2, padx=21)
 window.mainloop()
-keep_counting = True
-if minutes > 59:
-    raise ValueError('Minutes can be a maximum of 59.For anything over 59 minutes use hours.')
-if seconds > 59:
-    raise ValueError('Seconds can be a maximum of 59.For anything over 59 seconds use minutes.')
-try:
-    window = tkinter.Tk()
-    show = tkinter.Label(window, text='')
-    show.pack()
-    def delete():
-        window.destroy()
-    tkinter.Button(window, text='Delete', command=delete).pack()
-    start = time.time()
-    while keep_counting:
-            time.sleep(1)
-            current_time = time.time()
-            if current_time - start >= seconds:
-                keep_counting = False
-                tkinter.messagebox.showinfo(title='YOUR TIMER IS OVER!', message='YOUR TIMER IS OVER!')
-                window.destroy()
-                continue
-            show.config(text=str(int(seconds - (current_time-start)))+' seconds left')
-            show.update()
-    window.mainloop()
-except:pass
