@@ -2,6 +2,7 @@ import sys
 from tkinter import *
 from tkinter.messagebox import showinfo
 t = 0
+timer_on = True
 def convert(seconds):
     seconds = seconds % (24 * 3600)
     hour = seconds // 3600
@@ -17,7 +18,8 @@ def countdown():
     global t
     if t > 0:
         l1.config(text=convert(t))
-        t = t-1
+        if timer_on:
+            t = t-1
         l1.after(1000, countdown)
     elif t == 0:
         l1.config(text='Set Timer')
@@ -25,6 +27,13 @@ def countdown():
 def clear():
     global t
     t = 0
+def pauseUnpause():
+    global timer_on
+    timer_on = not timer_on
+    if timer_on:
+        button4.config(text='Pause')
+    else:
+        button4.config(text='Unpause')
 window = Tk()
 window.title("Timer")
 l1 = Label(window, font='times 20', text= 'Set Timer')
@@ -47,4 +56,6 @@ button2 = Button(window, text='Start', width=21, command=countdown, bd=2)
 button2.grid(row=7, column=2, padx=21)
 button3 = Button(window, text='Clear', width=21, command=clear, bd=2)
 button3.grid(row=8, column=2, padx=21)
+button4 = Button(window, text='Pause', width=21, command=pauseUnpause, bd=2)
+button4.grid(row=9, column=2, padx=21)
 window.mainloop()
