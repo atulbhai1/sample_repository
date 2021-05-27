@@ -1,7 +1,6 @@
 from ursina import *
 from ursina.prefabs.first_person_controller import  FirstPersonController
 import tkinter
-from time import sleep
 grass_strength = 1
 stone_strength = 1
 brick_strength = 1
@@ -115,6 +114,7 @@ for z in range(width):
     for x in range(length):
         block = Block((x, 0, z))
 player = FirstPersonController()
+player.y += 1
 hand = Hand()
 sky = Sky()
 sideBlock = SideBlock()

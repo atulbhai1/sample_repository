@@ -215,3 +215,21 @@ def tokenizeSentence(string=''):
             sentence = string[start: ]
             sentenceList.append(sentence)
     return sentenceList
+def factorial(num=1):
+    bigNum = 1
+    if num > 1:
+        bigNum *= factorial(num - 1) * num
+        return bigNum
+    elif num == 1:
+        return 1
+    if num == 0:
+        return 0
+def sumtorial(num=1):
+    bigNum = 1
+    if num > 1:
+        bigNum += sumtorial(num - 1) + num
+        return bigNum
+    elif num == 1:
+        return 1
+    if num == 0:
+        return 0
