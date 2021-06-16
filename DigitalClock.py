@@ -19,4 +19,3 @@ while count:
         lbl.update()
     if count:
         window.update()
-window.mainloop()
