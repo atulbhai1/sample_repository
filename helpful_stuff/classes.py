@@ -103,3 +103,17 @@ class Computer:
             return 'yes'
         else:
             return 'no'
+import statistics
+class SetOfNumbers:
+    def __init__(self, setOfNumbers=[1, 2, 3, 4, 5]):
+        self.setOfNumbers = setOfNumbers
+        self.mean = statistics.mean(self.setOfNumbers)
+        self.mode = statistics.mode(self.setOfNumbers)
+        self.median = statistics.median(self.setOfNumbers)
+        self.standardDeviation = statistics.stdev(self.setOfNumbers)
+        self.variance = statistics.variance(self.setOfNumbers)
+        self.interquartileRange = statistics.quantiles(self.setOfNumbers)[2] - statistics.quantiles(self.setOfNumbers)[0]
+    def __repr__(self):
+        return self.setOfNumbers
+    def __str__(self):
+        return str(self.setOfNumbers)
