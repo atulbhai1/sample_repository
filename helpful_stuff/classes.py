@@ -123,4 +123,3 @@ class SetOfNumbers:
     def showAsBoxPlot(self):
         sns.boxplot(x=self.setOfNumbers)
         plt.show()
-SetOfNumbers([1, 2, 3, 4, 5]).showAsBoxPlot()
