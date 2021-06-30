@@ -121,5 +121,6 @@ class SetOfNumbers:
     def __str__(self):
         return str(self.setOfNumbers)
     def showAsBoxPlot(self):
-        sns.boxplot(data=self.setOfNumbers)
+        sns.boxplot(x=self.setOfNumbers)
         plt.show()
+SetOfNumbers([1, 2, 3, 4, 5]).showAsBoxPlot()
