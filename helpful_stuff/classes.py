@@ -1,3 +1,6 @@
+import statistics
+import matplotlib.pyplot as plt
+import seaborn as sns
 class Book:
     num_of_books = 0
     def __init__(self, name='NULL', nonfiction_or_fiction='fiction', author='NULL', illustrator='NULL', page_count=0, publishing_company='scholastic', genre='NULL', series='NULL', price=0.00):
@@ -117,3 +120,6 @@ class SetOfNumbers:
         return self.setOfNumbers
     def __str__(self):
         return str(self.setOfNumbers)
+    def showAsBoxPlot(self):
+        sns.boxplot(data=self.setOfNumbers)
+        plt.show()
