@@ -2,6 +2,7 @@ import os
 from random import randint
 from tkinter import *
 import translators
+import scipy.stats as stats
 show = ''
 def sum2(*numbers):
     total = 0
@@ -215,6 +216,18 @@ def tokenizeSentence(string=''):
             sentence = string[start: ]
             sentenceList.append(sentence)
     return sentenceList
+def splitStringIntoList(string='', sep=' '):
+    wordList = []
+    start = 0
+    for pos, letter in enumerate(string):
+        if letter == sep:
+            word = string[start : pos]
+            wordList.append(word)
+            start = pos + 1
+        if pos == len(string) - 1:
+            word = string[start: ]
+            wordList.append(word)
+    return wordList
 def factorial(num=1):
     bigNum = 1
     if num > 1:
@@ -233,3 +246,10 @@ def sumtorial(num=1):
         return 1
     if num == 0:
         return 0
+def oneVarianceTestForIsItMoreScenarios(n, s, sigma, p):
+    Chi_sq_cal = (n - 1) * (s ** 2) / (sigma ** 2)
+    criticalValue = stats.chi2.isf(1-p, n-1)
+    if criticalValue < Chi_sq_cal:
+        return 'The Null Hypothesis has been rejected'
+    else:
+        return 'The Null Hypothesis has not been rejected'
