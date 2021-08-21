@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import random
+from tkinter.messagebox import showinfo
 special = '!@#$%^&*()_+-={[]}|\\:"\',<.>?/'
 alpha = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm"
 num = '123456789'
@@ -16,4 +17,5 @@ for i in range(num_alpha):
 for i in range(num_special):
     special_special = random.randint(0, len(special) - 1)
     password = password + special[special_special]
-print(f'Your password is : {password}')
+showinfo(f'Your password is : {password}', f'Your password is : {password}')
+
