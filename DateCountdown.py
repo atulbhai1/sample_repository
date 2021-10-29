@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 from tkinter import *
 from tkcalendar import Calendar
+from helpful_stuff.functions import get_dropdown
 current_date = None
 wanted_date = None
 def get_wanted_date():
@@ -25,13 +26,14 @@ def get_current_date():
 def get_wanted_date_master():
     get_wanted_date()
     return cal.get_date()
-def convert_cal_to_datetime(c):
+def convert_cal_to_datetime(c, t):
     cal2 = str(c)
     cal3 = cal2.replace('/', '-')
-    cal4 = cal3 + ' 0:0:0'
-    format = "%m-%d-%y %H:%M:%S"
-    return datetime.strptime(cal4, format)
+    cal4 = cal3 + f' {t[0]}:{t[1]}:{t[2]}'
+    frmt = "%m-%d-%y %H:%M:%S"
+    return datetime.strptime(cal4, frmt)
 wanted_date = get_wanted_date_master()
+wanted_time = [int(get_dropdown('Hour', range(24), 'Choosing The Wanted Hour', 'OK')),int(get_dropdown('Minute', range(60), 'Choosing The Wanted Hour', 'OK')), int(get_dropdown('Second', range(60), 'Choosing The Wanted Hour', 'OK'))]
 window = Tk()
 timeLeftLabel = Label(window, text='', font=('Arial', 100))
 timeLeftLabel.pack()
@@ -43,7 +45,7 @@ goOn = True
 QuitButton.pack()
 while goOn:
     window.title(f"Countdown To {wanted_date}")
-    wanted_date_datetime = convert_cal_to_datetime(wanted_date)
+    wanted_date_datetime = convert_cal_to_datetime(wanted_date, wanted_time)
     current_date = get_current_date()
     distance = wanted_date_datetime - current_date
     timeLeftLabel.config(text=distance)
