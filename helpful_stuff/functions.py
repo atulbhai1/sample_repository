@@ -253,3 +253,19 @@ def oneVarianceTestForIsItMoreScenarios(n, s, sigma, p):
         return 'The Null Hypothesis has been rejected'
     else:
         return 'The Null Hypothesis has not been rejected'
+def multiplication_if_ten_is_same_and_ones_add_to_ten(x, y):
+    a = x
+    b = y
+    def get_last_digit_and_rest(n):
+        n = str(n)
+        n = list(n)
+        n1 = ''
+        n2 = n.pop(-1)
+        for i in n:
+            n1 = n1+i
+        n = [n1, n2]
+        return n
+    a = get_last_digit_and_rest(a)
+    b = get_last_digit_and_rest(b)
+    ans = str(int(a[0])*(int(b[0])+1)) + str(int(a[1])*int(b[1]))
+    return ans
