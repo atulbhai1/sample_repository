@@ -20,6 +20,7 @@ def find_lines_of_3():
     if grid[1][1] == grid[0][2] == grid[2][0]:
         winner = grid[0][2]
         return [True, winner]
+    return [False, 'Nobody']
 def clicked(pos=[0, 0]):
     global turn
     global grid
