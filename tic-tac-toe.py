@@ -58,4 +58,7 @@ button8.grid(row=2, column=1)
 button9 = Button(window, command=lambda: clicked([2, 2]), height=10, width=20, text=grid[2][2])
 button9.grid(row=2, column=2)
 buttons.append([button7, button8, button9])
+for n in range(3):
+    for d in range(3):
+        buttons[n][d].config(font=("Arial", 22, "bold"))
 window.mainloop()
