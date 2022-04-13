@@ -110,9 +110,11 @@ class SideBlock(Entity):
         super(SideBlock, self).__init__(parent=camera.ui, model='block.obj', texture=grass_texture, scale=0.1, position=Vec2(0.6, 0.35), rotation=Vec3(20, -45, 0))
     def change(self, te=grass_texture):
         self.texture = te
-for z in range(width):
-    for x in range(length):
-        block = Block((x, 0, z))
+for y in [-1, 0]:
+
+    for z in range(width):
+        for x in range(length):
+            block = Block((x, y, z))
 player = FirstPersonController()
 player.y += 1
 hand = Hand()
