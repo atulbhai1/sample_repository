@@ -208,8 +208,12 @@ class MainWindow(QMainWindow):
         if q.scheme() == "":
             # set scheme
             q.setScheme("http")
-
-            # set the url
+        if not self.urlbar.text().__contains__("."):
+            text = self.urlbar.text()
+            ntext = text.replace("+", "%2B")
+            ntext = text.replace(" ", "+")
+            newURL = f"https://www.google.com/search?q={ntext}"
+            q = QUrl(newURL)
         self.tabs.currentWidget().setUrl(q)
 
         # method to update the url
