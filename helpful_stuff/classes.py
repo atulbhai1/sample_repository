@@ -123,3 +123,20 @@ class SetOfNumbers:
     def showAsBoxPlot(self):
         sns.boxplot(x=self.setOfNumbers)
         plt.show()
+class Variable:
+    def __init__(self, value=None, letter="x"):
+        self.value = value
+        if len(letter) != 1:
+            letter = "x"
+        self.letter=letter
+
+    def __mul__(self, other):
+        if self.value is not None:
+            return other*self.value
+        elif type(other) == Variable:
+            if other.value is not None:
+                return f"{other.value}{self.letter}"
+            else:
+                return f"{other.letter}{self.letter}"
+        else:
+            return f"{other}{self.letter}"
