@@ -85,7 +85,7 @@ theSetOfMarks = list(set(theSetOfMarks))# Removes redundant values
 
 #theSetOfMarks = list({1, 4, 6, 7, 10, 15, 28, 33, 44, 45, 59, 63, 75, 76, 79, 87, 88, 95, 98}) -> Example used for testing
 
-print("This checks if the set of numbers provided is sufficient to make a perfect 100 length ruler")
+print(f"This checks if the set of numbers provided is sufficient to make a perfect {length_o_desired_ruler} length ruler")
 print("O can be measured by all rulers")
 for n in range(1, length_o_desired_ruler):
     print(f"Started New Number: {n}")
