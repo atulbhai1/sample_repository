@@ -57,23 +57,33 @@ while getLength:
         getLength = False
     except:
         print("Your perfect ruler has to be an integer over 1")
-getNumOfSolutions = True
+getNumOfMarks = True
 #length_o_desired_ruler = 100 -> Example used for testing
 
 #get the number of marks on the ruler
-while getNumOfSolutions:
+while getNumOfMarks:
     try:
-        numberOfSolutions = int(input("What is the length of the perfect ruler you want to check?"))
-        assert numberOfSolutions >= 1
-        getNumOfSolutions = False
+        numberOfMarks = int(input("What is the number of marks used in your solution to this perfect ruler?"))
+        assert numberOfMarks > 0
+        getNumOfMarks = False
     except:
-        print("Your perfect ruler has to have at least 1 mark on it")
+        print("Your perfect ruler has to have at least 1 mark on it and must be an integer value long")
+#get the marks!!!
 theSetOfMarks = []
-for len
+for i in range(numberOfMarks):
+    getSolution = True
+    while getSolution:
+        try:
+            markToAdd = int(input("What is the mark you want to add to your ruler?"))
+            assert markToAdd > 0
+            getSolution = False
+            theSetOfMarks.append(markToAdd)
+        except:
+            print("The marks on your ruler have to be greater than 0 and have to be integers")
 
+theSetOfMarks = list(set(theSetOfMarks))# Removes redundant values
 
-
-theSetOfMarks = list({1, 4, 6, 7, 10, 15, 28, 33, 44, 45, 59, 63, 75, 76, 79, 87, 88, 95, 98})
+#theSetOfMarks = list({1, 4, 6, 7, 10, 15, 28, 33, 44, 45, 59, 63, 75, 76, 79, 87, 88, 95, 98}) -> Example used for testing
 
 print("This checks if the set of numbers provided is sufficient to make a perfect 100 length ruler")
 print("O can be measured by all rulers")
