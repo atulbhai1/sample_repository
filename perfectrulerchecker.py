@@ -47,6 +47,7 @@ class CannotBeMeasuredError(BaseException):
     def __init__(self, message):
         self.message = message
         super().__init__(self.message)
+
 print("Opened Perfect Ruler Checker")
 #Get Length
 getLength = True
