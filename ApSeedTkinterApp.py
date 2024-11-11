@@ -10,7 +10,7 @@ def get_dropdown(prompt, options=[''], name='tk', button='OK'):
     answer.set(options[0])
     answers = list(options)
     OptionMenu(window, answer, *answers).grid(row=0, column=1)
-    Button(window, text=button, command=window.destroy).grid(row=1, column=0, columnspan=2)
+    Button(window, text=button, command=window.destroy, bg='yellow').grid(row=1, column=0, columnspan=2)
     window.mainloop()
     return answer.get()
 
@@ -27,7 +27,7 @@ def get_entry(prompt, name='tk', button='OK'):
         global show
         show = entry.get()
         window.destroy()
-    Button(window, text=button, command=ok).grid(row=2, column=0, columnspan=2)
+    Button(window, text=button, command=ok, bg='yellow').grid(row=2, column=0, columnspan=2)
     window.mainloop()
     return show
 
@@ -38,7 +38,7 @@ def display_data(data, name="tk", button="OK"):
     Label(window, text=data, bg='lightblue').grid(row=0, column=0, sticky=W)
     def ok():
         window.destroy()
-    Button(window, text=button, command=ok).grid(row=2, column=0, columnspan=1)
+    Button(window, text=button, command=ok, bg='yellow').grid(row=2, column=0, columnspan=1)
     window.mainloop()
 
 #Games!!!
@@ -171,7 +171,7 @@ def game_ideas():
     def ok():
         window.destroy()
 
-    Button(window, text="Go Back To The Main Screen", command=ok).grid(row=2, column=0, columnspan=1)
+    Button(window, text="Go Back To The Main Screen", command=ok, bg='yellow').grid(row=2, column=0, columnspan=1)
     window.mainloop()
 
 
