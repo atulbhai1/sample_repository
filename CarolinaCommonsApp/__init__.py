@@ -1,8 +1,10 @@
 #Carolina Commons App: Core function: Basic notebook app
 
 from tkinter import *
+
 from config import *
 import journal
+import ai
 while True:
     window = Tk()
     window.maxsize(size[0], size[1])
@@ -14,7 +16,7 @@ while True:
 
     #Make the heading label
 
-    Label(window, text="Welcome to Touchstone.ai\nPlease choose what you want to do", font=font, bg=label_bg).place(x=20, y=0)
+    Label(window, text="Welcome to Touchstone.ai\nPlease choose what you want to do", font=font, bg=label_bg).place(relx=0.5, rely=0.034, anchor=CENTER)
 
     #Make 1st Button
     def journal_prompt_button():
@@ -25,7 +27,20 @@ while True:
     b.place(x=10, y=50)
     b.config(bg=button_bg)
 
-    #Make 2nd Button
+
+    # Make 2nd Button
+    def ai_button():
+        global choice
+        choice = "a"
+        window.destroy()
+
+
+    b = Button(window, text="Use Touchstone.ai", command=ai_button, height=10, width=10)
+    b.place(x=160, y=50)
+    b.config(bg=button_bg)
+
+
+    #Make Leave Button
     def leave_button():
         global choice
         choice = "l"
@@ -37,7 +52,11 @@ while True:
     window.mainloop()
 
     if choice == "j":
+        #window.destroy()
         journal.run()
+    elif choice == "a":
+        ai.run()
+
     else:
         break
 
