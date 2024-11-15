@@ -5,7 +5,11 @@ from config import *
 from random import choice
 import time
 
-prompts = ["Write about your pet", "Write about your week", "Write a short story", "Write a haiku about your day", "Write about your happiest moment"]
+prompts = ["Write about your pet", "Write about your week", "Write a short story",
+           "Write a haiku about your day", "Write about your happiest moment",
+           "Write about how you used your \ntime and how you might use it better",
+           "Write about your goals and \nhow you might achieve them",
+           "Free Write!"]
 
 
 data = ""

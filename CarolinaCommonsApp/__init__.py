@@ -23,7 +23,7 @@ while True:
         global choice
         choice = "j"
         window.destroy()
-    b = Button(window, text="Answer a \nJournal Prompt", command=journal_prompt_button, height=10, width=10)
+    b = Button(window, text="Answer a \nJournal Prompt", command=journal_prompt_button, height=12, width=10)
     b.place(x=10, y=50)
     b.config(bg=button_bg)
 
@@ -35,7 +35,7 @@ while True:
         window.destroy()
 
 
-    b = Button(window, text="Use Touchstone.ai", command=ai_button, height=10, width=10)
+    b = Button(window, text="Use Touchstone.ai", command=ai_button, height=12, width=10)
     b.place(x=160, y=50)
     b.config(bg=button_bg)
 
