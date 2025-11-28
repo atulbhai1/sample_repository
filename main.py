@@ -1,1 +1,2 @@
-print("hello\rbye")
+#start
+customers = []

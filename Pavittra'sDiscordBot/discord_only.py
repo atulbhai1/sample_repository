@@ -3,8 +3,7 @@ from openai import OpenAI
 import discord
 import os
 
-os.environ["OPENAI_API_KEY"] = "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"
-
+os.environ["OPENAI_API_KEY"] = "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"
 load_dotenv()
 OPENAI_KEY = os.getenv("OPENAI_API_KEY")
 oa_client = OpenAI(api_key = OPENAI_KEY)
